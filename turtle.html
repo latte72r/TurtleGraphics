@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Turtle</title>
+    <link rel="icon" type="image/gif" href="./win_icon.gif">
+    <link href="./turtle.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="./turtle.js"></script>
+</head>
+
+<body onload="setupTurtle();">
+    <canvas id="canvas" title="TurtleGraphics"></canvas>
+    <span>
+        <textarea id="textarea" placeholder="Enter the program code." maxlength=999 cols="42" rows="26" autofocus>
+// Example
+await turtle.speed(0);
+for (let i = 0; i < 50; i++) {
+    r = 255 - i * 2;
+    g = i * 2;
+    b = 128 + i * 2;
+    await turtle.pencolor(r, g, b);
+    await turtle.forward(100 + 5 * i);
+    await turtle.right(144);
+}
+await turtle.hideturtle();</textarea>
+        <input type="button" id="run_code" value="Run Code" onclick="runCode();" />
+    </span>
+</body>
+
+</html>

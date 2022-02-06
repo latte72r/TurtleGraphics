@@ -1,0 +1,25 @@
+
+body {
+    background-color:#D0D0D0;
+}
+
+#canvas {
+    background-color:#FFFFFF;
+    float: left;
+}
+
+#textarea {
+    font-size: 20px;
+    font-family: monospace;
+    resize: none;
+    float: right;
+}
+
+#run_code {
+    font-size: 36px;
+    font-family: monospace;
+    font-weight: bold;
+    color: red;
+    float: left;
+    margin : 0px 0px 0px 160px;
+}
