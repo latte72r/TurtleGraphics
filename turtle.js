@@ -7,7 +7,7 @@ const SHAPE = [
 ];
 
 const SPEED_TABLE = {
-    0: 0, 1: 40, 2: 32, 3: 24, 4: 20, 5: 16, 6: 12, 7: 10, 8: 8, 9: 6, 10: 4
+    0: 0, 1: 40, 2: 32, 3: 24, 4: 20, 5: 16, 6: 12, 7: 8, 8: 4, 9: 2, 10: 0
 }
 
 const EXPAND = 2;
@@ -267,6 +267,12 @@ class Turtle {
 
 let turtle;
 function setupTurtle() {
+    let ua = navigator.userAgent;
+    if ((ua.indexOf('iPhone') > 0 || ua.indexOf('Android') > 0) && ua.indexOf('Mobile') > 0) {
+        document.getElementById("textarea").style.cssFloat = "left";
+    } else {
+        document.getElementById("textarea").style.cssFloat = "right";
+    }
     try {
         turtle = new Turtle(800, 560, "canvas");
     } catch (error) {

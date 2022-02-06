@@ -14,13 +14,20 @@
     <span>
         <textarea id="textarea" placeholder="Enter the program code." maxlength=999 cols="42" rows="26" autofocus>
 // Example
-await turtle.speed(0);
-for (let i = 0; i < 50; i++) {
-    r = 255 - i * 2;
-    g = i * 2;
-    b = 128 + i * 2;
+await turtle.speed(8);
+await turtle.penup()
+await turtle.setheading(144);
+await turtle.forward(100);
+await turtle.setheading(-90);
+await turtle.forward(40);
+await turtle.setheading(0);
+await turtle.pendown()
+for (let i = 0; i < 30; i++) {
+    r = 255 - i * 4;
+    g = i * 4;
+    b = 128 + i * 4;
     await turtle.pencolor(r, g, b);
-    await turtle.forward(100 + 5 * i);
+    await turtle.forward(200 + 10 * i);
     await turtle.right(144);
 }
 await turtle.hideturtle();</textarea>
