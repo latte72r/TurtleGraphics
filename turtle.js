@@ -337,7 +337,7 @@ async function runCode() {
     const CODE = document.getElementById("textarea").value;
     const INIT = document.getElementById("initialize").checked;
     if (INIT) {
-        turtle.initializeVariables();
+        turtle.resetscreen();
     }
     if (CODE == "") {
         alert("A program code was not entered.");
