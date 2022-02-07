@@ -32,6 +32,7 @@ body {
     font-size: 24px;
     font-family: monospace;
     font-weight: bold;
+    float: left;
 }
 
 #initialize {
