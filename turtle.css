@@ -31,10 +31,9 @@ body {
     float: left;
     position: relative;
     top: 10px;
-    left: 80px;
+    left: 100px;
 }
 
 #initialize {
-    transform: scale(1.5);
-    float: left;
+    transform: scale(1.6);
 }

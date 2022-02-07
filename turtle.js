@@ -332,6 +332,7 @@ function setupTurtle() {
     }
 }
 
+let running = false;
 async function runCode() {
     const CODE = document.getElementById("textarea").value;
     const INIT = document.getElementById("initialize").checked;
@@ -340,7 +341,11 @@ async function runCode() {
     }
     if (CODE == "") {
         alert("A program code was not entered.");
+    } else if (running) {
+        alert("Another program is running.");
     } else {
-        eval("(async () => {try {" + CODE + "} catch(e) {alert(e.message)}})()");
+        running = true;
+        await eval("(async () => {try {" + CODE + "} catch(e) {alert(e.message)}})()");
+        running = false;
     }
 }
