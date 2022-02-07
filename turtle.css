@@ -20,5 +20,21 @@ body {
     font-weight: bold;
     color: red;
     float: left;
-    margin : 0px 0px 0px 160px;
+    margin : 0px 0px 0px 80px;
+}
+
+#init_span {
+    padding: 10px 0px 0px 20px;
+    display: inline-block;
+}
+
+#init_label {
+    font-size: 24px;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+#initialize {
+    transform: scale(1.5);
+    float: left;
 }

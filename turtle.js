@@ -10,7 +10,6 @@ const SPEED_TABLE = {
     0: 0, 1: 40, 2: 32, 3: 24, 4: 20, 5: 16, 6: 12, 7: 8, 8: 4, 9: 2, 10: 0
 }
 
-const EXPAND = 2;
 const DELTA_XY = 2;
 const DELTA_ANGLE = 2;
 
@@ -19,19 +18,7 @@ class Turtle {
         this.cvWidth = width;
         this.cvHeight = height;
 
-        this.registeredFigures = [];
-
-        this.directionAngle = 0;
-        this.centerX = this.cvWidth / 2;
-        this.centerY = this.cvHeight / 2;
-
-        this.penColor = "#79E5E2";
-        this.fillColor = "#A9F5F2";
-        this.lineWidth = 1;
-        this.penEnabled = true;
-        this.turtleVisible = true;
-        this.turtleSpeed = 3;
-        this.delayTime = SPEED_TABLE[this.turtleSpeed];
+        this.initializeVariables();
 
         this.canvas = document.getElementById(canvas_id);
 
@@ -49,6 +36,23 @@ class Turtle {
         this.moveTurtle();
     }
 
+    initializeVariables() {
+        this.registeredFigures = [];
+
+        this.directionAngle = 0;
+        this.centerX = this.cvWidth / 2;
+        this.centerY = this.cvHeight / 2;
+
+        this.penColor = "#79E5E2";
+        this.fillColor = "#A9F5F2";
+        this.lineWidth = 1;
+        this.penEnabled = true;
+        this.turtleVisible = true;
+        this.turtleSpeed = 3;
+        this.delayTime = SPEED_TABLE[this.turtleSpeed];
+        this.turtleExpand = 1;
+    }
+
     sleep(waitTime) {
         return new Promise(resolve => setTimeout(resolve, waitTime));
     }
@@ -62,6 +66,11 @@ class Turtle {
 
     clearCanvas() {
         this.context.clearRect(0, 0, this.cvWidth, this.cvHeight);
+    }
+
+    resetscreen() {
+        this.initializeVariables();
+        this.moveTurtle();
     }
 
     async forward(distance) {
@@ -141,6 +150,8 @@ class Turtle {
     }
 
     async goto(x, y) {
+        x += this.cvWidth / 2;
+        y += this.cvHeight / 2;
         const DELTA_X = x - this.centerX;
         const DELTA_Y = y - this.centerY;
         const ANGLE = -(Math.atan2(DELTA_Y, DELTA_X) / Math.PI) * 180;
@@ -153,12 +164,26 @@ class Turtle {
         this.moveTurtle();
     }
 
+    async home() {
+        await this.goto(0, 0);
+    }
+
+    async setx(x) {
+        x += this.cvWidth / 2;
+        await this.goto(x, this.centerY);
+    }
+
+    async sety(y) {
+        y += this.cvHeight / 2;
+        await this.goto(this.centerX, y);
+    }
+
     angleFitRange(angle) {
         angle = angle % 360;
-        if ((angle < 180) && (angle > -180)) {
+        if ((angle <= 180) && (angle >= -180)) {
             return angle;
-        } else if ((angle - 360 < 180) && (angle - 360 > -180)) {
-            return angle % 360;
+        } else if ((angle - 360 <= 180) && (angle - 360 >= -180)) {
+            return angle - 360;
         } else {
             return angle + 360;
         }
@@ -184,7 +209,7 @@ class Turtle {
     }
 
     pencolor(...args) {
-        if (typeof (args[0]) === "string") {
+        if (typeof (args[0]) == "string") {
             this.penColor = args[0];
         } else {
             this.penColor = this.convertRGB(...args);
@@ -195,7 +220,7 @@ class Turtle {
     }
 
     fillcolor(...args) {
-        if (typeof (args[0]) === "string") {
+        if (typeof (args[0]) == "string") {
             this.fillColor = args[0];
         } else {
             this.fillColor = this.convertRGB(...args);
@@ -206,7 +231,7 @@ class Turtle {
     }
 
     color(...args) {
-        if (typeof (args[0]) === "string") {
+        if (typeof (args[0]) == "string") {
             this.pencolor(...args);
             this.fillcolor(...args);
         }
@@ -235,10 +260,42 @@ class Turtle {
         this.moveTurtle();
     }
 
-    moveTurtle(clear = true) {
-        const RADIAN = (this.directionAngle - 90) / 180 * Math.PI;
+    drawTurtle(
+        centerX = NaN, centerY = NaN, directionAngle = NaN,
+        penColor = NaN, fillColor = NaN, lineWidth = NaN, turtleExpand = NaN) {
+        if (isNaN(centerX)) { centerX = this.centerX; }
+        if (isNaN(centerY)) { centerY = this.centerY; }
+        if (isNaN(directionAngle)) { directionAngle = this.directionAngle; }
+        if (isNaN(penColor)) { penColor = this.penColor; }
+        if (isNaN(fillColor)) { fillColor = this.fillColor; }
+        if (isNaN(lineWidth)) { lineWidth = this.lineWidth; }
+        if (isNaN(turtleExpand)) { turtleExpand = this.turtleExpand; }
+        this.context.strokeStyle = penColor;
+        this.context.fillStyle = fillColor;
+        const RADIAN = (directionAngle - 90) / 180 * Math.PI;
         const COS = Math.cos(RADIAN);
         const SIN = Math.sin(RADIAN);
+        this.context.beginPath();
+        SHAPE.forEach(element => this.context.lineTo(
+            centerX + (element[0] * COS - element[1] * SIN) * turtleExpand,
+            centerY - (element[0] * SIN + element[1] * COS) * turtleExpand));
+        this.context.fill();
+        this.context.stroke();
+    }
+
+    turtlesize(stretch) {
+        this.turtleExpand = stretch;
+        this.moveTurtle();
+    }
+
+    stamp() {
+        this.registeredFigures.push(["stamp", [
+            this.centerX, this.centerY, this.directionAngle,
+            this.penColor, this.fillColor, this.lineWidth, this.turtleExpand]]);
+        this.moveTurtle();
+    }
+
+    moveTurtle(clear = true) {
         if (clear) {
             this.clearCanvas();
         }
@@ -250,17 +307,12 @@ class Turtle {
                 this.context.strokeStyle = figure[1];
             } else if (figure[0] == "fillcolor") {
                 this.context.fillStyle = figure[1];
+            } else if (figure[0] == "stamp") {
+                this.drawTurtle(...figure[1]);
             }
         }
         if (this.turtleVisible) {
-            this.context.strokeStyle = this.penColor;
-            this.context.fillStyle = this.fillColor;
-            this.context.beginPath();
-            SHAPE.forEach(element => this.context.lineTo(
-                this.centerX + (element[0] * COS - element[1] * SIN) * EXPAND,
-                this.centerY - (element[0] * SIN + element[1] * COS) * EXPAND));
-            this.context.fill();
-            this.context.stroke();
+            this.drawTurtle();
         }
     }
 }
@@ -268,7 +320,7 @@ class Turtle {
 let turtle;
 function setupTurtle() {
     let ua = navigator.userAgent;
-    if ((ua.indexOf('iPhone') > 0 || ua.indexOf('Android') > 0) && ua.indexOf('Mobile') > 0) {
+    if (ua.indexOf('iPhone') > 0 || ua.indexOf('iPad') > 0 || ua.indexOf('Android') > 0) {
         document.getElementById("textarea").style.cssFloat = "left";
     } else {
         document.getElementById("textarea").style.cssFloat = "right";
@@ -282,26 +334,13 @@ function setupTurtle() {
 
 async function runCode() {
     const CODE = document.getElementById("textarea").value;
+    const INIT = document.getElementById("initialize").checked;
+    if (INIT) {
+        turtle.initializeVariables();
+    }
     if (CODE == "") {
         alert("A program code was not entered.");
     } else {
-        try {
-            eval("(async () => {" + CODE + "})()");
-        } catch (error) {
-            alert(error.message);
-        }
+        eval("(async () => {try {" + CODE + "} catch(e) {alert(e.message)}})()");
     }
 }
-
-/*
-<Example>
-await turtle.speed(0);
-for (let i = 0; i < 25; i++) {
-    r = 255 - i * 4;
-    g = i * 4;
-    b = 128 + i * 4;
-    await turtle.pencolor(r, g, b);
-    await turtle.forward(100 + 5 * i);
-    await turtle.right(144);
-}
-*/
