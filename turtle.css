@@ -15,17 +15,13 @@ body {
 }
 
 #run_code {
-    font-size: 36px;
+    font-size: 32px;
     font-family: monospace;
     font-weight: bold;
     color: red;
     float: left;
-    margin : 0px 0px 0px 80px;
-}
-
-#init_span {
-    padding: 10px 0px 0px 20px;
-    display: inline-block;
+    position: relative;
+    left: 60px;
 }
 
 #init_label {
@@ -33,6 +29,9 @@ body {
     font-family: monospace;
     font-weight: bold;
     float: left;
+    position: relative;
+    top: 10px;
+    left: 80px;
 }
 
 #initialize {
