@@ -1,40 +1,46 @@
-
 body {
-    background-color:#D0D0D0;
+    background-color: #D0D0D0;
 }
 
-#canvas {
-    background-color:#FFFFFF;
+#left-side {
     float: left;
 }
 
-#textarea {
+#right-side {
+    float: right;
+}
+
+#canvas {
+    background-color: #FFFFFF;
+}
+
+#textbox {
     font-size: 20px;
     font-family: monospace;
     resize: none;
 }
 
-#run_code {
+#run-code {
     font-size: 32px;
     font-family: monospace;
     font-weight: bold;
     color: red;
+    margin: 18px;
     float: left;
-    position: relative;
-    left: 60px;
 }
 
-#init_label {
+#initialize-form {
+    margin: 24px;
+    float: left;
+}
+
+#init-label {
     font-size: 24px;
     font-family: monospace;
     font-weight: bold;
-    float: left;
-    position: relative;
     top: 10px;
-    left: 100px;
 }
 
 #initialize {
     transform: scale(1.6);
-    float: left;
 }

@@ -10,9 +10,11 @@
 </head>
 
 <body onload="setupTurtle();">
-    <canvas id="canvas" title="TurtleGraphics"></canvas>
-    <div>
-        <textarea id="textarea" placeholder="Enter the program code." maxlength=999 cols="42" rows="26" autofocus>
+    <div id="left-side">
+        <canvas id="canvas" title="TurtleGraphics"></canvas>
+    </div>
+    <div id="right-side">
+        <textarea id="textbox" placeholder="Enter the program code." maxlength=999 cols="42" rows="26" autofocus>
 // Example
 await turtle.forward(100);
 await turtle.right(144);
@@ -23,8 +25,13 @@ await turtle.right(144);
 await turtle.forward(100);
 await turtle.right(144);
 await turtle.forward(100);</textarea>
-        <input type="button" id="run_code" value="Run Code" onclick="runCode();" />
-        <label id="init_label"><input type="checkbox" id="initialize" checked />Initialize</label>
+        <div id="options">
+            <input type="button" id="run-code" value="Run Code" onclick="runCode();" />
+            <form id="initialize-form">
+                <input type="checkbox" id="initialize" checked />
+                <label id="init-label" for="initialize">Initialize</label>
+            </form>
+        </div>
     </div>
 </body>
 
