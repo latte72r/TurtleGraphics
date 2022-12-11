@@ -14,17 +14,15 @@
         <canvas id="canvas" title="TurtleGraphics"></canvas>
     </div>
     <div id="right-side">
-        <textarea id="textbox" placeholder="Enter the program code." maxlength=999 cols="42" rows="26" autofocus>
+        <textarea id="textbox" placeholder="Enter the program code." maxlength=999 cols="48" rows="28" autofocus>
 // Example
-await turtle.forward(100);
-await turtle.right(144);
-await turtle.forward(100);
-await turtle.right(144);
-await turtle.forward(100);
-await turtle.right(144);
-await turtle.forward(100);
-await turtle.right(144);
-await turtle.forward(100);</textarea>
+turtle.color("red", "yellow");
+turtle.begin_fill();
+for (let i = 0; i &lt 5; i++) {
+    await turtle.forward(100);
+    await turtle.right(144);
+}
+turtle.end_fill();</textarea>
         <div id="options">
             <input type="button" id="run-code" value="Run Code" onclick="runCode();" />
             <form id="initialize-form">

@@ -4,10 +4,12 @@ body {
 
 #left-side {
     float: left;
+    margin: 20px;
 }
 
 #right-side {
     float: right;
+    margin: 20px;
 }
 
 #canvas {
@@ -25,12 +27,12 @@ body {
     font-family: monospace;
     font-weight: bold;
     color: red;
-    margin: 18px;
+    margin: 16px 40px;
     float: left;
 }
 
 #initialize-form {
-    margin: 24px;
+    margin: 24px 20px;
     float: left;
 }
 

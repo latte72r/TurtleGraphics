@@ -10,8 +10,9 @@ const SPEED_TABLE = {
     0: 0, 1: 32, 2: 24, 3: 20, 4: 16, 5: 14, 6: 12, 7: 8, 8: 6, 9: 4, 10: 2
 };
 
-const DELTA_XY = 2;
-const DELTA_ANGLE = 2;
+const DELTA_XY = 4;
+const DELTA_ANGLE = 4;
+const DELTA_CIRCLE = 4;
 
 class Turtle {
     constructor(width, height, canvasId) {
@@ -28,15 +29,19 @@ class Turtle {
         this.canvas.height = this.cvHeight;
 
         this.context = this.canvas.getContext('2d');
+        this.context.lineCap = 'round';
+        this.context.lineJoin = 'round';
         this.resetscreen();
     }
 
     resetscreen() {
         this.registeredFigures = [];
+        this.filledFigures = [];
 
         this.directionAngle = 0;
         this.centerX = this.cvWidth / 2;
         this.centerY = this.cvHeight / 2;
+        this.beginFillIndex = null;
 
         this.pencolor("#000000");
         this.fillcolor("#000000");
@@ -70,7 +75,6 @@ class Turtle {
     }
 
     pensize(width) {
-        this.penSize = width;
         this.registeredFigures.push(["pensize", width]);
     }
 
@@ -88,6 +92,9 @@ class Turtle {
                 this.redrawObjects();
                 if (this.penEnabled) {
                     this.drawLine(START_X, START_Y, this.centerX, this.centerY);
+                }
+                if (this.turtleVisible) {
+                    this.drawTurtle();
                 }
                 await this.sleepMS(this.delayTime);
             }
@@ -194,15 +201,15 @@ class Turtle {
 
     convertRGB(red, green, blue) {
         let rgb = "#";
-        rgb += ("00" + red.toString(16)).slice(-2);
-        rgb += ("00" + green.toString(16)).slice(-2);
-        rgb += ("00" + blue.toString(16)).slice(-2);
+        rgb += ("00" + parseInt(red).toString(16)).slice(-2);
+        rgb += ("00" + parseInt(green).toString(16)).slice(-2);
+        rgb += ("00" + parseInt(blue).toString(16)).slice(-2);
         return rgb.toUpperCase();
     }
 
     pencolor(...args) {
         let penColor;
-        if (typeof (args[0]) == "string") {
+        if ((typeof (args[0]) == "string") && (args.length == 1)) {
             penColor = args[0];
         } else {
             penColor = this.convertRGB(...args);
@@ -223,9 +230,13 @@ class Turtle {
     }
 
     color(...args) {
-        if (typeof (args[0]) == "string") {
+        if (args.length == 1 || args.length == 3) {
             this.pencolor(...args);
             this.fillcolor(...args);
+        }
+        if (args.length == 2) {
+            this.pencolor(args[0]);
+            this.fillcolor(args[1]);
         }
     }
 
@@ -261,15 +272,17 @@ class Turtle {
         const COS = Math.cos(RADIAN);
         const SIN = Math.sin(RADIAN);
         this.context.beginPath();
+        this.context.lineWidth = this.turtleExpand;
         SHAPE.forEach(element => this.context.lineTo(
             centerX + (element[0] * COS - element[1] * SIN) * turtleExpand,
             centerY - (element[0] * SIN + element[1] * COS) * turtleExpand));
         this.context.fill();
         this.context.stroke();
+        this.context.lineWidth = this.penSize;
     }
 
     turtlesize(stretch) {
-        this.turtleExpand = stretch;
+        this.registeredFigures.push(["turtlesize", stretch]);
         this.redrawObjects();
     }
 
@@ -290,10 +303,96 @@ class Turtle {
         this.context.fill();
     }
 
-    redrawObjects(clear = true) {
-        if (clear) {
-            this.clearCanvas();
+    async circle(radius, extent) {
+        const START_X = this.centerX;
+        const START_Y = this.centerY;
+        const START_ANGLE = this.directionAngle;
+        const SIGN = radius > 0 ? 1 : -1;
+        const RADIAN = (START_ANGLE + 90 * SIGN) / 180 * Math.PI;
+        const CENTER_X = START_X + radius * Math.cos(RADIAN) * SIGN;
+        const CENTER_Y = START_Y - radius * Math.sin(RADIAN) * SIGN;
+        const TIMES = (radius * extent / 180 * Math.PI * SIGN) / DELTA_CIRCLE;
+        const START = (90 * SIGN - START_ANGLE) / 180 * Math.PI;
+        const END = ((90 - extent) * SIGN - START_ANGLE) / 180 * Math.PI;
+        if (this.turtleSpeed != 0 && radius != 0) {
+            for (let i = 0; i < TIMES; i++) {
+                let end = START + (END - START) / TIMES * i;
+                this.centerX = CENTER_X + radius * Math.cos(end) * SIGN;
+                this.centerY = CENTER_Y + radius * Math.sin(end) * SIGN;
+                this.directionAngle = 90 * SIGN - end / Math.PI * 180;
+                this.redrawObjects();
+                if (this.penEnabled) {
+                    this.context.beginPath();
+                    this.context.arc(CENTER_X, CENTER_Y, radius * SIGN, START, end, radius > 0 ? true : false);
+                    this.context.stroke();
+                }
+                if (this.turtleVisible) {
+                    this.drawTurtle();
+                }
+                await this.sleepMS(this.delayTime);
+            }
         }
+        this.centerX = CENTER_X + radius * Math.cos(END) * SIGN;
+        this.centerY = CENTER_Y + radius * Math.sin(END) * SIGN;
+        this.directionAngle = 90 * SIGN - END / Math.PI * 180;
+        if (this.penEnabled) {
+            this.registeredFigures.push(["circle", [radius, CENTER_X, CENTER_Y, START, END, SIGN]]);
+        }
+        this.redrawObjects();
+    }
+
+    createCircle(radius, centerX, centerY, start, end, sign) {
+        this.context.beginPath();
+        this.context.arc(centerX, centerY, radius * sign, start, end, radius > 0 ? true : false);
+        this.context.stroke();
+    }
+
+    begin_fill() {
+        this.beginFillIndex = this.registeredFigures.length;
+        this.registeredFigures.push(["begin_fill", [this.registeredFigures.length, null]]);
+        this.redrawObjects();
+    }
+
+    beginFill(beginIndex, endIndex) {
+        if (endIndex === null) {
+            return;
+        }
+        this.context.beginPath();
+        for (let i = beginIndex; i < endIndex; i++) {
+            let figure = this.registeredFigures[i];
+            if (figure[0] == "line") {
+                this.fillLine(...figure[1]);
+            } else if (figure[0] == "circle") {
+                this.fillCircle(...figure[1]);
+            }
+        }
+        this.context.closePath();
+        this.context.fill("evenodd");
+    }
+
+    end_fill() {
+        if (this.beginFillIndex === null) {
+            return;
+        }
+        this.registeredFigures[this.beginFillIndex][1][1] = this.registeredFigures.length;
+        this.beginFillIndex = null;
+        this.redrawObjects();
+    }
+
+    fillLine(fromX, fromY, toX, toY) {
+        this.context.lineTo(toX, toY);
+    }
+
+    fillCircle(radius, centerX, centerY, start, end, sign) {
+        this.context.arc(centerX, centerY, radius * sign, start, end, radius > 0 ? true : false);
+    }
+
+    position() {
+        return (this.centerX, this.centerY);
+    }
+
+    redrawObjects(turtle = true) {
+        this.clearCanvas();
         for (let i = 0; i < this.registeredFigures.length; i++) {
             let figure = this.registeredFigures[i];
             if (figure[0] == "line") {
@@ -304,13 +403,20 @@ class Turtle {
                 this.context.fillStyle = figure[1];
             } else if (figure[0] == "stamp") {
                 this.drawTurtle(...figure[1]);
+            } else if (figure[0] == "turtlesize") {
+                this.turtleExpand = figure[1];
             } else if (figure[0] == "dot") {
                 this.createDot(...figure[1]);
+            } else if (figure[0] == "circle") {
+                this.createCircle(...figure[1]);
             } else if (figure[0] == "pensize") {
+                this.penSize = figure[1];
                 this.context.lineWidth = figure[1];
+            } else if (figure[0] == "begin_fill") {
+                this.beginFill(...figure[1]);
             }
         }
-        if (this.turtleVisible) {
+        if (this.turtleVisible && turtle) {
             this.drawTurtle();
         }
     }
@@ -325,7 +431,7 @@ function setupTurtle() {
         document.getElementById("right-side").style.cssFloat = "right";
     }
     try {
-        turtle = new Turtle(800, 560, "canvas");
+        turtle = new Turtle(800, 600, "canvas");
     } catch (error) {
         alert(error.message);
     }
