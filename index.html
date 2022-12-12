@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Turtle</title>
+    <link rel="icon" type="image/gif" href="./win_icon.gif">
+    <link href="./turtle.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="./turtle.js"></script>
+</head>
+
+<body onload="setupTurtle();">
+    <div id="left-side">
+        <canvas id="canvas" title="TurtleGraphics"></canvas>
+    </div>
+    <div id="right-side">
+        <textarea id="textbox" placeholder="Enter the program code." maxlength=9999 cols="48" rows="28" autofocus>
+// Example
+turtle.color("red", "yellow");
+turtle.begin_fill();
+for (let i = 0; i &lt 5; i++) {
+    await turtle.forward(100);
+    await turtle.right(144);
+}
+turtle.end_fill();</textarea>
+        <div id="options">
+            <input type="button" id="run-code" value="Run Code" onclick="runCode();" />
+            <form id="initialize-form">
+                <input type="checkbox" id="initialize" checked />
+                <label id="init-label" for="initialize">Initialize</label>
+            </form>
+        </div>
+        <div id="copyright"><small>&copy; 2022 Ryo Fujinami.</small></div>
+    </div>
+    </footer>
+</body>
+
+</html>
