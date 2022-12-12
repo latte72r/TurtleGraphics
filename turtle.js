@@ -349,14 +349,15 @@ class Turtle {
 
     begin_fill() {
         this.beginFillIndex = this.registeredFigures.length;
-        this.registeredFigures.push(["begin_fill", [this.registeredFigures.length, null]]);
+        this.registeredFigures.push(["begin_fill", [this.registeredFigures.length + 1, null, null]]);
         this.redrawObjects();
     }
 
-    beginFill(beginIndex, endIndex) {
+    beginFill(beginIndex, endIndex, fillStyle) {
         if (endIndex === null) {
             return;
         }
+        this.context.fillStyle = fillStyle;
         this.context.beginPath();
         for (let i = beginIndex; i < endIndex; i++) {
             let figure = this.registeredFigures[i];
@@ -375,6 +376,7 @@ class Turtle {
             return;
         }
         this.registeredFigures[this.beginFillIndex][1][1] = this.registeredFigures.length;
+        this.registeredFigures[this.beginFillIndex][1][2] = this.context.fillStyle;
         this.beginFillIndex = null;
         this.redrawObjects();
     }

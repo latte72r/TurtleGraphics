@@ -46,3 +46,8 @@ body {
 #initialize {
     transform: scale(1.6);
 }
+
+#copyright {
+    float: right;
+    margin: 20px;
+}
