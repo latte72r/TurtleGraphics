@@ -1,4 +1,6 @@
 
+// (c) 2022 Ryo Fujinami.
+
 const SHAPE = [
     [0, 14], [-2, 12], [-1, 8], [-4, 5], [-7, 7], [-9, 6],
     [-6, 3], [-7, -1], [-5, -5], [-8, -8], [-6, -10], [-4, -7],
@@ -31,11 +33,12 @@ class Turtle {
         this.context = this.canvas.getContext('2d');
         this.context.lineCap = 'round';
         this.context.lineJoin = 'round';
-        this.resetscreen();
+        this.reset();
     }
 
-    resetscreen() {
+    reset() {
         this.registeredFigures = [];
+        this.registeredCommands = [];
         this.filledFigures = [];
 
         this.directionAngle = 0;
@@ -43,141 +46,209 @@ class Turtle {
         this.centerY = this.cvHeight / 2;
         this.beginFillIndex = null;
 
-        this.pencolor("#000000");
-        this.fillcolor("#000000");
-        this.pensize(1);
+        this.penColor = "#000000";
+        this.fillColor = "#000000";
+        this.penSize = 1;
+        this.turtleSize = 1;
 
-        this.pendown();
-        this.showturtle();
-        this.speed(3);
-        this.turtlesize(1);
+        this.registeredFigures.push(["pencolor", this.penColor]);
+        this.registeredFigures.push(["fillcolor", this.fillColor]);
+        this.registeredFigures.push(["pensize", this.penSize]);
+        this.registeredFigures.push(["turtlesize", this.turtleSize]);
 
-        this.redrawObjects();
+        this.penEnabled = true;
+        this.turtleVisible = true;
+        this.delayTime = SPEED_TABLE[3];
+
+        this._redrawObjects();
     }
 
     async sleep(second) {
-        await this.sleepMS(second * 1000);
+        this.registeredCommands.push(["sleep", this.registeredFigures.length, [second * 1000]]);
+        await this._sleepMS(second * 1000);
     }
 
-    sleepMS(milSecond) {
+    _sleepMS(milSecond) {
         return new Promise(resolve => setTimeout(resolve, milSecond));
     }
 
-    drawLine(fromX, fromY, toX, toY) {
+    _drawLine(fromX, fromY, toX, toY) {
         this.context.beginPath();
         this.context.moveTo(fromX, fromY);
         this.context.lineTo(toX, toY);
         this.context.stroke();
     }
 
-    clearCanvas() {
+    _clearCanvas() {
         this.context.clearRect(0, 0, this.cvWidth, this.cvHeight);
     }
 
-    pensize(width) {
-        this.registeredFigures.push(["pensize", width]);
-    }
-
-    async forward(distance) {
+    async _forward(distance) {
         const SIGN = distance > 0 ? 1 : -1;
         const TIMES = distance * SIGN / DELTA_XY;
         const START_X = this.centerX;
         const START_Y = this.centerY;
         const COS = Math.cos(this.directionAngle / 180 * Math.PI);
         const SIN = Math.sin(this.directionAngle / 180 * Math.PI);
-        if (this.turtleSpeed != 0) {
+
+        if (this.delayTime > 0) {
             for (let i = 0; i < TIMES; i++) {
                 this.centerX += DELTA_XY * COS * SIGN;
                 this.centerY -= DELTA_XY * SIN * SIGN;
-                this.redrawObjects();
+                this._redrawObjects();
                 if (this.penEnabled) {
-                    this.drawLine(START_X, START_Y, this.centerX, this.centerY);
+                    this._drawLine(START_X, START_Y, this.centerX, this.centerY);
                 }
                 if (this.turtleVisible) {
-                    this.drawTurtle();
+                    this._drawTurtle();
                 }
-                await this.sleepMS(this.delayTime);
+                await this._sleepMS(this.delayTime);
             }
         }
+
         this.centerX = START_X + distance * COS;
         this.centerY = START_Y - distance * SIN;
+
         if (this.penEnabled) {
-            this.registeredFigures.push(
-                ["line", [START_X, START_Y, this.centerX, this.centerY]]);
+            this.registeredFigures.push(["line", [START_X, START_Y, this.centerX, this.centerY]]);
         }
-        this.redrawObjects();
+
+        this._redrawObjects();
+    }
+
+    async _backward(startX, startY, distance) {
+        const SIGN = distance > 0 ? 1 : -1;
+        const TIMES = distance * SIGN / DELTA_XY;
+        const COS = Math.cos(this.directionAngle / 180 * Math.PI);
+        const SIN = Math.sin(this.directionAngle / 180 * Math.PI);
+
+        if (this.delayTime > 0) {
+            for (let i = 0; i < TIMES; i++) {
+                this.centerX += DELTA_XY * COS * SIGN;
+                this.centerY -= DELTA_XY * SIN * SIGN;
+                this._redrawObjects();
+                if (this.penEnabled) {
+                    this._drawLine(startX, startY, this.centerX, this.centerY);
+                }
+                if (this.turtleVisible) {
+                    this._drawTurtle();
+                }
+                await this._sleepMS(this.delayTime);
+            }
+        }
+
+        this.centerX = startX;
+        this.centerY = startY;
+
+        this._redrawObjects();
+    }
+
+    async forward(distance) {
+        this.registeredCommands.push(["backward", this.registeredFigures.length, [this.centerX, this.centerY, -distance]]);
+        await this._forward(distance);
     }
 
     async backward(distance) {
-        await this.forward(-distance);
+        this.registeredCommands.push(["backward", this.registeredFigures.length, [this.centerX, this.centerY, distance]]);
+        await this._forward(-distance);
+    }
+
+    async _right(angle) {
+        const SIGN = angle > 0 ? 1 : -1;
+        const TIMES = angle * SIGN / DELTA_ANGLE;
+        const START_ANGLE = this.directionAngle;
+
+        if (this.delayTime > 0) {
+            for (let i = 0; i < TIMES; i++) {
+                this.directionAngle -= DELTA_ANGLE * SIGN;
+                this._redrawObjects();
+                await this._sleepMS(this.delayTime);
+            }
+        }
+
+        this.directionAngle = START_ANGLE - angle;
+
+        this._redrawObjects();
     }
 
     async right(angle) {
-        if (angle < 0) {
-            await this.left(-angle);
-            return;
-        }
-        const TIMES = angle / DELTA_ANGLE;
-        const START_ANGLE = this.directionAngle;
-        if (this.turtleSpeed != 0) {
-            for (let i = 0; i < TIMES; i++) {
-                this.directionAngle -= DELTA_ANGLE;
-                this.redrawObjects();
-                await this.sleepMS(this.delayTime);
-            }
-        }
-        this.directionAngle = START_ANGLE - angle;
-        this.redrawObjects();
+        await this._right(angle);
+        this.registeredCommands.push(["right", this.registeredFigures.length, [-angle]]);
     }
 
     async left(angle) {
-        if (angle < 0) {
-            await this.right(-angle);
-            return;
-        }
-        const TIMES = angle / DELTA_ANGLE;
-        const START_ANGLE = this.directionAngle;
-        if (this.turtleSpeed != 0) {
-            for (let i = 0; i < TIMES; i++) {
-                this.directionAngle += DELTA_ANGLE;
-                this.redrawObjects();
-                await this.sleepMS(this.delayTime);
-            }
-        }
-        this.directionAngle = START_ANGLE + angle;
-        this.redrawObjects();
+        await this._right(-angle);
+        this.registeredCommands.push(["right", this.registeredFigures.length, [angle]]);
     }
 
-    async goto(x, y) {
+    async _goto(x, y) {
         x += this.cvWidth / 2;
-        y += this.cvHeight / 2;
+        y += this.cvHeight / 2
+
         const DELTA_X = x - this.centerX;
         const DELTA_Y = y - this.centerY;
         const ANGLE = -(Math.atan2(DELTA_Y, DELTA_X) / Math.PI) * 180;
         const DISTANCE = Math.sqrt(Math.pow(DELTA_X, 2) + Math.pow(DELTA_Y, 2));
-        await this.setheading(ANGLE);
-        await this.forward(DISTANCE);
+
+        await this._setheading(ANGLE);
+        await this._forward(DISTANCE);
+
         this.directionAngle = ANGLE;
         this.centerX = x;
         this.centerY = y;
-        this.redrawObjects();
+
+        this._redrawObjects();
+
+        return [DISTANCE, ANGLE];
+    }
+
+    async _backTo(x, y, distance, angle1, angle2) {
+        await this._setheading(angle1);
+        await this._backward(x, y, distance);
+        await this._setheading(angle2);
+
+        this._redrawObjects();
+    }
+
+    async goto(x, y) {
+        let startX = this.centerX;
+        let startY = this.centerY;
+        let angle2 = this.directionAngle;
+        let data = await this._goto(x, y);
+        this.registeredCommands.push(
+            ["back_to", this.registeredFigures.length - 1, [startX, startY, -data[0], data[1], angle2]]);
     }
 
     async home() {
-        await this.goto(0, 0);
+        let startX = this.centerX;
+        let startY = this.centerY;
+        let angle2 = this.directionAngle;
+        let data = await this._goto(0, 0);
+        this.registeredCommands.push(
+            ["back_to", this.registeredFigures.length - 1, [startX, startY, -data[0], data[1], angle2]]);
     }
 
     async setx(x) {
         x += this.cvWidth / 2;
-        await this.goto(x, this.centerY);
+        let startX = this.centerX;
+        let startY = this.centerY;
+        let angle2 = this.directionAngle;
+        let data = await this._goto(x, this.centerY);
+        this.registeredCommands.push(
+            ["back_to", this.registeredFigures.length - 1, [startX, startY, -data[0], data[1], angle2]]);
     }
 
     async sety(y) {
         y += this.cvHeight / 2;
-        await this.goto(this.centerX, y);
+        let startX = this.centerX;
+        let startY = this.centerY;
+        let angle2 = this.directionAngle;
+        let data = await this._goto(this.centerX, y);
+        this.registeredCommands.push(
+            ["back_to", this.registeredFigures.length - 1, [startX, startY, -data[0], data[1], angle2]]);
     }
 
-    angleFitRange(angle) {
+    _angleFitRange(angle) {
         angle = angle % 360;
         if ((angle <= 180) && (angle >= -180)) {
             return angle;
@@ -188,18 +259,25 @@ class Turtle {
         }
     }
 
-    async setheading(to_angle) {
-        const ANGLE = this.angleFitRange(to_angle - this.directionAngle);
-        if (ANGLE > 0) {
-            await this.left(ANGLE);
-        } else {
-            await this.right(-ANGLE);
-        }
+    async _setheading(to_angle) {
+        const ANGLE = this._angleFitRange(to_angle - this.directionAngle);
+        await this._right(-ANGLE);
         this.directionAngle = to_angle;
-        this.redrawObjects();
+        this._redrawObjects();
+        return ANGLE;
     }
 
-    convertRGB(red, green, blue) {
+    async setheading(to_angle) {
+        let angle = await this._setheading(to_angle);
+        this.registeredCommands.push(["right", this.registeredFigures.length, [angle]]);
+    }
+
+    pensize(width) {
+        this.registeredCommands.push(["none", this.registeredFigures.length, []]);
+        this.registeredFigures.push(["pensize", width]);
+    }
+
+    _convertRGB(red, green, blue) {
         let rgb = "#";
         rgb += ("00" + parseInt(red).toString(16)).slice(-2);
         rgb += ("00" + parseInt(green).toString(16)).slice(-2);
@@ -207,63 +285,78 @@ class Turtle {
         return rgb.toUpperCase();
     }
 
-    pencolor(...args) {
+    _pencolor(...args) {
         let penColor;
         if ((typeof (args[0]) == "string") && (args.length == 1)) {
             penColor = args[0];
         } else {
-            penColor = this.convertRGB(...args);
+            penColor = this._convertRGB(...args);
         }
         this.registeredFigures.push(["pencolor", penColor]);
-        this.redrawObjects();
+        this._redrawObjects();
     }
 
-    fillcolor(...args) {
+    _fillcolor(...args) {
         let fillColor;
         if (typeof (args[0]) == "string") {
             fillColor = args[0];
         } else {
-            fillColor = this.convertRGB(...args);
+            fillColor = this._convertRGB(...args);
         }
         this.registeredFigures.push(["fillcolor", fillColor]);
-        this.redrawObjects();
+        this._redrawObjects();
+    }
+
+    pencolor(...args) {
+        this.registeredCommands.push(["none", this.registeredFigures.length, []]);
+        this._pencolor(...args);
+    }
+
+    fillcolor(...args) {
+        this.registeredCommands.push(["none", this.registeredFigures.length, []]);
+        this._fillcolor(...args);
     }
 
     color(...args) {
+        this.registeredCommands.push(["none", this.registeredFigures.length, []]);
         if (args.length == 1 || args.length == 3) {
-            this.pencolor(...args);
-            this.fillcolor(...args);
+            this._pencolor(...args);
+            this._fillcolor(...args);
         }
         if (args.length == 2) {
-            this.pencolor(args[0]);
-            this.fillcolor(args[1]);
+            this._pencolor(args[0]);
+            this._fillcolor(args[1]);
         }
     }
 
     penup() {
+        this.registeredCommands.push(["pendown", this.registeredFigures.length, [this.penEnabled]]);
         this.penEnabled = false;
     }
 
     pendown() {
+        this.registeredCommands.push(["pendown", this.registeredFigures.length, [this.penEnabled]]);
         this.penEnabled = true;
     }
 
     speed(speed) {
-        this.turtleSpeed = speed;
-        this.delayTime = SPEED_TABLE[this.turtleSpeed];
+        this.registeredCommands.push(["speed", this.registeredFigures.length, [this.delayTime]]);
+        this.delayTime = SPEED_TABLE[speed];
     }
 
     showturtle() {
+        this.registeredCommands.push(["showturtle", this.registeredFigures.length, [this.turtleVisible]]);
         this.turtleVisible = true;
-        this.redrawObjects();
+        this._redrawObjects();
     }
 
     hideturtle() {
+        this.registeredCommands.push(["showturtle", this.registeredFigures.length, [this.turtleVisible]]);
         this.turtleVisible = false;
-        this.redrawObjects();
+        this._redrawObjects();
     }
 
-    drawTurtle(centerX = NaN, centerY = NaN, directionAngle = NaN, turtleExpand = NaN) {
+    _drawTurtle(centerX = NaN, centerY = NaN, directionAngle = NaN, turtleExpand = NaN) {
         if (isNaN(centerX)) { centerX = this.centerX; }
         if (isNaN(centerY)) { centerY = this.centerY; }
         if (isNaN(directionAngle)) { directionAngle = this.directionAngle; }
@@ -282,28 +375,33 @@ class Turtle {
     }
 
     turtlesize(stretch) {
+        this.registeredCommands.push(["turtlesize", this.registeredFigures.length, [this.turtleSize]]);
         this.registeredFigures.push(["turtlesize", stretch]);
-        this.redrawObjects();
+        this._redrawObjects();
     }
 
     stamp() {
+        this.registeredCommands.push(["none", this.registeredFigures.length, []]);
         this.registeredFigures.push(["stamp", [
             this.centerX, this.centerY, this.directionAngle, this.turtleExpand]]);
-        this.redrawObjects();
+        this._redrawObjects();
     }
 
     dot(size) {
+        this.registeredCommands.push(["none", this.registeredFigures.length, []]);
         this.registeredFigures.push(["dot", [this.centerX, this.centerY, size]]);
-        this.redrawObjects();
+        this._redrawObjects();
     }
 
-    createDot(centerX, centerY, size) {
+    _createDot(centerX, centerY, size) {
         this.context.beginPath();
         this.context.arc(centerX, centerY, size / 2, 0, 360 * Math.PI, false);
         this.context.fill();
     }
 
     async circle(radius, extent) {
+        this.registeredCommands.push(["circle", this.registeredFigures.length, [radius, extent, this.directionAngle]]);
+
         const START_X = this.centerX;
         const START_Y = this.centerY;
         const START_ANGLE = this.directionAngle;
@@ -314,46 +412,88 @@ class Turtle {
         const TIMES = (radius * extent / 180 * Math.PI * SIGN) / DELTA_CIRCLE;
         const START = (90 * SIGN - START_ANGLE) / 180 * Math.PI;
         const END = ((90 - extent) * SIGN - START_ANGLE) / 180 * Math.PI;
-        if (this.turtleSpeed != 0 && radius != 0) {
+
+        if (this.delayTime > 0 && radius != 0) {
             for (let i = 0; i < TIMES; i++) {
                 let end = START + (END - START) / TIMES * i;
                 this.centerX = CENTER_X + radius * Math.cos(end) * SIGN;
                 this.centerY = CENTER_Y + radius * Math.sin(end) * SIGN;
                 this.directionAngle = 90 * SIGN - end / Math.PI * 180;
-                this.redrawObjects();
+                this._redrawObjects();
                 if (this.penEnabled) {
                     this.context.beginPath();
                     this.context.arc(CENTER_X, CENTER_Y, radius * SIGN, START, end, radius > 0 ? true : false);
                     this.context.stroke();
                 }
                 if (this.turtleVisible) {
-                    this.drawTurtle();
+                    this._drawTurtle();
                 }
-                await this.sleepMS(this.delayTime);
+                await this._sleepMS(this.delayTime);
             }
         }
+
         this.centerX = CENTER_X + radius * Math.cos(END) * SIGN;
         this.centerY = CENTER_Y + radius * Math.sin(END) * SIGN;
         this.directionAngle = 90 * SIGN - END / Math.PI * 180;
         if (this.penEnabled) {
             this.registeredFigures.push(["circle", [radius, CENTER_X, CENTER_Y, START, END, SIGN]]);
         }
-        this.redrawObjects();
+
+        this._redrawObjects();
     }
 
-    createCircle(radius, centerX, centerY, start, end, sign) {
+    async _backCircle(radius, extent, angle) {
+        const START_X = this.centerX;
+        const START_Y = this.centerY;
+        const START_ANGLE = this.directionAngle;
+        const SIGN = radius > 0 ? 1 : -1;
+        const RADIAN = (START_ANGLE + 90 * SIGN) / 180 * Math.PI;
+        const CENTER_X = START_X + radius * Math.cos(RADIAN) * SIGN;
+        const CENTER_Y = START_Y - radius * Math.sin(RADIAN) * SIGN;
+        const TIMES = (radius * extent / 180 * Math.PI * SIGN) / DELTA_CIRCLE;
+        const START = (90 * SIGN - START_ANGLE) / 180 * Math.PI;
+        const END = (90 * SIGN - angle) / 180 * Math.PI;
+
+        if (this.delayTime > 0 && radius != 0) {
+            for (let i = 0; i < TIMES; i++) {
+                let end = START + (END - START) / TIMES * i;
+                this.centerX = CENTER_X + radius * Math.cos(end) * SIGN;
+                this.centerY = CENTER_Y + radius * Math.sin(end) * SIGN;
+                this.directionAngle = 90 * SIGN - end / Math.PI * 180;
+                this._redrawObjects();
+                if (this.penEnabled) {
+                    this.context.beginPath();
+                    this.context.arc(CENTER_X, CENTER_Y, radius * SIGN, END, end, radius > 0 ? true : false);
+                    this.context.stroke();
+                }
+                if (this.turtleVisible) {
+                    this._drawTurtle();
+                }
+                await this._sleepMS(this.delayTime);
+            }
+        }
+
+        this.centerX = CENTER_X + radius * Math.cos(END) * SIGN;
+        this.centerY = CENTER_Y + radius * Math.sin(END) * SIGN;
+        this.directionAngle = 90 * SIGN - END / Math.PI * 180;
+
+        this._redrawObjects();
+    }
+
+    _createCircle(radius, centerX, centerY, start, end, sign) {
         this.context.beginPath();
         this.context.arc(centerX, centerY, radius * sign, start, end, radius > 0 ? true : false);
         this.context.stroke();
     }
 
     begin_fill() {
+        this.registeredCommands.push(["none", this.registeredFigures.length, []]);
         this.beginFillIndex = this.registeredFigures.length;
         this.registeredFigures.push(["begin_fill", [this.registeredFigures.length + 1, null, null]]);
-        this.redrawObjects();
+        this._redrawObjects();
     }
 
-    beginFill(beginIndex, endIndex, fillStyle) {
+    _beginFill(beginIndex, endIndex, fillStyle) {
         if (endIndex === null) {
             return;
         }
@@ -362,9 +502,9 @@ class Turtle {
         for (let i = beginIndex; i < endIndex; i++) {
             let figure = this.registeredFigures[i];
             if (figure[0] == "line") {
-                this.fillLine(...figure[1]);
+                this._fillLine(...figure[1]);
             } else if (figure[0] == "circle") {
-                this.fillCircle(...figure[1]);
+                this._fillCircle(...figure[1]);
             }
         }
         this.context.closePath();
@@ -372,54 +512,90 @@ class Turtle {
     }
 
     end_fill() {
+        this.registeredCommands.push(["end_fill", this.registeredFigures.length, [this.beginFillIndex]]);
         if (this.beginFillIndex === null) {
             return;
         }
         this.registeredFigures[this.beginFillIndex][1][1] = this.registeredFigures.length;
-        this.registeredFigures[this.beginFillIndex][1][2] = this.context.fillStyle;
+        this.registeredFigures[this.beginFillIndex][1][2] = this.fillColor;
         this.beginFillIndex = null;
-        this.redrawObjects();
+        this._redrawObjects();
     }
 
-    fillLine(fromX, fromY, toX, toY) {
+    _fillLine(fromX, fromY, toX, toY) {
         this.context.lineTo(toX, toY);
     }
 
-    fillCircle(radius, centerX, centerY, start, end, sign) {
+    _fillCircle(radius, centerX, centerY, start, end, sign) {
         this.context.arc(centerX, centerY, radius * sign, start, end, radius > 0 ? true : false);
     }
 
     position() {
+        this.registeredCommands.push(["none", this.registeredFigures.length, []]);
         return (this.centerX, this.centerY);
     }
 
-    redrawObjects(turtle = true) {
-        this.clearCanvas();
+    async undo() {
+        if (this.registeredCommands.length <= 0) {
+            return;
+        }
+        let command = this.registeredCommands[this.registeredCommands.length - 1];
+        this.registeredCommands.pop();
+        this.registeredFigures.splice(command[1]);
+        this._redrawObjects();
+        if (command[0] == "sleep") {
+            await this._sleepMS(...command[2]);
+        } else if (command[0] == "backward") {
+            await this._backward(...command[2]);
+        } else if (command[0] == "right") {
+            await this._right(...command[2]);
+        } else if (command[0] == "back_to") {
+            await this._backTo(...command[2]);
+        } else if (command[0] == "circle") {
+            await this._backCircle(...command[2]);
+        } else if (command[0] == "pendown") {
+            this.penEnabled = command[2][0];
+        } else if (command[0] == "speed") {
+            this.delayTime = command[2][0];
+        } else if (command[0] == "showturtle") {
+            this.turtleVisible = command[2][0];
+        } else if (command[0] == "end_fill") {
+            this.registeredFigures[command[2][0]][1][1] = null;
+            this.registeredFigures[command[2][0]][1][2] = null;
+            this.beginFillIndex = command[2][0];
+        }
+
+    }
+
+    _redrawObjects(turtle = true) {
+        this._clearCanvas();
         for (let i = 0; i < this.registeredFigures.length; i++) {
             let figure = this.registeredFigures[i];
             if (figure[0] == "line") {
-                this.drawLine(...figure[1]);
+                this._drawLine(...figure[1]);
             } else if (figure[0] == "pencolor") {
+                this.penColor = figure[1];
                 this.context.strokeStyle = figure[1];
             } else if (figure[0] == "fillcolor") {
+                this.fillColor = figure[1];
                 this.context.fillStyle = figure[1];
             } else if (figure[0] == "stamp") {
-                this.drawTurtle(...figure[1]);
+                this._drawTurtle(...figure[1]);
             } else if (figure[0] == "turtlesize") {
                 this.turtleExpand = figure[1];
             } else if (figure[0] == "dot") {
-                this.createDot(...figure[1]);
+                this._createDot(...figure[1]);
             } else if (figure[0] == "circle") {
-                this.createCircle(...figure[1]);
+                this._createCircle(...figure[1]);
             } else if (figure[0] == "pensize") {
                 this.penSize = figure[1];
                 this.context.lineWidth = figure[1];
             } else if (figure[0] == "begin_fill") {
-                this.beginFill(...figure[1]);
+                this._beginFill(...figure[1]);
             }
         }
         if (this.turtleVisible && turtle) {
-            this.drawTurtle();
+            this._drawTurtle();
         }
     }
 }
@@ -449,7 +625,7 @@ async function runCode() {
         alert("Another program is running.");
     } else {
         if (INIT) {
-            turtle.resetscreen();
+            turtle.reset();
         }
         running = true;
         await eval("(async () => {try {" + CODE + "} catch(e) {alert(e.message)}})()");
