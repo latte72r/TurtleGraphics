@@ -3,8 +3,10 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta property="og:title" content="Turtle graphics">
+    <meta property="og:type" content="website">
     <meta name="google-site-verification" content="0utQohS0QuJgV4Kxamh6Ut6XlZ6sP-ChKltZtUiKWug" />
-    <title>Turtle</title>
+    <title>Turtle graphics</title>
     <link rel="icon" type="image/gif" href="./win_icon.gif">
     <link href="./turtle.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="./turtle.js"></script>
@@ -13,9 +15,11 @@
 <body onload="setupTurtle();">
     <div id="left-side">
         <canvas id="canvas" title="TurtleGraphics"></canvas>
+        <br>
+        <a id="docs" href="./Documents/document.html"> 【 See Documentation 】 </a>
     </div>
     <div id="right-side">
-        <textarea id="textbox" placeholder="Enter the program code." maxlength=9999 cols="48" rows="28" autofocus>
+        <textarea id="editor" placeholder="Enter the program code." maxlength=9999 cols="48" rows="28" autofocus>
 // Example
 turtle.color("red", "yellow");
 turtle.begin_fill();
@@ -31,7 +35,21 @@ turtle.end_fill();</textarea>
                 <label id="init-label" for="initialize">Initialize</label>
             </form>
         </div>
-        <div id="copyright"><small>&copy; 2022 Ryo Fujinami.</small></div>
+        <input type="file" id="fileInput">
+        <pre id="fileContent"></pre>
+        <script>
+            const fileInput = document.getElementById('fileInput');
+            const fileContent = document.getElementById('fileContent');
+            fileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.onload = () => {
+                    document.getElementById("editor").value = reader.result;
+                };
+                reader.readAsText(file);
+            });
+        </script>
+        <div id="copyright"><small>&copy; 2022-2024 Ryo Fujinami.</small></div>
     </div>
     </footer>
 </body>

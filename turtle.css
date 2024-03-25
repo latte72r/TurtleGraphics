@@ -1,14 +1,14 @@
 body {
     background-color: #D0D0D0;
+    display: flex;
+    justify-content: space-between;
 }
 
 #left-side {
-    float: left;
     margin: 20px;
 }
 
 #right-side {
-    float: right;
     margin: 20px;
 }
 
@@ -16,10 +16,16 @@ body {
     background-color: #FFFFFF;
 }
 
-#textbox {
+#editor {
     font-size: 20px;
     font-family: monospace;
     resize: none;
+}
+
+#docs {
+    font-size: 28px;
+    font-family: monospace;
+    margin: 20px;
 }
 
 #run-code {
@@ -27,12 +33,18 @@ body {
     font-family: monospace;
     font-weight: bold;
     color: red;
-    margin: 16px 40px;
+    margin: 10px 40px;
+    float: left;
+}
+
+#fileInput {
+    font-size: 16px;
+    margin: 6px 40px;
     float: left;
 }
 
 #initialize-form {
-    margin: 24px 20px;
+    margin: 16px 20px;
     float: left;
 }
 

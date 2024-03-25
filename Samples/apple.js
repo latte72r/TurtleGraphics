@@ -1,0 +1,40 @@
+
+turtle.pensize(3);
+
+turtle.color("red");
+await turtle.dot(200);
+turtle.penup();
+await turtle.left(90);
+await turtle.forward(50);
+await turtle.left(90);
+await turtle.forward(40);
+await turtle.left(150);
+turtle.pendown();
+turtle.pensize(10);
+turtle.color("brown");
+await turtle.circle(80,60);
+turtle.penup();
+await turtle.left(150);
+await turtle.forward(40);
+await turtle.right(90);
+await turtle.forward(10);
+turtle.pendown();
+turtle.color("black");
+turtle.pensize(8);
+await turtle.forward(45);
+
+turtle.penup();
+await turtle.backward(20);
+turtle.color("lightgreen");
+await turtle.right(150);
+turtle.pendown();
+turtle.begin_fill();
+await turtle.circle(40,120);
+await turtle.left(60);
+await turtle.circle(40,120);
+turtle.end_fill();
+turtle.pensize(5);
+turtle.color("black");
+await turtle.left(120);
+await turtle.forward(68);
+turtle.hideturtle();

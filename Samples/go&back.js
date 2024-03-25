@@ -1,0 +1,17 @@
+turtle.speed(5);
+await turtle.forward(300);
+await turtle.right(90);
+await turtle.forward(100);
+await turtle.right(90);
+await turtle.forward(300);
+await turtle.right(90);
+await turtle.forward(100);
+await turtle.goto(200, 200);
+await turtle.undo();
+await turtle.undo();
+await turtle.undo();
+await turtle.undo();
+await turtle.undo();
+await turtle.undo();
+await turtle.undo();
+await turtle.undo();

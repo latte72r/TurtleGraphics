@@ -1,5 +1,6 @@
 
-// (c) 2022 Ryo Fujinami.
+// (c) 2022-2024 Ryo Fujinami.
+// ver 0.2.0
 
 const SHAPE = [
     [0, 14], [-2, 12], [-1, 8], [-4, 5], [-7, 7], [-9, 6],
@@ -9,7 +10,7 @@ const SHAPE = [
 ];
 
 const SPEED_TABLE = {
-    0: 0, 1: 32, 2: 24, 3: 20, 4: 16, 5: 14, 6: 12, 7: 8, 8: 6, 9: 4, 10: 2
+    0: 0, 1: 40, 2: 36, 3: 32, 4: 28, 5: 24, 6: 20, 7: 16, 8: 10, 9: 6, 10: 2
 };
 
 const DELTA_XY = 4;
@@ -58,14 +59,14 @@ class Turtle {
 
         this.penEnabled = true;
         this.turtleVisible = true;
-        this.delayTime = SPEED_TABLE[3];
+        this.delayTime = SPEED_TABLE[6];
 
         this._redrawObjects();
     }
 
-    async sleep(second) {
-        this.registeredCommands.push(["sleep", this.registeredFigures.length, [second * 1000]]);
-        await this._sleepMS(second * 1000);
+    async sleep(secs) {
+        this.registeredCommands.push(["sleep", this.registeredFigures.length, [secs * 1000]]);
+        await this._sleepMS(secs * 1000);
     }
 
     _sleepMS(milSecond) {
@@ -289,6 +290,8 @@ class Turtle {
         let penColor;
         if ((typeof (args[0]) == "string") && (args.length == 1)) {
             penColor = args[0];
+        } else if (args.length == 1) {
+            penColor = this._convertRGB(...args[0]);
         } else {
             penColor = this._convertRGB(...args);
         }
@@ -298,8 +301,10 @@ class Turtle {
 
     _fillcolor(...args) {
         let fillColor;
-        if (typeof (args[0]) == "string") {
+        if ((typeof (args[0]) == "string") && (args.length == 1)) {
             fillColor = args[0];
+        } else if (args.length == 1) {
+            fillColor = this._convertRGB(...args[0]);
         } else {
             fillColor = this._convertRGB(...args);
         }
@@ -617,7 +622,7 @@ function setupTurtle() {
 
 let running = false;
 async function runCode() {
-    const CODE = document.getElementById("textbox").value;
+    const CODE = document.getElementById("editor").value;
     const INIT = document.getElementById("initialize").checked;
     if (CODE == "") {
         alert("A program code was not entered.");
