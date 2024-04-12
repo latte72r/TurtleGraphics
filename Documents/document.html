@@ -11,6 +11,7 @@
 
   <link rel="stylesheet" type="text/css" href="./pygments.css">
   <link rel="stylesheet" type="text/css" href="./pydoctheme.css">
+  <script src="./jquery-3.4.1.min.js"></script>
 
   <style>
     @media only screen {
@@ -22,18 +23,38 @@
 </head>
 
 <body>
+  <header id="header">
+    <div style="display: flex;">
+      <h1 id="main_title">Turtle graphics</h1>
+      <img id="turtle" src="./turtle.gif" width="70" height="50" alt="turtle">
+    </div>
+    <div>
+      <input type="button" id="demo" value=" Demo " onclick="goToDemo();" />
+      <input type="button" id="demo" value=" GitHub " onclick="goToGitHub();" />
+    </div>
+  </header>
+  <script>
+    function goToDemo() {
+      window.open('../index.html');
+    }
+    function goToGitHub() {
+      window.open('https://github.com/RyoFuji2005/TurtleGraphics/');
+    }
+    function FixedAnime() {
+      var headerH = $('#header').outerHeight(true);
+      var scroll = $(window).scrollTop();
+      $('#header').addClass('fixed');
+    }
+    $(window).scroll(function () {
+      FixedAnime();
+    });
+    $(window).on('load', function () {
+      FixedAnime();
+    });
+  </script>
   <div class="document">
     <section id="module-turtle">
-      <div id="flex">
-        <h1 id="main_title">Turtle graphics</h1>
-        <input type="button" id="demo" value=" Demo " onclick="goToDemo();" />
-      </div>
-      <script>
-        function goToDemo() {
-          window.open('../index.html');
-        }
-      </script>
-      <hr class="docutils">
+      <div id="blank"></div>
       <section id="introduction">
         <h2>Introduction<a class="headerlink" href="./document.html#introduction"
             title="Permalink to this headline">¶</a></h2>
@@ -793,17 +814,14 @@
                   </dt>
                   <dd>
                     <p>Set pencolor to the RGB color represented by the tuple of <em>r</em>, <em>g</em>, and
-                      <em>b</em>. Each of <em>r</em>, <em>g</em>, and <em>b</em> must be in the range
-                      0..colormode, where colormode is either 1.0 or 255.
+                      <em>b</em>.
                     </p>
                   </dd>
                   <dt><code
                       class="docutils literal notranslate"><span class="pre">pencolor(r,</span> <span class="pre">g,</span> <span class="pre">b)</span></code>
                   </dt>
                   <dd>
-                    <p>Set pencolor to the RGB color represented by <em>r</em>, <em>g</em>, and <em>b</em>. Each
-                      of
-                      <em>r</em>, <em>g</em>, and <em>b</em> must be in the range 0..colormode.
+                    <p>Set pencolor to the RGB color represented by <em>r</em>, <em>g</em>, and <em>b</em>.
                     </p>
                   </dd>
                 </dl>
@@ -813,9 +831,7 @@
                   <div class="highlight" style="position: relative;"><span class="copybutton"
                       title="Hide the prompts and output" data-hidden="false">&gt;&gt;&gt;</span>
                     <pre><span class="n">turtle</span><span class="o">.</span><span class="n">pencolor</span><span class="p">(</span><span class="s2">"brown"</span><span class="p">);</span>
-<span class="n">tup</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">);</span>
-<span class="n">turtle</span><span class="o">.</span><span class="n">pencolor</span><span class="p">(</span><span class="n">tup</span><span class="p">);</span>
-<span class="n">colormode</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">pencolor</span><span class="p">(</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">)</span><span class="p">);</span>
 <span class="n">turtle</span><span class="o">.</span><span class="n">pencolor</span><span class="p">(</span><span class="s1">'#32c18f'</span><span class="p">);</span>
 </pre>
                   </div>
@@ -849,17 +865,14 @@
                   </dt>
                   <dd>
                     <p>Set fillcolor to the RGB color represented by the tuple of <em>r</em>, <em>g</em>, and
-                      <em>b</em>. Each of <em>r</em>, <em>g</em>, and <em>b</em> must be in the range
-                      0..colormode, where colormode is either 1.0 or 255.
+                      <em>b</em>.
                     </p>
                   </dd>
                   <dt><code
                       class="docutils literal notranslate"><span class="pre">fillcolor(r,</span> <span class="pre">g,</span> <span class="pre">b)</span></code>
                   </dt>
                   <dd>
-                    <p>Set fillcolor to the RGB color represented by <em>r</em>, <em>g</em>, and <em>b</em>. Each
-                      of
-                      <em>r</em>, <em>g</em>, and <em>b</em> must be in the range 0..colormode.
+                    <p>Set fillcolor to the RGB color represented by <em>r</em>, <em>g</em>, and <em>b</em>.
                     </p>
                   </dd>
                 </dl>
@@ -920,7 +933,7 @@
                   <div class="highlight" style="position: relative;"><span class="copybutton"
                       title="Hide the prompts and output" data-hidden="false">&gt;&gt;&gt;</span>
                     <pre><span class="n">turtle</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="s2">"red"</span><span class="p">,</span> <span class="s2">"green"</span><span class="p">);</span>
-<span class="n">color</span><span class="p">(</span><span class="s2">"#285078"</span><span class="p">,</span> <span class="s2">"#a0c8f0"</span><span class="p">);</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="s2">"#285078"</span><span class="p">,</span> <span class="s2">"#a0c8f0"</span><span class="p">);</span>
 </pre>
                   </div>
                 </div>
