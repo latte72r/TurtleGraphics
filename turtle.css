@@ -12,6 +12,12 @@ body {
     margin: 20px;
 }
 
+#docs-div {
+    display: flex;
+    flex-flow: column;
+}
+
+
 #canvas {
     background-color: #FFFFFF;
 }
@@ -23,9 +29,9 @@ body {
 }
 
 #docs {
-    font-size: 28px;
+    font-size: 24px;
     font-family: monospace;
-    margin: 20px;
+    margin: 16px;
 }
 
 #run-code {

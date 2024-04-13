@@ -1,6 +1,6 @@
 
 // (c) 2022-2024 Ryo Fujinami.
-// ver 0.2.0
+// ver 0.3.0
 
 const SHAPE = [
     [0, 14], [-2, 12], [-1, 8], [-4, 5], [-7, 7], [-9, 6],
@@ -10,7 +10,7 @@ const SHAPE = [
 ];
 
 const SPEED_TABLE = {
-    0: 0, 1: 40, 2: 36, 3: 32, 4: 28, 5: 24, 6: 20, 7: 16, 8: 10, 9: 6, 10: 2
+    0: 0, 1: 40, 2: 36, 3: 30, 4: 22, 5: 16, 6: 12, 7: 8, 8: 6, 9: 4, 10: 2
 };
 
 const DELTA_XY = 4;
@@ -183,20 +183,40 @@ class Turtle {
     }
 
     async _goto(x, y) {
-        x += this.cvWidth / 2;
-        y += this.cvHeight / 2
+        const NEW_X = x + this.cvWidth / 2;
+        const NEW_Y = -y + this.cvHeight / 2;
 
-        const DELTA_X = x - this.centerX;
-        const DELTA_Y = y - this.centerY;
+        const DELTA_X = NEW_X - this.centerX;
+        const DELTA_Y = NEW_Y - this.centerY;
         const ANGLE = -(Math.atan2(DELTA_Y, DELTA_X) / Math.PI) * 180;
         const DISTANCE = Math.sqrt(Math.pow(DELTA_X, 2) + Math.pow(DELTA_Y, 2));
+        const TIMES = DISTANCE / DELTA_XY;
+        const START_X = this.centerX;
+        const START_Y = this.centerY;
+        const COS = Math.cos(ANGLE / 180 * Math.PI);
+        const SIN = Math.sin(ANGLE / 180 * Math.PI);
 
-        await this._setheading(ANGLE);
-        await this._forward(DISTANCE);
+        if (this.delayTime > 0) {
+            for (let i = 0; i < TIMES; i++) {
+                this.centerX += DELTA_XY * COS;
+                this.centerY -= DELTA_XY * SIN;
+                this._redrawObjects();
+                if (this.penEnabled) {
+                    this._drawLine(START_X, START_Y, this.centerX, this.centerY);
+                }
+                if (this.turtleVisible) {
+                    this._drawTurtle();
+                }
+                await this._sleepMS(this.delayTime);
+            }
+        }
 
-        this.directionAngle = ANGLE;
-        this.centerX = x;
-        this.centerY = y;
+        this.centerX = START_X + DISTANCE * COS;
+        this.centerY = START_Y - DISTANCE * SIN;
+
+        if (this.penEnabled) {
+            this.registeredFigures.push(["line", [START_X, START_Y, this.centerX, this.centerY]]);
+        }
 
         this._redrawObjects();
 
@@ -230,21 +250,21 @@ class Turtle {
     }
 
     async setx(x) {
-        x += this.cvWidth / 2;
+        let y = -this.centerY + this.cvHeight / 2;
         let startX = this.centerX;
         let startY = this.centerY;
         let angle2 = this.directionAngle;
-        let data = await this._goto(x, this.centerY);
+        let data = await this._goto(x, y);
         this.registeredCommands.push(
             ["back_to", this.registeredFigures.length - 1, [startX, startY, -data[0], data[1], angle2]]);
     }
 
     async sety(y) {
-        y += this.cvHeight / 2;
+        let x = this.centerX - this.cvWidth / 2;
         let startX = this.centerX;
         let startY = this.centerY;
         let angle2 = this.directionAngle;
-        let data = await this._goto(this.centerX, y);
+        let data = await this._goto(x, y);
         this.registeredCommands.push(
             ["back_to", this.registeredFigures.length - 1, [startX, startY, -data[0], data[1], angle2]]);
     }
@@ -404,7 +424,7 @@ class Turtle {
         this.context.fill();
     }
 
-    async circle(radius, extent) {
+    async circle(radius, extent = 360) {
         this.registeredCommands.push(["circle", this.registeredFigures.length, [radius, extent, this.directionAngle]]);
 
         const START_X = this.centerX;

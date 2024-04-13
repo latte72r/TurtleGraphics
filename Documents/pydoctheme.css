@@ -32,9 +32,15 @@ pre {
     font-weight: bold;
 }
 
+#blank {
+    display: block;
+    height: 80px;
+    width: 100%;
+}
+
 #main_title {
     font-size: 2.25rem;
-    margin: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 20px;
 }
 
 #turtle {
@@ -50,6 +56,7 @@ pre {
     text-align: center;
     background-color: lightgray;
     padding: 20px 0px;
+    margin: 0px 0px 0px 0px;
 }
 
 #header.fixed {
@@ -57,6 +64,10 @@ pre {
     z-index: 999;
     top: 0;
     left: 0;
+}
+
+#lang p {
+    line-height: 16px;
 }
 
 #demo {
@@ -109,6 +120,15 @@ div.related ul::after {
     content: '';
     clear: both;
     display: block;
+}
+
+.inline-search,
+form.inline-search input {
+    display: inline;
+}
+
+form.inline-search input[type='submit'] {
+    width: 40px;
 }
 
 div.document {
@@ -226,6 +246,19 @@ body h6 {
 body pre {
     border-radius: 3px;
     border: 1px solid #ac9;
+}
+
+body div.admonition,
+body div.impl-detail {
+    border-radius: 3px;
+}
+
+body div.impl-detail>p {
+    margin: 0;
+}
+
+body div.seealso {
+    border: 1px solid #dddd66;
 }
 
 body a {
@@ -375,7 +408,7 @@ div.genindex-jumpbox a {
 
     /* Typography */
     body h1 {
-        font-size: 2rem;
+        font-size: 1.625rem;
     }
 
     body h2 {
@@ -409,11 +442,9 @@ div.genindex-jumpbox a {
         scroll-padding-top: 40px;
     }
 
-    /*
     body {
         margin-top: 40px;
     }
-    */
 
     /* Top navigation bar */
     .mobile-nav {
