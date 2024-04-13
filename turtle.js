@@ -183,40 +183,20 @@ class Turtle {
     }
 
     async _goto(x, y) {
-        const NEW_X = x + this.cvWidth / 2;
-        const NEW_Y = -y + this.cvHeight / 2;
+        x += this.cvWidth / 2;
+        y += this.cvHeight / 2
 
-        const DELTA_X = NEW_X - this.centerX;
-        const DELTA_Y = NEW_Y - this.centerY;
+        const DELTA_X = x - this.centerX;
+        const DELTA_Y = y - this.centerY;
         const ANGLE = -(Math.atan2(DELTA_Y, DELTA_X) / Math.PI) * 180;
         const DISTANCE = Math.sqrt(Math.pow(DELTA_X, 2) + Math.pow(DELTA_Y, 2));
-        const TIMES = DISTANCE / DELTA_XY;
-        const START_X = this.centerX;
-        const START_Y = this.centerY;
-        const COS = Math.cos(ANGLE / 180 * Math.PI);
-        const SIN = Math.sin(ANGLE / 180 * Math.PI);
 
-        if (this.delayTime > 0) {
-            for (let i = 0; i < TIMES; i++) {
-                this.centerX += DELTA_XY * COS;
-                this.centerY -= DELTA_XY * SIN;
-                this._redrawObjects();
-                if (this.penEnabled) {
-                    this._drawLine(START_X, START_Y, this.centerX, this.centerY);
-                }
-                if (this.turtleVisible) {
-                    this._drawTurtle();
-                }
-                await this._sleepMS(this.delayTime);
-            }
-        }
+        await this._setheading(ANGLE);
+        await this._forward(DISTANCE);
 
-        this.centerX = START_X + DISTANCE * COS;
-        this.centerY = START_Y - DISTANCE * SIN;
-
-        if (this.penEnabled) {
-            this.registeredFigures.push(["line", [START_X, START_Y, this.centerX, this.centerY]]);
-        }
+        this.directionAngle = ANGLE;
+        this.centerX = x;
+        this.centerY = y;
 
         this._redrawObjects();
 
@@ -250,21 +230,21 @@ class Turtle {
     }
 
     async setx(x) {
-        let y = -this.centerY + this.cvHeight / 2;
+        x += this.cvWidth / 2;
         let startX = this.centerX;
         let startY = this.centerY;
         let angle2 = this.directionAngle;
-        let data = await this._goto(x, y);
+        let data = await this._goto(x, this.centerY);
         this.registeredCommands.push(
             ["back_to", this.registeredFigures.length - 1, [startX, startY, -data[0], data[1], angle2]]);
     }
 
     async sety(y) {
-        let x = this.centerX - this.cvWidth / 2;
+        y += this.cvHeight / 2;
         let startX = this.centerX;
         let startY = this.centerY;
         let angle2 = this.directionAngle;
-        let data = await this._goto(x, y);
+        let data = await this._goto(this.centerX, y);
         this.registeredCommands.push(
             ["back_to", this.registeredFigures.length - 1, [startX, startY, -data[0], data[1], angle2]]);
     }

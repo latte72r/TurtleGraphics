@@ -43,7 +43,11 @@
     function FixedAnime() {
       var headerH = $('#header').outerHeight(true);
       var scroll = $(window).scrollTop();
-      $('#header').addClass('fixed');
+      if (scroll >= headerH) {
+        $('#header').addClass('fixed');
+      } else {
+        $('#header').removeClass('fixed');
+      }
     }
     $(window).scroll(function () {
       FixedAnime();
@@ -54,7 +58,6 @@
   </script>
   <div class="document">
     <section id="module-turtle">
-      <div id="blank"></div>
       <section id="introduction">
         <h2>Introduction<a class="headerlink" href="./document.html#introduction"
             title="Permalink to this headline">¶</a></h2>

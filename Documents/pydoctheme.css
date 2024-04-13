@@ -32,15 +32,9 @@ pre {
     font-weight: bold;
 }
 
-#blank {
-    display: block;
-    height: 80px;
-    width: 100%;
-}
-
 #main_title {
     font-size: 2.25rem;
-    margin: 0px 0px 0px 20px;
+    margin: 0px 0px 0px 0px;
 }
 
 #turtle {
@@ -56,7 +50,6 @@ pre {
     text-align: center;
     background-color: lightgray;
     padding: 20px 0px;
-    margin: 0px 0px 0px 0px;
 }
 
 #header.fixed {
@@ -116,15 +109,6 @@ div.related ul::after {
     content: '';
     clear: both;
     display: block;
-}
-
-.inline-search,
-form.inline-search input {
-    display: inline;
-}
-
-form.inline-search input[type='submit'] {
-    width: 40px;
 }
 
 div.document {
@@ -239,28 +223,9 @@ body h6 {
     padding: 0.3em 0;
 }
 
-body hr {
-    border: 0;
-    background-color: #ccc;
-    height: 1px;
-}
-
 body pre {
     border-radius: 3px;
     border: 1px solid #ac9;
-}
-
-body div.admonition,
-body div.impl-detail {
-    border-radius: 3px;
-}
-
-body div.impl-detail>p {
-    margin: 0;
-}
-
-body div.seealso {
-    border: 1px solid #dddd66;
 }
 
 body a {
@@ -410,7 +375,7 @@ div.genindex-jumpbox a {
 
     /* Typography */
     body h1 {
-        font-size: 1.625rem;
+        font-size: 2rem;
     }
 
     body h2 {
@@ -444,9 +409,11 @@ div.genindex-jumpbox a {
         scroll-padding-top: 40px;
     }
 
+    /*
     body {
         margin-top: 40px;
     }
+    */
 
     /* Top navigation bar */
     .mobile-nav {
