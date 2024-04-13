@@ -66,10 +66,6 @@ pre {
     left: 0;
 }
 
-#lang p {
-    line-height: 16px;
-}
-
 #demo {
     font-size: 32px;
     font-family: monospace;
