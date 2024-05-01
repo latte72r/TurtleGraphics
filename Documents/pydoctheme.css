@@ -66,6 +66,19 @@ pre {
     left: 0;
 }
 
+#lang-ja {
+    vertical-align: top;
+}
+
+#lang-en {
+    vertical-align: bottom;
+}
+
+#footer-line {
+    border: none;
+    border-top: 2px solid #aaa;
+}
+
 #demo {
     font-size: 32px;
     font-family: monospace;
@@ -326,7 +339,7 @@ div.footer {
     line-height: 150%;
     text-align: right;
     width: auto;
-    margin-right: 10px;
+    margin: 60px 10px;
 }
 
 div.footer a:hover {
@@ -649,14 +662,6 @@ div.genindex-jumpbox a {
 
     .menu ul li {
         margin-bottom: 0.5rem;
-    }
-
-    .language_switcher_placeholder {
-        margin-top: 2rem;
-    }
-
-    .language_switcher_placeholder select {
-        width: 100%;
     }
 
     .document {
