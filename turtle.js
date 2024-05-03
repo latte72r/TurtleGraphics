@@ -1,6 +1,6 @@
 
 // (c) 2022-2024 Ryo Fujinami.
-// ver 0.3.0
+// ver 0.4.0
 
 const SHAPE = [
     [0, 14], [-2, 12], [-1, 8], [-4, 5], [-7, 7], [-9, 6],
@@ -16,6 +16,12 @@ const SPEED_TABLE = {
 const DELTA_XY = 4;
 const DELTA_ANGLE = 4;
 const DELTA_CIRCLE = 4;
+
+class StopRunning {
+    then() {
+        return 0;
+    }
+}
 
 class Turtle {
     constructor(width, height, canvasId) {
@@ -84,6 +90,8 @@ class Turtle {
             await this._sleepMS(this.delayTime);
             if (running == 1) {
                 break;
+            } else if (running == 3) {
+                await new StopRunning();
             }
         }
     }
@@ -652,12 +660,16 @@ function setupTurtle() {
 
 async function runCode() {
     const CODE = document.getElementById("editor").value;
-    if (CODE == "") {
-        alert("コードが入力されていません");
-    } else if (running == 1) {
-        alert("すでにプログラムが実行中です");
-    } else if (running == 2) {
-        alert("すでにプログラムが実行中です");
+    if ((running == 1) || (running == 2)) {
+        let result = window.confirm("プログラムを実行中です\n初期化しますか？");
+        if (result) {
+            running = 3;
+            await turtle._sleepMS(turtle.delayTime * 4);
+            turtle.reset();
+            running = 1;
+            await eval("(async () => {try {" + CODE + "} catch(e) {alert(e.message)}})()");
+            running = 0;
+        }
     } else {
         turtle.reset();
         running = 1;
