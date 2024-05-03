@@ -1,6 +1,6 @@
 # TurtleGraphics  
 
-Turtle graphicsとは、1967年にWally Feurzeig、Seymour Papert、Cynthia Solomonによって開発されたLogoで紹介された一般的な幾何学的描画ツールの実装です。  
+Turtle graphicsは、1967年にWally Feurzeig、Seymour Papert、Cynthia Solomonによって開発されたLogoで紹介された一般的な幾何学的描画ツールの実装です。  
 
 このサイトでは古典的なTurtleの原型を残しつつ、JavaScriptから利用できるようアレンジしました。  
 
