@@ -32,6 +32,44 @@ pre {
     font-weight: bold;
 }
 
+a.headerlink {
+    visibility: hidden;
+}
+
+h1:hover>a.headerlink,
+h2:hover>a.headerlink,
+h3:hover>a.headerlink,
+h4:hover>a.headerlink,
+h5:hover>a.headerlink,
+h6:hover>a.headerlink,
+dt:hover>a.headerlink,
+caption:hover>a.headerlink,
+p.caption:hover>a.headerlink,
+div.code-block-caption:hover>a.headerlink {
+    visibility: visible;
+}
+
+div.sidebar,
+aside.sidebar {
+    margin: 0 0 0.5em 1em;
+    border: 1px solid #ddb;
+    padding: 7px;
+    background-color: #ffe;
+    width: 20%;
+    float: right;
+    clear: right;
+    overflow-x: auto;
+}
+
+img.align-center,
+figure.align-center,
+.figure.align-center,
+object.align-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #blank {
     display: block;
     height: 80px;
