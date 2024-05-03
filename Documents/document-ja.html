@@ -72,65 +72,6 @@
         <p>即座に目に見える形でフィードバックが得られるため、学習者がプログラミングの概念やソフトウェアを学ぶのに効果的です。</p>
         </p>
       </section>
-      <section id="tutorial">
-        <span id="turtle-tutorial"></span>
-        <h2>チュートリアル<a class="headerlink" href="./document-ja.html#tutorial" title="Permalink to this headline">¶</a>
-        </h2>
-        <p>初めての方はここから始めてください。このチュートリアルでは、Turtleの基本的な描き方をいくつか紹介します。
-        </p>
-        <section id="basic-drawing">
-          <h3>基本的な描き方<a class="headerlink" href="./document-ja.html#basic-drawing"
-              title="Permalink to this headline">¶</a>
-          </h3>
-          <p>Turtleを100進めます：</p>
-          <div class="highlight-python3 notranslate">
-            <div class="highlight" style="position: relative;">
-              <pre><span class="gt">await</span> <span class="n">turtle.forward</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-</pre>
-            </div>
-          </div>
-          <p>Turtleが東に向かって線を引いているのが見えるはずです。Turtleの向きを変え、左（反時計回り）に120度回転するようにします：</p>
-          <div class="highlight-python3 notranslate">
-            <div class="highlight" style="position: relative;">
-              <pre><span class="gt">await</span> <span class="n">turtle.left</span><span class="p">(</span><span class="mi">120</span><span class="p">);</span>
-</pre>
-            </div>
-          </div>
-          <p>続けて三角形を描いてみましょう：</p>
-          <div class="highlight-python3 notranslate">
-            <div class="highlight" style="position: relative;">
-              <pre><span class="gt">await</span> <span class="n">turtle.forward</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-<span class="gt">await</span> <span class="n">turtle.left</span><span class="p">(</span><span class="mi">120</span><span class="p">);</span>
-<span class="gt">await</span> <span class="n">turtle.forward</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-</pre>
-            </div>
-          </div>
-          <p>Turtleが操作するにつれてさまざまな方向を向くことに注目してみましょう！</p>
-          <section id="pen-control">
-            <h4>Penの制御<a class="headerlink" href="./document-ja.html#pen-control"
-                title="Permalink to this headline">¶</a>
-            </h4>
-            <p>色（例えば<code
-                class="docutils literal notranslate"><span class="pre">color('blue')</span></code>）と線の幅（例えば<code
-                class="docutils literal notranslate"><span class="pre">width(3)</span></code>）を変えてからもう一度描いてみましょう。</p>
-            <p>また、Turtleを移動させる前に<code
-                class="docutils literal notranslate"><span class="pre">up()</span></code>でPenを持ち上げれば、
-              描画せずにTurtleを移動させることもできます。再び描画を開始するには、<code
-                class="docutils literal notranslate"><span class="pre">down()</span></code>を使用します。</p>
-          </section>
-          <section id="the-turtle-s-position">
-            <h4>Turtleの位置<a class="headerlink" href="./document-ja.html#the-turtle-s-position"
-                title="Permalink to this headline">¶</a></h4>
-            <p>Turtleをスタート地点に戻す（画面外に消えてしまった場合に有効です）：</p>
-            <div class="highlight-python3 notranslate">
-              <div class="highlight" style="position: relative;">
-                <pre><span class="gt">await</span> <span class="n">turtle.home</span><span class="p">();</span></pre>
-              </div>
-            </div>
-            <p>ホームポジションはTurtleの画面の中心です。ホームポジションを知る必要がある場合は、Turtleのx-y座標を取得してください：</p>
-          </section>
-        </section>
-      </section>
       <section id="turtle-graphics-reference">
         <h2>Turtle graphics reference<a class="headerlink" href="./document-ja.html#turtle-graphics-reference"
             title="Permalink to this headline">¶</a></h2>
@@ -601,7 +542,7 @@
                 Turtleの方向は<em>extent</em>の分だけ変化します。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="gt">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">180</span><span class="p">);</span>  <span class="c1"># draw a semicircle</span>
+                  <pre><span class="gt">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">180</span><span class="p">);</span>
 </pre>
                 </div>
               </div>
@@ -769,7 +710,7 @@
                 <div class="highlight-pycon3 notranslate">
                   <div class="highlight" style="position: relative;"><span class="copybutton"
                       title="Hide the prompts and output" data-hidden="false">&gt;&gt;&gt;</span>
-                    <pre><span class="n">turtle</span><span class="o">.</span><span class="n">pensize</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>   <span class="c1"># from here on lines of width 10 are drawn</span>
+                    <pre><span class="n">turtle</span><span class="o">.</span><span class="n">pensize</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
 </pre>
                   </div>
                 </div>
@@ -864,7 +805,7 @@
                   <div class="highlight" style="position: relative;"><span class="copybutton"
                       title="Hide the prompts and output" data-hidden="false">&gt;&gt;&gt;</span>
                     <pre><span class="n">turtle</span><span class="o">.</span><span class="n">fillcolor</span><span class="p">(</span><span class="s2">"violet"</span><span class="p">);</span>
-<span class="n">turtle</span><span class="o">.</span><span class="n">fillcolor</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span> <span class="mi">193</span><span class="p">,</span> <span class="mi">143</span><span class="p">));</span>  <span class="c1"># Integers, not floats</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">fillcolor</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span> <span class="mi">193</span><span class="p">,</span> <span class="mi">143</span><span class="p">));</span>
 <span class="n">turtle</span><span class="o">.</span><span class="n">fillcolor</span><span class="p">(</span><span class="s1">'#ffffff'</span><span class="p">);</span>
 </pre>
                   </div>
@@ -1037,7 +978,7 @@
                   <div class="highlight" style="position: relative;"><span class="copybutton"
                       title="Hide the prompts and output" data-hidden="false">&gt;&gt;&gt;</span>
                     <pre>
-<span class="n">turtle</span><span class="o">.</span><span class="n">shapesize</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">turtlesize</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
 </pre>
                   </div>
                 </div>
@@ -1059,14 +1000,8 @@
               <p>最後に行われたTurtleの操作を取り消します。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="gi">for</span> <span class="n">(</span><span class="nd">let</span> i </span><span class="o">=</span> <span class="mi">0</span><span class="n">; i &lt; </span><span class="mi">4</span><span class="n">; i++</span>) {</span>
-    <span class="n">turtle</span><span class="o">.</span>forward(</span><span class="mi">50</span><span class="p">);</span>
-    <span class="n">turtle</span><span class="o">.</span>left(</span><span class="mi">90</span><span class="p">);</span>
-<span class="n">}</span>
-</span><span class="gi">for</span> <span class="n">(</span><span class="nd">let</span> i </span><span class="o">=</span> <span class="mi">0</span><span class="n">; i &lt; </span><span class="mi">8</span><span class="n">; i++</span>) {</span>
-    <span class="n">turtle</span><span class="o">.</span><span class="n">undo</span><span class="p">();</span>
-<span class="n">}</span>
-      </pre>
+                  <pre><span class="gt">await</span> <span class="n">turtle</span><span class="o">.</span>forward(</span><span class="mi">50</span><span class="p">);</span>
+<span class="gt">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">undo</span><span class="p">();</span></pre>
                 </div>
               </div>
             </dd>
@@ -1129,7 +1064,7 @@
     <br>
     (c) Copyright 2022-2024, Ryo Fujinami.
     <br>
-    Last updated on May 1, 2024.
+    Last updated on May 3, 2024.
     <br>
   </div>
 </body>

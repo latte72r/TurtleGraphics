@@ -80,74 +80,6 @@
           graphical output it can be a way to do that without the overhead of
           introducing more complex or external libraries into their work.</p>
       </section>
-      <section id="tutorial">
-        <span id="turtle-tutorial"></span>
-        <h2>Tutorial<a class="headerlink" href="./document.html#tutorial" title="Permalink to this headline">¶</a></h2>
-        <p>New users should start here. In this tutorial we’ll explore some of the
-          basics of turtle drawing.</p>
-        <section id="basic-drawing">
-          <h3>Basic drawing<a class="headerlink" href="./document.html#basic-drawing"
-              title="Permalink to this headline">¶</a></h3>
-          <p>Send the turtle forward 100 steps:</p>
-          <div class="highlight-python3 notranslate">
-            <div class="highlight" style="position: relative;">
-              <pre><span class="gt">await</span> <span class="n">turtle.forward</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-</pre>
-            </div>
-          </div>
-          <p>You should see a line drawn by the turtle, heading East. Change the direction of the turtle, so that it
-            turns 120 degrees left (anti-clockwise):</p>
-          <div class="highlight-python3 notranslate">
-            <div class="highlight" style="position: relative;">
-              <pre><span class="gt">await</span> <span class="n">turtle.left</span><span class="p">(</span><span class="mi">120</span><span class="p">);</span>
-</pre>
-            </div>
-          </div>
-          <p>Let’s continue by drawing a triangle:</p>
-          <div class="highlight-python3 notranslate">
-            <div class="highlight" style="position: relative;">
-              <pre><span class="gt">await</span> <span class="n">turtle.forward</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-<span class="gt">await</span> <span class="n">turtle.left</span><span class="p">(</span><span class="mi">120</span><span class="p">);</span>
-<span class="gt">await</span> <span class="n">turtle.forward</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-</pre>
-            </div>
-          </div>
-          <p>Notice how the turtle, represented by an arrow, points in different
-            directions as you steer it.</p>
-          <p>Experiment with those commands, and also with <code
-              class="docutils literal notranslate"><span class="pre">backward()</span></code> and
-            <code class="docutils literal notranslate"><span class="pre">right()</span></code>.
-          </p>
-          <section id="pen-control">
-            <h4>Pen control<a class="headerlink" href="./document.html#pen-control"
-                title="Permalink to this headline">¶</a></h4>
-            <p>Try changing the color - for example, <code
-                class="docutils literal notranslate"><span class="pre">color('blue')</span></code> - and
-              width of the line - for example, <code
-                class="docutils literal notranslate"><span class="pre">width(3)</span></code> - and then drawing
-              again.</p>
-            <p>You can also move the turtle around without drawing, by lifting up the pen:
-              <code class="docutils literal notranslate"><span class="pre">up()</span></code> before moving. To
-              start drawing again, use <code
-                class="docutils literal notranslate"><span class="pre">down()</span></code>.
-            </p>
-          </section>
-          <section id="the-turtle-s-position">
-            <h4>The turtle’s position<a class="headerlink" href="./document.html#the-turtle-s-position"
-                title="Permalink to this headline">¶</a></h4>
-            <p>Send your turtle back to its starting-point (useful if it has disappeared
-              off-screen):</p>
-            <div class="highlight-python3 notranslate">
-              <div class="highlight" style="position: relative;">
-                <pre><span class="gt">await</span> <span class="n">turtle.home</span><span class="p">();</span>
-</pre>
-              </div>
-            </div>
-            <p>The home position is at the center of the turtle’s screen. If you ever need to
-              know them, get the turtle’s x-y co-ordinates with:</p>
-          </section>
-        </section>
-      </section>
       <section id="turtle-graphics-reference">
         <h2>Turtle graphics reference<a class="headerlink" href="./document.html#turtle-graphics-reference"
             title="Permalink to this headline">¶</a></h2>
@@ -1064,7 +996,7 @@
                   <div class="highlight" style="position: relative;"><span class="copybutton"
                       title="Hide the prompts and output" data-hidden="false">&gt;&gt;&gt;</span>
                     <pre>
-<span class="n">turtle</span><span class="o">.</span><span class="n">shapesize</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">turtlesize</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
 </pre>
                   </div>
                 </div>
@@ -1087,14 +1019,8 @@
                 undo actions is determined by the size of the undobuffer.</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="gi">for</span> <span class="n">(</span><span class="nd">let</span> i </span><span class="o">=</span> <span class="mi">0</span><span class="n">; i &lt; </span><span class="mi">4</span><span class="n">; i++</span>) {</span>
-    <span class="n">turtle</span><span class="o">.</span>forward(</span><span class="mi">50</span><span class="p">);</span>
-    <span class="n">turtle</span><span class="o">.</span>left(</span><span class="mi">90</span><span class="p">);</span>
-<span class="n">}</span>
-</span><span class="gi">for</span> <span class="n">(</span><span class="nd">let</span> i </span><span class="o">=</span> <span class="mi">0</span><span class="n">; i &lt; </span><span class="mi">8</span><span class="n">; i++</span>) {</span>
-    <span class="n">turtle</span><span class="o">.</span><span class="n">undo</span><span class="p">();</span>
-<span class="n">}</span>
-      </pre>
+                  <pre><span class="gt">await</span> <span class="n">turtle</span><span class="o">.</span>forward(</span><span class="mi">50</span><span class="p">);</span>
+<span class="gt">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">undo</span><span class="p">();</span></pre>
                 </div>
               </div>
             </dd>
@@ -1159,7 +1085,7 @@
     <br>
     (c) Copyright 2022-2024, Ryo Fujinami.
     <br>
-    Last updated on May 1, 2024.
+    Last updated on May 3, 2024.
     <br>
   </div>
 </body>
