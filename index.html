@@ -24,7 +24,7 @@
         </div>
     </div>
     <div id="right-side">
-        <textarea id="editor" placeholder="Enter the program code." maxlength=9999 cols="48" rows="28" autofocus>
+        <textarea id="editor" placeholder="Enter the program code." maxlength=9999 cols="48" rows="24" autofocus>
 // Example
 turtle.color("red", "yellow");
 turtle.begin_fill();
@@ -33,12 +33,9 @@ for (let i = 0; i &lt 5; i++) {
     await turtle.right(144);
 }
 turtle.end_fill();</textarea>
-        <div id="options">
-            <input type="button" id="run-code" value="Run Code" onclick="runCode();" />
-            <form id="initialize-form">
-                <input type="checkbox" id="initialize" checked />
-                <label id="init-label" for="initialize">Initialize</label>
-            </form>
+        <div>
+            <input type="button" id="run-code" value=" 実行 " onclick="runCode();" />
+            <input type="button" id="pause" value=" 一時停止 / 再開 " onclick="pauseResume();" />
         </div>
         <input type="file" id="fileInput">
         <pre id="fileContent"></pre>

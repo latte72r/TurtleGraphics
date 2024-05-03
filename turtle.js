@@ -65,12 +65,27 @@ class Turtle {
     }
 
     async sleep(secs) {
-        this.registeredCommands.push(["sleep", this.registeredFigures.length, [secs * 1000]]);
-        await this._sleepMS(secs * 1000);
+        this.registeredCommands.push(["sleep", this.registeredFigures.length, [secs]]);
+        await this._sleep(secs);
+    }
+
+    async _sleep(secs) {
+        for (let i = 0; i < secs * 1000 / this.delayTime; i++) {
+            await this._delayProgram();
+        }
     }
 
     _sleepMS(milSecond) {
         return new Promise(resolve => setTimeout(resolve, milSecond));
+    }
+
+    async _delayProgram() {
+        while (true) {
+            await this._sleepMS(this.delayTime);
+            if (running == 1) {
+                break;
+            }
+        }
     }
 
     _drawLine(fromX, fromY, toX, toY) {
@@ -103,7 +118,7 @@ class Turtle {
                 if (this.turtleVisible) {
                     this._drawTurtle();
                 }
-                await this._sleepMS(this.delayTime);
+                await this._delayProgram();
             }
         }
 
@@ -134,7 +149,7 @@ class Turtle {
                 if (this.turtleVisible) {
                     this._drawTurtle();
                 }
-                await this._sleepMS(this.delayTime);
+                await this._delayProgram();
             }
         }
 
@@ -163,7 +178,7 @@ class Turtle {
             for (let i = 0; i < TIMES; i++) {
                 this.directionAngle -= DELTA_ANGLE * SIGN;
                 this._redrawObjects();
-                await this._sleepMS(this.delayTime);
+                await this._delayProgram();
             }
         }
 
@@ -207,7 +222,7 @@ class Turtle {
                 if (this.turtleVisible) {
                     this._drawTurtle();
                 }
-                await this._sleepMS(this.delayTime);
+                await this._delayProgram();
             }
         }
 
@@ -453,7 +468,7 @@ class Turtle {
                 if (this.turtleVisible) {
                     this._drawTurtle();
                 }
-                await this._sleepMS(this.delayTime);
+                await this._delayProgram();
             }
         }
 
@@ -494,7 +509,7 @@ class Turtle {
                 if (this.turtleVisible) {
                     this._drawTurtle();
                 }
-                await this._sleepMS(this.delayTime);
+                await this._delayProgram();
             }
         }
 
@@ -569,7 +584,7 @@ class Turtle {
         this.registeredFigures.splice(command[1]);
         this._redrawObjects();
         if (command[0] == "sleep") {
-            await this._sleepMS(...command[2]);
+            await this._sleep(...command[2]);
         } else if (command[0] == "backward") {
             await this._backward(...command[2]);
         } else if (command[0] == "right") {
@@ -589,7 +604,6 @@ class Turtle {
             this.registeredFigures[command[2][0]][1][2] = null;
             this.beginFillIndex = command[2][0];
         }
-
     }
 
     _redrawObjects(turtle = true) {
@@ -626,6 +640,8 @@ class Turtle {
 }
 
 let turtle;
+let running = 0;
+
 function setupTurtle() {
     try {
         turtle = new Turtle(800, 600, "canvas");
@@ -634,20 +650,28 @@ function setupTurtle() {
     }
 }
 
-let running = false;
 async function runCode() {
     const CODE = document.getElementById("editor").value;
-    const INIT = document.getElementById("initialize").checked;
     if (CODE == "") {
-        alert("A program code was not entered.");
-    } else if (running) {
-        alert("Another program is running.");
+        alert("コードが入力されていません");
+    } else if (running == 1) {
+        alert("すでにプログラムが実行中です");
+    } else if (running == 2) {
+        alert("すでにプログラムが実行中です");
     } else {
-        if (INIT) {
-            turtle.reset();
-        }
-        running = true;
+        turtle.reset();
+        running = 1;
         await eval("(async () => {try {" + CODE + "} catch(e) {alert(e.message)}})()");
-        running = false;
+        running = 0;
+    }
+}
+
+async function pauseResume() {
+    if (running == 0) {
+        alert("プログラムが実行されていません");
+    } else if (running == 1) {
+        running = 2;
+    } else if (running == 2) {
+        running = 1;
     }
 }
