@@ -62,9 +62,10 @@
           <h3 class="sidebar-title">Turtle star</>
             <img alt="./turtle-star.png" class="align-center" src="./turtle-star.png">
         </aside>
-        <p>Turtle graphicsは、1967年にWally Feurzeig、Seymour Papert、Cynthia Solomonによって開発されたLogoで紹介された一般的な幾何学的描画ツールの実装です。
-        </p>
-        <p>このサイトでは古典的なTurtleの原型を残しつつ、JavaScriptから利用できるようアレンジしました。</p>
+        <p>Turtle graphicsは、1967年にWally Feurzeig、Seymour Papert、Cynthia Solomonによって
+          Logoというプログラミング言語で実装された幾何学的な描画ツールです。</p>
+        <p>このサイトではクラシックなTurtleの原型を残しつつ、Pythonで採用されたデザインを参考にして、
+          JavaScriptから利用できるようにアレンジしました。</p>
         <p>Turtleは、単純な動きを繰り返すプログラムを使って複雑な形を描くことができます。</p>
         <p>Turtle graphicsは、"turtle"（ペンを持った小さなロボット）が床に置かれた紙に絵を描く様子を表現しています。</p>
         <p>Turtleはもともと、教室で教師が使うための教育ツールとして作られました。</p>
@@ -217,7 +218,7 @@
               <p>Turtleが向かっている方向に、指定された距離<em>distance</em>だけTurtleを前進させる。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="gt">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">25</span><span class="p">);</span>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="m">25</span><span class="p">);</span>
 </pre>
                 </div>
               </div>
@@ -242,7 +243,7 @@
               <p>Turtleが向かっている方向とは逆方向に、指定された距離<em>distance</em>だけTurtleを後方に移動させる。Turtleの向きは変わりません。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="gt">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="m">30</span><span class="p">);</span>
 </pre>
                 </div>
               </div>
@@ -267,7 +268,7 @@
               <p>Turtleを指定された角度<em>angle</em>だけ右向きに回転させる。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="gt">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">);</span>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="m">45</span><span class="p">);</span>
 </pre>
                 </div>
               </div>
@@ -292,7 +293,7 @@
               <p>Turtleを指定された角度<em>angle</em>だけ左向きに回転させる。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="gt">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">);</span></pre>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="m">45</span><span class="p">);</span></pre>
                 </div>
               </div>
             </dd>
@@ -325,7 +326,7 @@
               <p>Turtleを座標<em>(x, y)</em>に移動させます。ペンが下りていれば線を引きます。Turtleの向きは変化しません。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="gt">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span><span class="mi">30</span><span class="p">);</span>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="m">60</span><span class="p">,</span><span class="m">30</span><span class="p">);</span>
 </pre>
                 </div>
               </div>
@@ -350,7 +351,7 @@
               <p>Turtleの第１座標を<em>x</em>にします。第２座標は変化しません。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="gt">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">setx</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">setx</span><span class="p">(</span><span class="m">10</span><span class="p">);</span>
 </pre>
                 </div>
               </div>
@@ -375,7 +376,7 @@
               <p>Turtleの第２座標を<em>y</em>にします。第１座標は変化しません。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="gt">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">sety</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">);</span>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">sety</span><span class="p">(</span><span class="o">-</span><span class="m">10</span><span class="p">);</span>
 </pre>
                 </div>
               </div>
@@ -433,7 +434,7 @@
               </div>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="gt">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">setheading</span><span class="p">(</span><span class="mi">90</span><span class="p">);</span>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">setheading</span><span class="p">(</span><span class="m">90</span><span class="p">);</span>
 </pre>
                 </div>
               </div>
@@ -451,7 +452,7 @@
               <p>Turtleを原点（座標<em>(0,0)</em>）に移動し、方向を開始方向に設定する。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="gt">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">home</span><span class="p">();</span>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">home</span><span class="p">();</span>
 </pre>
                 </div>
               </div>
@@ -488,7 +489,7 @@
                 Turtleの方向は<em>extent</em>の分だけ変化します。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="gt">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">180</span><span class="p">);</span>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="m">120</span><span class="p">,</span> <span class="m">180</span><span class="p">);</span>
 </pre>
                 </div>
               </div>
@@ -515,7 +516,7 @@
               <p>与えられた直径<em>size</em>で円形の点を描く。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span></pre>
+                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="m">20</span><span class="p">);</span></pre>
                 </div>
               </div>
             </dd>
@@ -598,7 +599,7 @@
                 forward/backはTurtleをジャンプさせ、同様にleft/rightはTurtleを瞬時にターンさせます。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="m">8</span><span class="p">);</span>
 </pre>
                 </div>
               </div>
@@ -652,7 +653,7 @@
               <p>線の太さを<em>width</em>にします。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">pensize</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">pensize</span><span class="p">(</span><span class="m">10</span><span class="p">);</span>
 </pre>
                 </div>
               </div>
@@ -695,9 +696,9 @@
               <p>Turtleの輪郭は新しく設定されたペンの色で描かれます。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">pencolor</span><span class="p">(</span><span class="s2">"brown"</span><span class="p">);</span>
-<span class="n">turtle</span><span class="o">.</span><span class="n">pencolor</span><span class="p">(</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">)</span><span class="p">);</span>
-<span class="n">turtle</span><span class="o">.</span><span class="n">pencolor</span><span class="p">(</span><span class="s1">'#32c18f'</span><span class="p">);</span>
+                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">pencolor</span><span class="p">(</span><span class="s">"brown"</span><span class="p">);</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">pencolor</span><span class="p">(</span><span class="p">(</span><span class="m">0.2</span><span class="p">,</span> <span class="m">0.8</span><span class="p">,</span> <span class="m">0.55</span><span class="p">)</span><span class="p">);</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">pencolor</span><span class="p">(</span><span class="s">'#32c18f'</span><span class="p">);</span>
 </pre>
                 </div>
               </div>
@@ -740,9 +741,9 @@
               <p>Turtleの内部は新しく設定された塗りつぶしの色で描かれます。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">fillcolor</span><span class="p">(</span><span class="s2">"violet"</span><span class="p">);</span>
-<span class="n">turtle</span><span class="o">.</span><span class="n">fillcolor</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span> <span class="mi">193</span><span class="p">,</span> <span class="mi">143</span><span class="p">));</span>
-<span class="n">turtle</span><span class="o">.</span><span class="n">fillcolor</span><span class="p">(</span><span class="s1">'#ffffff'</span><span class="p">);</span>
+                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">fillcolor</span><span class="p">(</span><span class="s">"violet"</span><span class="p">);</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">fillcolor</span><span class="p">((</span><span class="m">50</span><span class="p">,</span> <span class="m">193</span><span class="p">,</span> <span class="m">143</span><span class="p">));</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">fillcolor</span><span class="p">(</span><span class="s">'#ffffff'</span><span class="p">);</span>
 </pre>
                 </div>
               </div>
@@ -789,8 +790,8 @@
               <p>Turtleの輪郭と内部が、新しく設定された色で描かれます。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="s2">"red"</span><span class="p">,</span> <span class="s2">"green"</span><span class="p">);</span>
-<span class="n">turtle</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="s2">"#285078"</span><span class="p">,</span> <span class="s2">"#a0c8f0"</span><span class="p">);</span>
+                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="s">"red"</span><span class="p">,</span> <span class="s">"green"</span><span class="p">);</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="s">"#285078"</span><span class="p">,</span> <span class="s">"#a0c8f0"</span><span class="p">);</span>
 </pre>
                 </div>
               </div>
@@ -823,9 +824,9 @@
               </p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="s2">"black"</span><span class="p">,</span> <span class="s2">"red"</span><span class="p">);</span>
+                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="s">"black"</span><span class="p">,</span> <span class="s">"red"</span><span class="p">);</span>
 <span class="n">turtle</span><span class="o">.</span><span class="n">begin_fill</span><span class="p">();</span>
-<span class="gt">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span>
+<span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="m">80</span><span class="p">);</span>
 <span class="n">turtle</span><span class="o">.</span><span class="n">end_fill</span><span class="p">();</span>
 </pre>
                 </div>
@@ -893,7 +894,7 @@
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
                   <pre>
-<span class="n">turtle</span><span class="o">.</span><span class="n">turtlesize</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">turtlesize</span><span class="p">(</span><span class="m">10</span><span class="p">);</span>
 </pre>
                 </div>
               </div>
@@ -905,17 +906,17 @@
               title="Permalink to this headline">¶</a></h3>
           <dl class="py function">
             <dt class="sig sig-object py" id="turtle.undo">
-              <span class="sig-prename descclassname"><span class="pre">turtle.</span></span><span
-                class="sig-name descname"><span class="pre">undo</span></span><span class="sig-paren">(</span><span
-                class="sig-paren">)</span><a class="headerlink" href="#turtle.undo"
-                title="Permalink to this definition">¶</a>
+              <span class="await">await</span> <span class="sig-prename descclassname"><span
+                  class="pre">turtle.</span></span><span class="sig-name descname"><span
+                  class="pre">undo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a
+                class="headerlink" href="#turtle.undo" title="Permalink to this definition">¶</a>
             </dt>
             <dd>
               <p>最後に行われたTurtleの操作を取り消します。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="gt">await</span> <span class="n">turtle</span><span class="o">.</span>forward(</span><span class="mi">50</span><span class="p">);</span>
-<span class="gt">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">undo</span><span class="p">();</span></pre>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span>forward(</span><span class="m">50</span><span class="p">);</span>
+<span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">undo</span><span class="p">();</span></pre>
                 </div>
               </div>
             </dd>
@@ -961,7 +962,7 @@
               <p>システム内の他のアクティビティとのスケジューリングのため、中断時間は要求された時間よりも長くなる可能性があります。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="gt">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3.0</span><span class="p">);</span></pre>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="m">3.0</span><span class="p">);</span></pre>
                 </div>
               </div>
             </dd>
@@ -978,7 +979,7 @@
     <br>
     (c) Copyright 2022-2024, Ryo Fujinami.
     <br>
-    Last updated on May 3, 2024.
+    Last updated on Jun 11, 2024.
     <br>
   </div>
 </body>
