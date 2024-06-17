@@ -27,11 +27,6 @@ pre {
     color: inherit;
 }
 
-.await {
-    color: #0044DD;
-    font-weight: bold;
-}
-
 a.headerlink {
     visibility: hidden;
 }
@@ -49,7 +44,6 @@ div.code-block-caption:hover>a.headerlink {
     visibility: visible;
 }
 
-div.sidebar,
 aside.sidebar {
     margin: 0 0 0.5em 1em;
     border: 1px solid #ddb;
@@ -415,29 +409,6 @@ div.genindex-jumpbox a {
     margin: 0 5px;
     min-width: 30px;
     text-align: center;
-}
-
-.copybutton {
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-family: monospace;
-    padding-left: 0.2em;
-    padding-right: 0.2em;
-    border-radius: 0 3px 0 0;
-    color: #ac9;
-    /* follows body pre */
-    border-color: #ac9;
-    /* follows body pre */
-    border-style: solid;
-    /* follows body pre */
-    border-width: 1px;
-    /* follows body pre */
-}
-
-.copybutton[data-hidden='true'] {
-    text-decoration: line-through;
 }
 
 @media (max-width: 1023px) {
