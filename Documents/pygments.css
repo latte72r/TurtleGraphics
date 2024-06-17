@@ -14,27 +14,27 @@ pre {
 
 /* Keyword */
 .highlight .o {
-    color: #666666
+    color: #666666;
 }
 
 /* String */
 .highlight .s {
-    color: #BA2121
+    color: #BA2121;
 }
 
 /* Error */
 .highlight .error {
-    color: #FF0000
+    color: #FF0000;
 }
 
 /* Number */
 .highlight .m {
-    color: #666666
+    color: #666666;
 }
 
 /* Await */
 .highlight .a {
-    color: #0044DD
+    color: #0044DD;
 }
 
 /* Traceback */
@@ -44,10 +44,10 @@ pre {
 
 /* Class */
 .highlight .c {
-    color: #880000
+    color: #880000;
 }
 
 /* Function */
 .highlight .f {
-    color: #767600
+    color: #767600;
 }
