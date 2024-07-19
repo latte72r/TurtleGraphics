@@ -20,12 +20,17 @@ body {
 
 #canvas {
     background-color: #FFFFFF;
+    border: 1px solid grey;
 }
 
 #editor {
+    line-height: 1.12;
     font-size: 20px;
     font-family: monospace;
     resize: none;
+    border: 1px solid grey;
+    width: 560px;
+    height: 520px;
 }
 
 #docs {
@@ -68,6 +73,7 @@ body {
 }
 
 #copyright {
+    font-size: 18px;
     float: right;
     margin: 20px;
 }

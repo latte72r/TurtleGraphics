@@ -1,6 +1,6 @@
 
 // (c) 2022-2024 Ryo Fujinami.
-// ver 0.4.0
+// ver 0.5.0
 
 const SHAPE = [
     [0, 14], [-2, 12], [-1, 8], [-4, 5], [-7, 7], [-9, 6],
@@ -16,6 +16,8 @@ const SPEED_TABLE = {
 const DELTA_XY = 4;
 const DELTA_ANGLE = 4;
 const DELTA_CIRCLE = 4;
+
+let editor;
 
 class StopRunning {
     then() {
@@ -658,8 +660,43 @@ function setupTurtle() {
     }
 }
 
+function setupEditor() {
+    require.config({ paths: { vs: "./monaco-editor/vs" } });
+    require(["vs/editor/editor.main"], function () {
+        editor = monaco.editor.create(
+            document.getElementById("editor"), {
+            value: [
+                "// Example",
+                "turtle.color('red', 'yellow');",
+                "turtle.begin_fill();",
+                "for (let i = 0; i < 5; i++) {",
+                "    await turtle.forward(100);",
+                "    await turtle.right(144);",
+                "}",
+                "turtle.end_fill();"
+            ].join("\n"),
+            language: "javascript",
+            scrollBeyondLastLine: false,
+            fontSize: 16,
+            minimap: { enabled: false },
+        });
+    });
+}
+
+function setupFile() {
+    const fileInput = document.getElementById('fileInput');
+    fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = () => {
+            editor.setValue(reader.result);
+        };
+        reader.readAsText(file);
+    });
+}
+
 async function runCode() {
-    const CODE = document.getElementById("editor").value;
+    const CODE = editor.getValue();
     if ((running == 1) || (running == 2)) {
         let result = window.confirm("プログラムを実行中です\n初期化しますか？");
         if (result) {

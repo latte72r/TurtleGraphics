@@ -10,9 +10,10 @@
     <link rel="icon" type="image/gif" href="./win_icon.gif">
     <link href="./turtle.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="./turtle.js"></script>
+    <script src="./monaco-editor/vs/loader.js"></script>
 </head>
 
-<body onload="setupTurtle();">
+<body onload="setupTurtle();setupEditor();setupFile();">
     <div id="left-side">
         <canvas id="canvas" title="TurtleGraphics"></canvas>
         <br>
@@ -22,33 +23,12 @@
         </div>
     </div>
     <div id="right-side">
-        <textarea id="editor" placeholder="Enter the program code." maxlength=9999 cols="48" rows="24" autofocus>
-// Example
-turtle.color("red", "yellow");
-turtle.begin_fill();
-for (let i = 0; i &lt 5; i++) {
-    await turtle.forward(100);
-    await turtle.right(144);
-}
-turtle.end_fill();</textarea>
+        <div id="editor"></div>
         <div>
             <input type="button" id="run-code" value=" 実行 " onclick="runCode();" />
             <input type="button" id="pause" value=" 一時停止 / 再開 " onclick="pauseResume();" />
         </div>
         <input type="file" id="fileInput">
-        <pre id="fileContent"></pre>
-        <script>
-            const fileInput = document.getElementById('fileInput');
-            const fileContent = document.getElementById('fileContent');
-            fileInput.addEventListener('change', (e) => {
-                const file = e.target.files[0];
-                const reader = new FileReader();
-                reader.onload = () => {
-                    document.getElementById("editor").value = reader.result;
-                };
-                reader.readAsText(file);
-            });
-        </script>
         <div id="copyright"><small>&copy; 2022-2024 Ryo Fujinami.</small></div>
     </div>
     </footer>
