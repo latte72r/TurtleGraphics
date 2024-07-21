@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta property="og:title" content="Turtle graphics">
+    <meta property="og:type" content="website">
+    <meta name="google-site-verification" content="0utQohS0QuJgV4Kxamh6Ut6XlZ6sP-ChKltZtUiKWug" />
+    <title>Turtle graphics</title>
+    <link rel="icon" type="image/gif" href="./win_icon.gif">
+    <link href="./turtle.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="./turtle.js"></script>
+    <script src="./monaco-editor/vs/loader.js"></script>
+</head>
+
+<body onload="setupTurtle();setupEditor();setupFile();">
+    <div id="left-side">
+        <canvas id="canvas" title="TurtleGraphics"></canvas>
+        <br>
+        <div id="docs-div">
+            <a id="docs" href="./Documents/document.html" target="_blank" rel="noopener noreferrer"> 【 ドキュメント 】
+            </a>
+        </div>
+    </div>
+    <div id="right-side">
+        <div id="editor"></div>
+        <div>
+            <input type="button" id="run-code" value=" 実行 " onclick="runCode();" />
+            <input type="button" id="pause" value=" 一時停止 / 再開 " onclick="pauseResume();" />
+        </div>
+        <input type="file" id="fileInput">
+        <div id="copyright"><small>&copy; 2022-2024 Ryo Fujinami.</small></div>
+    </div>
+    </footer>
+</body>
+
+</html>
