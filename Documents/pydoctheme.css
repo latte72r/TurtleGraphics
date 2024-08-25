@@ -243,10 +243,6 @@ body a code {
     font-weight: normal;
 }
 
-body dt.field-odd {
-    font-weight: bolder;
-}
-
 table.docutils {
     border: 1px solid #ddd;
     min-width: 20%;
