@@ -29,8 +29,8 @@
       <img id="turtle" src="./turtle.gif" width="70" height="50" alt="turtle">
     </div>
     <div style="display: flex;">
-      <input type="button" id="demo" value=" Demo " onclick="goToDemo();" />
-      <input type="button" id="demo" value=" GitHub " onclick="goToGitHub();" />
+      <input type="button" id="demo" value="Demo" onclick="goToDemo();" />
+      <input type="button" id="demo" value="GitHub" onclick="goToGitHub();" />
     </div>
   </header>
   <script>
@@ -41,8 +41,8 @@
       window.open('https://github.com/RyoFuji2005/TurtleGraphics/');
     }
     function FixedAnime() {
-      var headerH = $('#header').outerHeight(true);
-      var scroll = $(window).scrollTop();
+      let headerH = $('#header').outerHeight(true);
+      let scroll = $(window).scrollTop();
       $('#header').addClass('fixed');
     }
     $(window).scroll(function () {
@@ -51,34 +51,42 @@
     $(window).on('load', function () {
       FixedAnime();
     });
+    $(window).on("load resize", function () {
+      $(document).on("click", "a[href^='#']", function () {
+        let headerHight = 90;
+        let speed = 800;
+        let href = $(this).attr("href").replace("\.", "\\\.");
+        let target = $(href == "#" || href == "" ? "html" : href);
+        let position = target.offset().top - headerHight;
+        $("body,html").animate({ scrollTop: position }, speed, "swing");
+        return false;
+      });
+    });
   </script>
   <div class="document">
     <section id="module-turtle">
       <div id="blank"></div>
       <section id="introduction">
-        <h2>はじめに<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a>
+        <h2>はじめに<a class="headerlink" href="#introduction">¶</a>
         </h2>
         <aside class="sidebar">
           <h3 class="sidebar-title">Turtle star</>
             <img alt="./turtle-star.png" class="align-center" src="./turtle-star.png">
         </aside>
-        <p>Turtle graphicsは、1967年にWally Feurzeig、Seymour Papert、Cynthia Solomonによって
-          Logoというプログラミング言語で実装された幾何学的な描画ツールです。</p>
-        <p>このサイトではクラシックなTurtleの原型を残しつつ、Pythonで採用されたデザインを参考にして、
-          JavaScriptから利用できるようにアレンジしました。</p>
-        <p>Turtleは、単純な動きを繰り返すプログラムを使って複雑な形を描くことができます。</p>
-        <p>Turtle graphicsは、"turtle"（ペンを持った小さなロボット）が床に置かれた紙に絵を描く様子を表現しています。</p>
-        <p>Turtleはもともと、教室で教師が使うための教育ツールとして作られました。</p>
+        <p>Turtle Graphics は、1967年に Logo というプログラミング言語の一部として誕生しました。
+          もともとは教育現場で教師がプログラミングの基礎を教えるために作られたツールです。
+          シンプルなコマンドを用いて、紙の上を動きながら絵を描く "turtle"（ペンを持った小さなロボット）の動きを再現し、複雑な図形を描くことができます。</p>
+        <p>このサイトでは、クラシックなTurtleの原型を残しつつ、Python で採用されたデザインを参考にして、JavaScriptから利用できるようにアレンジしました。
+          視覚的なフィードバックが即座に得られるため、プログラミングの概念を楽しく、直感的に学べるのが特徴です。</p>
         <p>即座に目に見える形でフィードバックが得られるため、学習者がプログラミングの概念やソフトウェアを学ぶのに効果的です。</p>
         </p>
       </section>
       <section id="turtle-graphics-reference">
-        <h2>Turtle graphics reference<a class="headerlink" href="#turtle-graphics-reference"
-            title="Permalink to this headline">¶</a></h2>
+        <h2>Turtle graphics reference<a class="headerlink" href="#turtle-graphics-reference">¶</a></h2>
         <div class="admonition note">
         </div>
         <section id="turtle-methods">
-          <h3>Turtleのメソッド<a class="headerlink" href="#turtle-methods" title="Permalink to this headline">¶</a></h3>
+          <h3>Turtleのメソッド<a class="headerlink" href="#turtle-methods">¶</a></h3>
           <dl>
             <dt>Turtleの移動</dt>
             <dd>
@@ -196,29 +204,29 @@
         </section>
       </section>
       <section id="methods-of-rawturtle-turtle-and-corresponding-functions">
-        <h2>Turtleのメソッドと対応する関数<a class="headerlink" href="#methods-of-rawturtle-turtle-and-corresponding-functions"
-            title="Permalink to this headline">¶</a></h2>
+        <h2>Turtleのメソッドと対応する関数<a class="headerlink"
+            href="#methods-of-rawturtle-turtle-and-corresponding-functions">¶</a></h2>
         <section id="turtle-motion">
-          <h3>Turtleの移動<a class="headerlink" href="#turtle-motion" title="Permalink to this headline">¶</a></h3>
+          <h3>Turtleの移動<a class="headerlink" href="#turtle-motion">¶</a></h3>
           <dl class="py function">
             <dt class="sig sig-object py" id="turtle.forward">
               <span class="await">await</span> <span class="sig-prename descclassname"><span
                   class="pre">turtle.</span></span><span class="sig-name descname"><span
                   class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span
                   class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a
-                class="headerlink" href="#turtle.forward" title="Permalink to this definition">¶</a>
+                class="headerlink" href="#turtle.forward">¶</a>
             </dt>
             <dd>
               <dl class="field-list simple">
-                <dt class="field-odd">Parameters</dt>
+                <dt class="field-odd">Parameters:</dt>
                 <dd class="field-odd">
-                  <p><strong>distance</strong> – 整数</p>
+                  <p><span class="param-name">distance</span> – 整数</p>
                 </dd>
               </dl>
-              <p>Turtleが向かっている方向に、指定された距離<em>distance</em>だけTurtleを前進させる。</p>
+              <p>Turtleが向かっている方向に、指定された距離<em>distance</em>だけTurtleを前進させます。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="m">25</span><span class="p">);</span>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">forward</span><span class="b">(</span><span class="m">25</span><span class="b">)</span><span class="p">;</span>
 </pre>
                 </div>
               </div>
@@ -231,19 +239,19 @@
                   class="pre">turtle.</span></span><span class="sig-name descname"><span
                   class="pre">backward</span></span><span class="sig-paren">(</span><em class="sig-param"><span
                   class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a
-                class="headerlink" href="#turtle.backward" title="Permalink to this definition">¶</a>
+                class="headerlink" href="#turtle.backward">¶</a>
             </dt>
             <dd>
               <dl class="field-list simple">
-                <dt class="field-odd">Parameters</dt>
+                <dt class="field-odd">Parameters:</dt>
                 <dd class="field-odd">
-                  <p><strong>distance</strong> – 整数</p>
+                  <p><span class="param-name">distance</span> – 整数</p>
                 </dd>
               </dl>
-              <p>Turtleが向かっている方向とは逆方向に、指定された距離<em>distance</em>だけTurtleを後方に移動させる。Turtleの向きは変わりません。</p>
+              <p>Turtleが向かっている方向とは逆方向に、指定された距離<em>distance</em>だけTurtleを後方に移動させます。Turtleの向きは変わりません。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="m">30</span><span class="p">);</span>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">backward</span><span class="b">(</span><span class="m">30</span><span class="b">)</span><span class="p">;</span>
 </pre>
                 </div>
               </div>
@@ -256,19 +264,19 @@
                   class="pre">turtle.</span></span><span class="sig-name descname"><span
                   class="pre">right</span></span><span class="sig-paren">(</span><em class="sig-param"><span
                   class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a
-                class="headerlink" href="#turtle.right" title="Permalink to this definition">¶</a>
+                class="headerlink" href="#turtle.right">¶</a>
             </dt>
             <dd>
               <dl class="field-list simple">
-                <dt class="field-odd">Parameters</dt>
+                <dt class="field-odd">Parameters:</dt>
                 <dd class="field-odd">
-                  <p><strong>angle</strong> – 整数</p>
+                  <p><span class="param-name">angle</span> – 整数</p>
                 </dd>
               </dl>
-              <p>Turtleを指定された角度<em>angle</em>だけ右向きに回転させる。</p>
+              <p>Turtleを指定された角度<em>angle</em>だけ右向きに回転させます。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="m">45</span><span class="p">);</span>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">right</span><span class="b">(</span><span class="m">45</span><span class="b">)</span><span class="p">;</span>
 </pre>
                 </div>
               </div>
@@ -281,19 +289,19 @@
                   class="pre">turtle.</span></span><span class="sig-name descname"><span
                   class="pre">left</span></span><span class="sig-paren">(</span><em class="sig-param"><span
                   class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a
-                class="headerlink" href="#turtle.left" title="Permalink to this definition">¶</a>
+                class="headerlink" href="#turtle.left">¶</a>
             </dt>
             <dd>
               <dl class="field-list simple">
-                <dt class="field-odd">Parameters</dt>
+                <dt class="field-odd">Parameters:</dt>
                 <dd class="field-odd">
-                  <p><strong>angle</strong> – 整数</p>
+                  <p><span class="param-name">angle</span> – 整数</p>
                 </dd>
               </dl>
-              <p>Turtleを指定された角度<em>angle</em>だけ左向きに回転させる。</p>
+              <p>Turtleを指定された角度<em>angle</em>だけ左向きに回転させます。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="m">45</span><span class="p">);</span></pre>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">left</span><span class="b">(</span><span class="m">45</span><span class="b">)</span><span class="p">;</span></pre>
                 </div>
               </div>
             </dd>
@@ -306,18 +314,18 @@
                   class="pre">goto</span></span><span class="sig-paren">(</span><em class="sig-param"><span
                   class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span
                     class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                href="#turtle.goto" title="Permalink to this definition">¶</a>
+                href="#turtle.goto">¶</a>
             </dt>
             <dd>
               <dl class="field-list simple">
-                <dt class="field-odd">Parameters</dt>
+                <dt class="field-odd">Parameters:</dt>
                 <dd class="field-odd">
                   <ul class="simple">
                     <li>
-                      <p><strong>x</strong> – 整数</p>
+                      <p><span class="param-name">x</span> – 整数</p>
                     </li>
                     <li>
-                      <p><strong>y</strong> – 整数</p>
+                      <p><span class="param-name">y</span> – 整数</p>
                     </li>
                   </ul>
                 </dd>
@@ -326,7 +334,7 @@
               <p>Turtleを座標<em>(x, y)</em>に移動させます。ペンが下りていれば線を引きます。Turtleの向きは変化しません。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="m">60</span><span class="p">,</span><span class="m">30</span><span class="p">);</span>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">goto</span><span class="b">(</span><span class="m">60</span><span class="p">, </span><span class="m">30</span><span class="b">)</span><span class="p">;</span>
 </pre>
                 </div>
               </div>
@@ -339,19 +347,19 @@
                   class="pre">turtle.</span></span><span class="sig-name descname"><span
                   class="pre">setx</span></span><span class="sig-paren">(</span><em class="sig-param"><span
                   class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                href="#turtle.setx" title="Permalink to this definition">¶</a>
+                href="#turtle.setx">¶</a>
             </dt>
             <dd>
               <dl class="field-list simple">
-                <dt class="field-odd">Parameters</dt>
+                <dt class="field-odd">Parameters:</dt>
                 <dd class="field-odd">
-                  <p><strong>x</strong> – 整数</p>
+                  <p><span class="param-name">x</span> – 整数</p>
                 </dd>
               </dl>
               <p>Turtleの第１座標を<em>x</em>にします。第２座標は変化しません。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">setx</span><span class="p">(</span><span class="m">10</span><span class="p">);</span>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">setx</span><span class="b">(</span><span class="m">10</span><span class="b">)</span><span class="p">;</span>
 </pre>
                 </div>
               </div>
@@ -364,19 +372,19 @@
                   class="pre">turtle.</span></span><span class="sig-name descname"><span
                   class="pre">sety</span></span><span class="sig-paren">(</span><em class="sig-param"><span
                   class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                href="#turtle.sety" title="Permalink to this definition">¶</a>
+                href="#turtle.sety">¶</a>
             </dt>
             <dd>
               <dl class="field-list simple">
-                <dt class="field-odd">Parameters</dt>
+                <dt class="field-odd">Parameters:</dt>
                 <dd class="field-odd">
-                  <p><strong>y</strong> – 整数</p>
+                  <p><span class="param-name">y</span> – 整数</p>
                 </dd>
               </dl>
               <p>Turtleの第２座標を<em>y</em>にします。第１座標は変化しません。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">sety</span><span class="p">(</span><span class="o">-</span><span class="m">10</span><span class="p">);</span>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">sety</span><span class="b">(</span><span class="o">-</span><span class="m">10</span><span class="b">)</span><span class="p">;</span>
 </pre>
                 </div>
               </div>
@@ -389,13 +397,13 @@
                   class="pre">turtle.</span></span><span class="sig-name descname"><span
                   class="pre">setheading</span></span><span class="sig-paren">(</span><em class="sig-param"><span
                   class="n"><span class="pre">to_angle</span></span></em><span class="sig-paren">)</span><a
-                class="headerlink" href="#turtle.setheading" title="Permalink to this definition">¶</a>
+                class="headerlink" href="#turtle.setheading">¶</a>
             </dt>
             <dd>
               <dl class="field-list simple">
-                <dt class="field-odd">Parameters</dt>
+                <dt class="field-odd">Parameters:</dt>
                 <dd class="field-odd">
-                  <p><strong>to_angle</strong> – 整数</p>
+                  <p><span class="param-name">to_angle</span> – 整数</p>
                 </dd>
               </dl>
               <p>Turtleの向きを角度<em>to_angle</em>に設定します。以下はよく使われる方向を角度で表わしたものです：</p>
@@ -404,29 +412,44 @@
                   <thead>
                     <tr class="row-odd">
                       <th class="head">
-                        <p>標準モード</p>
+                        <p><code>to_angle</code></p>
                       </th>
+                      <td>
+                        <p>向き</p>
+                      </td>
                     </tr>
                   </thead>
                   <tbody>
                     <tr class="row-even">
+                      <th>
+                        <p><code>&nbsp;&nbsp;0</code></p>
+                      </th>
                       <td>
-                        <p>0 - east</p>
+                        <p>右</p>
                       </td>
                     </tr>
                     <tr class="row-odd">
+                      <th>
+                        <p><code>&nbsp;90</code></p>
+                      </th>
                       <td>
-                        <p>90 - north</p>
+                        <p>上</p>
                       </td>
                     </tr>
                     <tr class="row-even">
+                      <th>
+                        <p><code>180</code></p>
+                      </th>
                       <td>
-                        <p>180 - west</p>
+                        <p>左</p>
                       </td>
                     </tr>
                     <tr class="row-odd">
+                      <th>
+                        <p><code>270</code></p>
+                      </th>
                       <td>
-                        <p>270 - south</p>
+                        <p>下</p>
                       </td>
                     </tr>
                   </tbody>
@@ -434,7 +457,7 @@
               </div>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">setheading</span><span class="p">(</span><span class="m">90</span><span class="p">);</span>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">setheading</span><span class="b">(</span><span class="m">90</span><span class="b">)</span><span class="p">;</span>
 </pre>
                 </div>
               </div>
@@ -446,13 +469,14 @@
               <span class="await">await</span> <span class="sig-prename descclassname"><span
                   class="pre">turtle.</span></span><span class="sig-name descname"><span
                   class="pre">home</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a
-                class="headerlink" href="#turtle.home" title="Permalink to this definition">¶</a>
+                class="headerlink" href="#turtle.home">¶</a>
             </dt>
             <dd>
-              <p>Turtleを原点（座標<em>(0,0)</em>）に移動し、方向を開始方向に設定する。</p>
+              <p>Turtleを原点 <code class="docutils literal notranslate"><span class="pre">(0, 0)</span></code>
+                に移動し、方向を開始方向に設定する。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">home</span><span class="p">();</span>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">home</span><span class="b">()</span><span class="p">;</span>
 </pre>
                 </div>
               </div>
@@ -466,18 +490,18 @@
                   class="pre">circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span
                   class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span
                     class="pre">extent</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                href="#turtle.circle" title="Permalink to this definition">¶</a>
+                href="#turtle.circle">¶</a>
             </dt>
             <dd>
               <dl class="field-list simple">
-                <dt class="field-odd">Parameters</dt>
+                <dt class="field-odd">Parameters:</dt>
                 <dd class="field-odd">
                   <ul class="simple">
                     <li>
-                      <p><strong>radius</strong> – 整数</p>
+                      <p><span class="param-name">radius</span> – 整数</p>
                     </li>
                     <li>
-                      <p><strong>extent</strong> – 整数</p>
+                      <p><span class="param-name">extent</span> – 整数</p>
                     </li>
                   </ul>
                 </dd>
@@ -489,7 +513,7 @@
                 Turtleの方向は<em>extent</em>の分だけ変化します。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="m">120</span><span class="p">,</span> <span class="m">180</span><span class="p">);</span>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">circle</span><span class="b">(</span><span class="m">120</span><span class="p">,</span> <span class="m">180</span><span class="b">)</span><span class="p">;</span>
 </pre>
                 </div>
               </div>
@@ -500,23 +524,23 @@
             <dt class="sig sig-object py" id="turtle.dot">
               <span class="sig-prename descclassname"><span class="pre">turtle.</span></span><span
                 class="sig-name descname"><span class="pre">dot</span></span><span class="sig-paren">()</span><a
-                class="headerlink" href="#turtle.dot" title="Permalink to this definition">¶</a>
+                class="headerlink" href="#turtle.dot">¶</a>
             </dt>
             <dd>
               <dl class="field-list simple">
-                <dt class="field-odd">Parameters</dt>
+                <dt class="field-odd">Parameters:</dt>
                 <dd class="field-odd">
                   <ul class="simple">
                     <li>
-                      <p><strong>size</strong> – 自然数</p>
+                      <p><span class="param-name">size</span> – 自然数</p>
                     </li>
                   </ul>
                 </dd>
               </dl>
-              <p>与えられた直径<em>size</em>で円形の点を描く。</p>
+              <p>与えられた直径<em>size</em>で円形の点を描きます。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="m">20</span><span class="p">);</span></pre>
+                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">dot</span><span class="b">(</span><span class="m">20</span><span class="b">)</span><span class="p">;</span></pre>
                 </div>
               </div>
             </dd>
@@ -526,14 +550,13 @@
             <dt class="sig sig-object py" id="turtle.stamp">
               <span class="sig-prename descclassname"><span class="pre">turtle.</span></span><span
                 class="sig-name descname"><span class="pre">stamp</span></span><span class="sig-paren">(</span><span
-                class="sig-paren">)</span><a class="headerlink" href="#turtle.stamp"
-                title="Permalink to this definition">¶</a>
+                class="sig-paren">)</span><a class="headerlink" href="#turtle.stamp">¶</a>
             </dt>
             <dd>
               <p>現在のTurtleの位置にTurtleの形状のコピーをつくります。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">stamp</span><span class="p">();</span></pre>
+                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">stamp</span><span class="b">()</span><span class="p">;</span></pre>
                 </div>
               </div>
             </dd>
@@ -544,14 +567,13 @@
               <span class="sig-prename descclassname"><span class="pre">turtle.</span></span><span
                 class="sig-name descname"><span class="pre">speed</span></span><span class="sig-paren">(</span><em
                 class="sig-param"><span class="n"><span class="pre">speed</span></span></em><span
-                class="sig-paren">)</span><a class="headerlink" href="#turtle.speed"
-                title="Permalink to this definition">¶</a>
+                class="sig-paren">)</span><a class="headerlink" href="#turtle.speed">¶</a>
             </dt>
             <dd>
               <dl class="field-list simple">
-                <dt class="field-odd">Parameters</dt>
+                <dt class="field-odd">Parameters:</dt>
                 <dd class="field-odd">
-                  <p><strong>speed</strong> – 整数（０～１０）</p>
+                  <p><span class="param-name">speed</span> – 整数（０～１０）</p>
                 </dd>
               </dl>
               <p>Turtleの速度を０〜１０の範囲の整数値に設定します。</p>
@@ -560,46 +582,73 @@
                 <table class="docutils align-default">
                   <thead>
                     <tr class="row-odd">
-                      <th class="head">
-                        <p>速度対応表</p>
+                      <th>
+                        <p><code>speed</code></p>
                       </th>
+                      <td>
+                        <p>速さ</p>
+                      </td>
                     </tr>
                   </thead>
                   <tbody>
                     <tr class="row-even">
+                      <th>
+                        <p><code>&nbsp;0</code></p>
+                      </th>
                       <td>
-                        <p>0 - 最速</p>
+                        <p>最速</p>
                       </td>
                     </tr>
                     <tr class="row-odd">
+                      <th>
+                        <p><code>10</code></p>
+                      </th>
                       <td>
-                        <p>10 - 高速</p>
+                        <p>高速</p>
                       </td>
                     </tr>
                     <tr class="row-even">
+                      <th>
+                        <p><code>&nbsp;6</code></p>
+                      </th>
                       <td>
-                        <p>6 - 標準</p>
+                        <p>標準</p>
                       </td>
                     </tr>
                     <tr class="row-odd">
+                      <th>
+                        <p><code>&nbsp;3</code></p>
+                      </th>
                       <td>
-                        <p>3 - 低速</p>
+                        <p>低速</p>
                       </td>
                     </tr>
                     <tr class="row-odd">
+                      <th>
+                        <p><code>&nbsp;1</code></p>
+                      </th>
                       <td>
-                        <p>1 - 超低速</p>
+                        <p>超低速</p>
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <p>スピードは1から10まであり、線画と亀の回転のアニメーションがどんどん速くなります。</p>
-              <p>※注意：<em>speed</em> = 0はアニメーションが行われないことを意味します。
-                forward/backはTurtleをジャンプさせ、同様にleft/rightはTurtleを瞬時にターンさせます。</p>
+              <p>Turtleの速度は1から10まで設定でき、数値が大きくなるほど線の描画やTurtleの回転アニメーションが速くなります。</p>
+              <p>※注意：<code class="docutils literal notranslate"><span class="pre">speed = 0</span></code>
+                はアニメーションが行われないことを意味します。
+                <a class="reference internal" href="#turtle.forward" title="turtle.forward"><code
+                    class="docutils literal notranslate"><span class="pre">forward()</span></code></a> /
+                <a class="reference internal" href="#turtle.backward" title="turtle.backward"><code
+                    class="docutils literal notranslate"><span class="pre">backward()</span></code></a> はTurtleをジャンプさせ、
+                同様に <a class="reference internal" href="#turtle.left" title="turtle.left"><code
+                    class="docutils literal notranslate"><span class="pre">left()</span></code></a> /
+                <a class="reference internal" href="#turtle.right" title="turtle.right"><code
+                    class="docutils literal notranslate"><span class="pre">right()</span></code></a> はTurtleを瞬時に回転させます。
+              </p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="m">8</span><span class="p">);</span>
+                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">speed</span><span class="b">(</span><span class="m">8</span><span class="b">)</span><span class="p">;</span>
 </pre>
                 </div>
               </div>
@@ -609,17 +658,16 @@
         </section>
 
         <section id="id1">
-          <h3>Penの制御<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a>
+          <h3>Penの制御<a class="headerlink" href="#id1">¶</a>
           </h3>
           <dl class="py function">
             <dt class="sig sig-object py" id="turtle.pendown">
               <span class="sig-prename descclassname"><span class="pre">turtle.</span></span><span
                 class="sig-name descname"><span class="pre">pendown</span></span><span class="sig-paren">(</span><span
-                class="sig-paren">)</span><a class="headerlink" href="#turtle.pendown"
-                title="Permalink to this definition">¶</a>
+                class="sig-paren">)</span><a class="headerlink" href="#turtle.pendown">¶</a>
             </dt>
             <dd>
-              <p>ペンを下ろします – 動くと線が引かれます。</p>
+              <p>ペンを「描画モード」に切り替えます。Turtleが移動するとその軌跡に沿って線が描かれます。</p>
             </dd>
           </dl>
 
@@ -627,11 +675,10 @@
             <dt class="sig sig-object py" id="turtle.penup">
               <span class="sig-prename descclassname"><span class="pre">turtle.</span></span><span
                 class="sig-name descname"><span class="pre">penup</span></span><span class="sig-paren">(</span><span
-                class="sig-paren">)</span><a class="headerlink" href="#turtle.penup"
-                title="Permalink to this definition">¶</a>
+                class="sig-paren">)</span><a class="headerlink" href="#turtle.penup">¶</a>
             </dt>
             <dd>
-              <p>ペンを上げます – 動いても線は引かれません。</p>
+              <p>ペンを「非描画モード」に切り替えます。Turtleが移動しても線が描かれなくなります。</p>
             </dd>
           </dl>
 
@@ -640,20 +687,19 @@
               <span class="sig-prename descclassname"><span class="pre">turtle.</span></span><span
                 class="sig-name descname"><span class="pre">pensize</span></span><span class="sig-paren">(</span><em
                 class="sig-param"><span class="n"><span class="pre">width</span></span></em><span
-                class="sig-paren">)</span><a class="headerlink" href="#turtle.pensize"
-                title="Permalink to this definition">¶</a>
+                class="sig-paren">)</span><a class="headerlink" href="#turtle.pensize">¶</a>
             </dt>
             <dd>
               <dl class="field-list simple">
-                <dt class="field-odd">Parameters</dt>
+                <dt class="field-odd">Parameters:</dt>
                 <dd class="field-odd">
-                  <p><strong>width</strong> – 自然数</p>
+                  <p><span class="param-name">width</span> – 自然数</p>
                 </dd>
               </dl>
               <p>線の太さを<em>width</em>にします。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">pensize</span><span class="p">(</span><span class="m">10</span><span class="p">);</span>
+                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">pensize</span><span class="b">(</span><span class="m">10</span><span class="b">)</span><span class="p">;</span>
 </pre>
                 </div>
               </div>
@@ -666,7 +712,7 @@
                 class="sig-name descname"><span class="pre">pencolor</span></span><span class="sig-paren">(</span><em
                 class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span
                     class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                href="#turtle.pencolor" title="Permalink to this definition">¶</a>
+                href="#turtle.pencolor">¶</a>
             </dt>
             <dd>
               <p>ペンの色を設定します</p>
@@ -696,9 +742,9 @@
               <p>Turtleの輪郭は新しく設定されたペンの色で描かれます。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">pencolor</span><span class="p">(</span><span class="s">"brown"</span><span class="p">);</span>
-<span class="n">turtle</span><span class="o">.</span><span class="n">pencolor</span><span class="p">(</span><span class="p">(</span><span class="m">0.2</span><span class="p">,</span> <span class="m">0.8</span><span class="p">,</span> <span class="m">0.55</span><span class="p">)</span><span class="p">);</span>
-<span class="n">turtle</span><span class="o">.</span><span class="n">pencolor</span><span class="p">(</span><span class="s">'#32c18f'</span><span class="p">);</span>
+                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">pencolor</span><span class="b">(</span><span class="s">"brown"</span><span class="b">)</span><span class="p">;</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">pencolor</span><span class="b">(</span><span class="b">(</span><span class="m">0.2</span><span class="p">,</span> <span class="m">0.8</span><span class="p">,</span> <span class="m">0.55</span><span class="b">)</span><span class="b">)</span><span class="p">;</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">pencolor</span><span class="b">(</span><span class="s">'#32c18f'</span><span class="b">)</span><span class="p">;</span>
 </pre>
                 </div>
               </div>
@@ -711,7 +757,7 @@
                 class="sig-name descname"><span class="pre">fillcolor</span></span><span class="sig-paren">(</span><em
                 class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span
                     class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                href="#turtle.fillcolor" title="Permalink to this definition">¶</a>
+                href="#turtle.fillcolor">¶</a>
             </dt>
             <dd>
               <p>塗りつぶしの色を設定します</p>
@@ -741,9 +787,9 @@
               <p>Turtleの内部は新しく設定された塗りつぶしの色で描かれます。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">fillcolor</span><span class="p">(</span><span class="s">"violet"</span><span class="p">);</span>
-<span class="n">turtle</span><span class="o">.</span><span class="n">fillcolor</span><span class="p">((</span><span class="m">50</span><span class="p">,</span> <span class="m">193</span><span class="p">,</span> <span class="m">143</span><span class="p">));</span>
-<span class="n">turtle</span><span class="o">.</span><span class="n">fillcolor</span><span class="p">(</span><span class="s">'#ffffff'</span><span class="p">);</span>
+                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">fillcolor</span><span class="b">(</span><span class="s">"violet"</span><span class="b">)</span><span class="p">;</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">fillcolor</span><span class="b">((</span><span class="m">50</span><span class="p">,</span> <span class="m">193</span><span class="p">,</span> <span class="m">143</span><span class="b">))</span><span class="p">;</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">fillcolor</span><span class="b">(</span><span class="s">'#ffffff'</span><span class="b">)</span><span class="p">;</span>
 </pre>
                 </div>
               </div>
@@ -756,7 +802,7 @@
                 class="sig-name descname"><span class="pre">color</span></span><span class="sig-paren">(</span><em
                 class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span
                     class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                href="#turtle.color" title="Permalink to this definition">¶</a>
+                href="#turtle.color">¶</a>
             </dt>
             <dd>
               <p>ペンの色と塗りつぶしの色を設定します</p>
@@ -790,8 +836,8 @@
               <p>Turtleの輪郭と内部が、新しく設定された色で描かれます。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="s">"red"</span><span class="p">,</span> <span class="s">"green"</span><span class="p">);</span>
-<span class="n">turtle</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="s">"#285078"</span><span class="p">,</span> <span class="s">"#a0c8f0"</span><span class="p">);</span>
+                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">color</span><span class="b">(</span><span class="s">"red"</span><span class="p">,</span> <span class="s">"green"</span><span class="b">)</span><span class="p">;</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">color</span><span class="b">(</span><span class="s">"#285078"</span><span class="p">,</span> <span class="s">"#a0c8f0"</span><span class="b">)</span><span class="p">;</span>
 </pre>
                 </div>
               </div>
@@ -803,7 +849,7 @@
               <span class="sig-prename descclassname"><span class="pre">turtle.</span></span><span
                 class="sig-name descname"><span class="pre">begin_fill</span></span><span
                 class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink"
-                href="#turtle.begin_fill" title="Permalink to this definition">¶</a>
+                href="#turtle.begin_fill">¶</a>
             </dt>
             <dd>
               <p>塗りつぶされる図形を描画する直前に呼び出します。</p>
@@ -814,8 +860,7 @@
             <dt class="sig sig-object py" id="turtle.end_fill">
               <span class="sig-prename descclassname"><span class="pre">turtle.</span></span><span
                 class="sig-name descname"><span class="pre">end_fill</span></span><span class="sig-paren">(</span><span
-                class="sig-paren">)</span><a class="headerlink" href="#turtle.end_fill"
-                title="Permalink to this definition">¶</a>
+                class="sig-paren">)</span><a class="headerlink" href="#turtle.end_fill">¶</a>
             </dt>
             <dd>
               <p><a class="reference internal" href="#turtle.begin_fill" title="turtle.begin_fill"><code
@@ -824,10 +869,10 @@
               </p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="s">"black"</span><span class="p">,</span> <span class="s">"red"</span><span class="p">);</span>
-<span class="n">turtle</span><span class="o">.</span><span class="n">begin_fill</span><span class="p">();</span>
-<span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="m">80</span><span class="p">);</span>
-<span class="n">turtle</span><span class="o">.</span><span class="n">end_fill</span><span class="p">();</span>
+                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">color</span><span class="b">(</span><span class="s">"black"</span><span class="p">,</span> <span class="s">"red"</span><span class="b">)</span><span class="p">;</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">begin_fill</span><span class="b">()</span><span class="p">;</span>
+<span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">circle</span><span class="b">(</span><span class="m">80</span><span class="b">)</span><span class="p">;</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">end_fill</span><span class="b">()</span><span class="p">;</span>
 </pre>
                 </div>
               </div>
@@ -835,19 +880,20 @@
           </dl>
         </section>
         <section id="turtle-state">
-          <h3>Turtleの状態<a class="headerlink" href="#turtle-state" title="Permalink to this headline">¶</a></h3>
+          <h3>Turtleの状態<a class="headerlink" href="#turtle-state">¶</a></h3>
           <dl class="py function">
             <dt class="sig sig-object py" id="turtle.hideturtle">
               <span class="sig-prename descclassname"><span class="pre">turtle.</span></span><span
                 class="sig-name descname"><span class="pre">hideturtle</span></span><span
                 class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink"
-                href="#turtle.hideturtle" title="Permalink to this definition">¶</a>
+                href="#turtle.hideturtle">¶</a>
             </dt>
             <dd>
-              <p>Turtleを見えなくします。Turtleを隠すと描画が速くなるので、複雑な描画をしている最中にこれを行うのは良いアイデアです。</p>
+              <p>Turtleを画面上から非表示にします。</p>
+              <p>Turtleを隠すことで描画速度が向上するため、特に複雑な図形を描いている際に活用するのがおすすめです。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">hideturtle</span><span class="p">();</span>
+                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">hideturtle</span><span class="b">()</span><span class="p">;</span>
 </pre>
                 </div>
               </div>
@@ -859,13 +905,13 @@
               <span class="sig-prename descclassname"><span class="pre">turtle.</span></span><span
                 class="sig-name descname"><span class="pre">showturtle</span></span><span
                 class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink"
-                href="#turtle.showturtle" title="Permalink to this definition">¶</a>
+                href="#turtle.showturtle">¶</a>
             </dt>
             <dd>
-              <p>Turtleを見えるようにします。</p>
+              <p>Turtleを表示します。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">showturtle</span><span class="p">();</span>
+                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">showturtle</span><span class="b">()</span><span class="p">;</span>
 </pre>
                 </div>
               </div>
@@ -876,16 +922,15 @@
               <span class="sig-prename descclassname"><span class="pre">turtle.</span></span><span
                 class="sig-name descname"><span class="pre">turtlesize</span></span><span class="sig-paren">(</span><em
                 class="sig-param"><span class="n"><span class="pre">stretch</span></span></em><span
-                class="sig-paren">)</span><a class="headerlink" href="#turtle.turtlesize"
-                title="Permalink to this definition">¶</a>
+                class="sig-paren">)</span><a class="headerlink" href="#turtle.turtlesize">¶</a>
             </dt>
             <dd>
               <dl class="field-list simple">
-                <dt class="field-odd">Parameters</dt>
+                <dt class="field-odd">Parameters:</dt>
                 <dd class="field-odd">
                   <ul class="simple">
                     <li>
-                      <p><strong>stretch</strong> – 自然数</p>
+                      <p><span class="param-name">stretch</span> – 自然数</p>
                     </li>
                   </ul>
                 </dd>
@@ -894,7 +939,7 @@
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
                   <pre>
-<span class="n">turtle</span><span class="o">.</span><span class="n">turtlesize</span><span class="p">(</span><span class="m">10</span><span class="p">);</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">turtlesize</span><span class="b">(</span><span class="m">10</span><span class="b">)</span><span class="p">;</span>
 </pre>
                 </div>
               </div>
@@ -902,21 +947,20 @@
           </dl>
         </section>
         <section id="special-turtle-methods">
-          <h3>特別なTurtleのメソッド<a class="headerlink" href="#special-turtle-methods"
-              title="Permalink to this headline">¶</a></h3>
+          <h3>特別なTurtleのメソッド<a class="headerlink" href="#special-turtle-methods">¶</a></h3>
           <dl class="py function">
             <dt class="sig sig-object py" id="turtle.undo">
               <span class="await">await</span> <span class="sig-prename descclassname"><span
                   class="pre">turtle.</span></span><span class="sig-name descname"><span
                   class="pre">undo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a
-                class="headerlink" href="#turtle.undo" title="Permalink to this definition">¶</a>
+                class="headerlink" href="#turtle.undo">¶</a>
             </dt>
             <dd>
               <p>最後に行われたTurtleの操作を取り消します。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span>forward(</span><span class="m">50</span><span class="p">);</span>
-<span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">undo</span><span class="p">();</span></pre>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span>forward<span class="b">(</span><span class="m">50</span><span class="b">)</span><span class="p">;</span>
+<span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">undo</span><span class="b">()</span><span class="p">;</span></pre>
                 </div>
               </div>
             </dd>
@@ -926,14 +970,13 @@
             <dt class="sig sig-object py" id="turtle.reset">
               <span class="sig-prename descclassname"><span class="pre">turtle.</span></span><span
                 class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span
-                class="sig-paren">)</span><a class="headerlink" href="#turtle.reset"
-                title="Permalink to this definition">¶</a>
+                class="sig-paren">)</span><a class="headerlink" href="#turtle.reset">¶</a>
             </dt>
             <dd>
               <p>画面からTurtleの描画を削除し、Turtleの中心を合わせ直し、Turtleに関する変数をデフォルト値に設定します。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">reset</span><span class="p">();</span></pre>
+                  <pre><span class="n">turtle</span><span class="o">.</span><span class="n">reset</span><span class="b">()</span><span class="p">;</span></pre>
                 </div>
               </div>
             </dd>
@@ -945,15 +988,15 @@
                   class="pre">turtle.</span></span><span class="sig-name descname"><span
                   class="pre">sleep</span></span><span class="sig-paren">(</span><em><span class="n"><span
                     class="pre">secs</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                href="#turtle.sleep" title="Permalink to this definition">¶</a>
+                href="#turtle.sleep">¶</a>
             </dt>
             <dd>
               <dl class="field-list simple">
-                <dt class="field-odd">Parameters</dt>
+                <dt class="field-odd">Parameters:</dt>
                 <dd class="field-odd">
                   <ul class="simple">
                     <li>
-                      <p><strong>secs</strong> – 正の数（小数または整数）</p>
+                      <p><span class="param-name">secs</span> – 正の数（小数または整数）</p>
                     </li>
                   </ul>
                 </dd>
@@ -962,7 +1005,7 @@
               <p>システム内の他のアクティビティとのスケジューリングのため、中断時間は要求された時間よりも長くなる可能性があります。</p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">
-                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="m">3.0</span><span class="p">);</span></pre>
+                  <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">sleep</span><span class="b">(</span><span class="m">3.0</span><span class="b">)</span><span class="p">;</span></pre>
                 </div>
               </div>
             </dd>
@@ -979,7 +1022,7 @@
     <br>
     (c) Copyright 2022-2024, Ryo Fujinami.
     <br>
-    Last updated on Jun 11, 2024.
+    Last updated on Aug 24, 2024.
     <br>
   </div>
 </body>

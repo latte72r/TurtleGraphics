@@ -3,6 +3,7 @@ pre {
 }
 
 .highlight {
+    margin-right: 80px;
     background: #f8f8f8;
 }
 
@@ -10,6 +11,11 @@ pre {
 .await {
     color: #0044DD;
     font-weight: bold;
+}
+
+/* Bracket */
+.highlight .b {
+    color: #666666;
 }
 
 /* Keyword */
@@ -29,7 +35,7 @@ pre {
 
 /* Number */
 .highlight .m {
-    color: #666666;
+    color: #008000;
 }
 
 /* Await */

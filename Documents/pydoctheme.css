@@ -98,43 +98,25 @@ object.align-center {
     left: 0;
 }
 
-#lang-ja {
-    vertical-align: top;
-}
-
-#lang-en {
-    vertical-align: bottom;
-}
-
 #footer-line {
     border: none;
     border-top: 2px solid #aaa;
 }
 
 #demo {
-    font-size: 32px;
+    font-size: 2rem;
     font-family: monospace;
     font-weight: bold;
+    border-radius: 20px;
     color: blue;
     margin: 20px 20px;
-}
-
-body {
-    margin-left: 1em;
-    margin-right: 1em;
+    padding: 8px 16px;
+    cursor: pointer;
 }
 
 .mobile-nav,
 .menu-wrapper {
     display: none;
-}
-
-div.related {
-    margin-top: 0.5em;
-    margin-bottom: 1.2em;
-    padding: 0.5em 0;
-    border-width: 1px;
-    border-color: #ccc;
 }
 
 .mobile-nav+div.related {
@@ -183,86 +165,8 @@ span.pre {
     white-space: unset;
 }
 
-div.sphinxsidebar {
-    float: none;
-    position: sticky;
-    top: 0;
-    max-height: 100vh;
-    color: #444;
-    background-color: #eee;
-    border-radius: 5px;
-    line-height: 130%;
-    font-size: smaller;
-}
-
-div.sphinxsidebar h3,
-div.sphinxsidebar h4 {
-    margin-top: 1.5em;
-}
-
-div.sphinxsidebarwrapper {
-    width: 217px;
-    box-sizing: border-box;
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-    float: left;
-}
-
-div.sphinxsidebarwrapper>h3:first-child {
-    margin-top: 0.2em;
-}
-
-div.sphinxsidebarwrapper>ul>li>ul>li {
-    margin-bottom: 0.4em;
-}
-
-div.sphinxsidebar a:hover {
-    color: #0095c4;
-}
-
-form.inline-search input,
-div.sphinxsidebar input,
-div.related input {
-    font-family: 'Lucida Grande', Arial, sans-serif;
-    border: 1px solid #999999;
-    font-size: smaller;
-    border-radius: 3px;
-}
-
-div.sphinxsidebar input[type='text'] {
-    max-width: 150px;
-}
-
-#sidebarbutton {
-    /* Sphinx 4.x and earlier compat */
-    height: 100%;
-    background-color: #CCCCCC;
-    margin-left: 0;
-    color: #444444;
-    font-size: 1.2em;
-    cursor: pointer;
-    padding-top: 1px;
-    float: right;
-    display: table;
-    /* after Sphinx 4.x and earlier is dropped, only the below is needed */
-    width: 12px;
-    border-radius: 0 5px 5px 0;
-    border-left: none;
-}
-
-#sidebarbutton span {
-    /* Sphinx 4.x and earlier compat */
-    display: table-cell;
-    vertical-align: middle;
-}
-
-#sidebarbutton:hover {
-    background-color: #AAAAAA;
-}
-
 body {
-    padding: 0 0 0 1.2em;
+    padding: 0 3em 0 2em;
 }
 
 body p,
@@ -285,7 +189,8 @@ body h6 {
 }
 
 body pre {
-    border-radius: 3px;
+    padding: 8px 12px 8px 12px;
+    border-radius: 8px;
     border: 1px solid #ac9;
 }
 
@@ -338,33 +243,38 @@ body a code {
     font-weight: normal;
 }
 
+body dt.field-odd {
+    font-weight: bolder;
+    display: inline-block;
+    padding: 0.2em 0.4em 0.2em 0.4em;
+}
+
 table.docutils {
     border: 1px solid #ddd;
     min-width: 20%;
     border-radius: 3px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px 20px 10px 20px;
 }
 
 table.docutils td,
 table.docutils th {
-    border: 1px solid #ddd !important;
+    border: 1px solid rgb(160 160 160);
     border-radius: 3px;
     padding: 0.3em 0.5em;
 }
 
 table p,
 table li {
-    text-align: left !important;
+    padding: 0em 2em 0em 2em;
+    text-align: center;
 }
 
-table.docutils th {
-    background-color: #eee;
+table.docutils thead {
+    background-color: rgb(228 240 245);
 }
 
-table.footnote,
-table.footnote td {
-    border: 0 !important;
+table.docutils tbody>tr:nth-of-type(even) {
+    background-color: rgb(237 238 242);
 }
 
 div.footer {
@@ -389,6 +299,11 @@ div.footer a:hover {
 dl>dt span~em,
 .sig {
     font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, Monaco, Consolas, monospace;
+}
+
+.param-name {
+    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, Monaco, Consolas, monospace;
+    font-style: italic;
 }
 
 .toctree-wrapper ul {
@@ -607,91 +522,6 @@ div.genindex-jumpbox a {
     .toggler__input:checked~.menu-wrapper {
         visibility: visible;
         left: 0;
-    }
-
-    /* Sliding side menu */
-    .menu-wrapper {
-        display: block;
-        position: fixed;
-        top: 0;
-        transition: left 400ms ease;
-        left: -310px;
-        width: 300px;
-        height: 100%;
-        background-color: #eee;
-        color: #444444;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        overflow-y: auto;
-    }
-
-    .menu-wrapper.open {
-        visibility: visible;
-        left: 0;
-    }
-
-    .menu {
-        padding: 40px 10px 30px 20px;
-    }
-
-    .menu-wrapper h3,
-    .menu-wrapper h4 {
-        margin-bottom: 0;
-        font-weight: normal;
-    }
-
-    .menu-wrapper h4 {
-        font-size: 1.3em;
-    }
-
-    .menu-wrapper h3 {
-        font-size: 1.4em;
-    }
-
-    .menu-wrapper h3+p,
-    .menu-wrapper h4+p {
-        margin-top: 0.5rem;
-    }
-
-    .menu a {
-        font-size: smaller;
-        text-decoration: none;
-    }
-
-    .menu ul {
-        list-style: none;
-        line-height: 1.4;
-        overflow-wrap: break-word;
-        padding-left: 0;
-    }
-
-    .menu ul ul {
-        margin-left: 20px;
-        list-style: square;
-    }
-
-    .menu ul li {
-        margin-bottom: 0.5rem;
-    }
-
-    .document {
-        position: relative;
-        z-index: 0;
-    }
-
-    /*Responsive tables*/
-    .responsive-table__container {
-        width: 100%;
-        overflow-x: auto;
-    }
-
-    .menu .theme-selector-label {
-        margin-top: .5em;
-        display: flex;
-        width: 100%;
-    }
-
-    .menu .theme-selector {
-        flex: auto;
     }
 }
 
