@@ -50,19 +50,17 @@ aside.sidebar {
     border-radius: 5%;
     padding: 1em;
     background-color: #ffe;
-    width: 20%;
     float: right;
     clear: right;
     overflow-x: auto;
 }
 
-img.align-center,
-figure.align-center,
-.figure.align-center,
-object.align-center {
+#turtle-star {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    width: 6em;
+    height: 6em;
 }
 
 #blank {
@@ -87,7 +85,7 @@ object.align-center {
     font-weight: bold;
     border-radius: 0.6em;
     color: blue;
-    margin: 1em 0.4em 1em 0em;
+    margin: 1em 0.6em 1em 0em;
     padding: 0.3em 0.5em;
     cursor: pointer;
 }
@@ -166,11 +164,11 @@ body h6 {
 }
 
 body h1 {
-    font-size: 200%;
+    font-size: 180%;
 }
 
 body h2 {
-    font-size: 160%;
+    font-size: 140%;
 }
 
 body h3 {
@@ -256,7 +254,7 @@ div.footer {
     line-height: 150%;
     text-align: right;
     width: auto;
-    margin: 2rem 1rem;
+    margin: 2rem 1rem 3rem 1rem;
 }
 
 div.footer a:hover {
@@ -290,15 +288,15 @@ div.genindex-jumpbox>p {
 @media (max-width: 1023px) {
 
     /* Body layout */
-    body {
+    html {
         min-width: 100%;
         padding: 0;
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     #header,
     #blank {
-        font-size: 1.4rem;
+        font-size: 0.7rem;
     }
 
     /* Override default styles to make more readable */
