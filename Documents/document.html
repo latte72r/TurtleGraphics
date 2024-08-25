@@ -45,7 +45,7 @@
     });
     $(window).on("load resize", function () {
       $(document).on("click", "a[href^='#']", function () {
-        let headerHight = 90;
+        let headerHight = 110;
         let speed = 800;
         let href = $(this).attr("href").replace("\.", "\\\.");
         let target = $(href == "#" || href == "" ? "html" : href);

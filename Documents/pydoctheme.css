@@ -66,7 +66,6 @@ object.align-center {
 }
 
 #blank {
-    display: block;
     height: 7em;
     width: 100%;
 }
@@ -88,7 +87,7 @@ object.align-center {
     font-weight: bold;
     border-radius: 0.6em;
     color: blue;
-    margin: 1em 0.8em 1em 0em;
+    margin: 1em 0.4em 1em 0em;
     padding: 0.3em 0.5em;
     cursor: pointer;
 }
@@ -297,6 +296,11 @@ div.genindex-jumpbox>p {
         font-size: 2.5rem;
     }
 
+    #header,
+    #blank {
+        font-size: 1.4rem;
+    }
+
     /* Override default styles to make more readable */
     body ul {
         padding-inline-start: 1rem;
@@ -311,20 +315,5 @@ div.genindex-jumpbox>p {
     div.related,
     .sphinxsidebar {
         display: none;
-    }
-
-    /* Anchorlinks are not hidden by fixed-positioned navbar when scrolled to */
-    html {
-        scroll-padding-top: 7em;
-    }
-
-    body {
-        margin-top: 7em;
-    }
-}
-
-@media (min-width: 1024px) {
-    div.footer {
-        margin-top: -2em;
     }
 }
