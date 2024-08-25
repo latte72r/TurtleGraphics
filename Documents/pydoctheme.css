@@ -1,25 +1,12 @@
 /* unset some styles from the classic stylesheet */
 div.document,
 body,
-div.related,
 body h1,
 body h2,
 body h3,
 body h4,
 body h5,
 body h6,
-div.sphinxsidebar a,
-div.sphinxsidebar p,
-div.sphinxsidebar ul,
-div.sphinxsidebar h3,
-div.sphinxsidebar h3 a,
-div.sphinxsidebar h4,
-.menu a,
-.menu p,
-.menu ul,
-.menu h3,
-.menu h3 a,
-.menu h4,
 table.docutils td,
 table.indextable tr.cap,
 pre {
@@ -59,8 +46,6 @@ aside.sidebar {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 6em;
-    height: 6em;
 }
 
 #blank {
@@ -115,20 +100,6 @@ aside.sidebar {
     border-top: 0.12em solid #aaa;
 }
 
-.document+div.related {
-    border-top-style: solid;
-}
-
-div.related a:hover {
-    color: #0095c4;
-}
-
-div.related ul::after {
-    content: '';
-    clear: both;
-    display: block;
-}
-
 div.document {
     display: flex;
     /* Don't let long code literals extend beyond the right side of the screen */
@@ -138,46 +109,6 @@ div.document {
 /* Don't let long code literals extend beyond the right side of the screen */
 span.pre {
     white-space: unset;
-}
-
-body {
-    padding: 0 3em 0 2em;
-}
-
-body p,
-body dd,
-body li,
-body blockquote {
-    text-align: left;
-    line-height: 1.4;
-}
-
-body h1,
-body h2,
-body h3,
-body h4,
-body h5,
-body h6 {
-    margin: 0;
-    border: 0;
-    padding: 0.3em 0;
-}
-
-body h1 {
-    font-size: 180%;
-}
-
-body h2 {
-    font-size: 140%;
-}
-
-body h3 {
-    font-size: 120%;
-}
-
-body h4,
-body h5 {
-    font-size: 100%;
 }
 
 body pre {
@@ -205,20 +136,11 @@ pre {
     font-size: 96%;
 }
 
-body tt,
-body code {
-    border-radius: 0.1rem;
-}
-
-body tt.descname,
-body code.descname {
-    font-size: 120%;
-}
-
 body tt.xref,
 body a tt,
 body code.xref,
-body a code {
+body a code,
+body table code {
     font-weight: normal;
 }
 
@@ -232,13 +154,12 @@ table.docutils {
 table.docutils td,
 table.docutils th {
     border: 0.05rem solid #aaa;
-    border-radius: 2%;
-    padding: 0.3em 0.5em;
+    border-radius: 3%;
 }
 
 table p,
 table li {
-    padding: 0em 2em 0em 2em;
+    padding: 0rem 2rem;
     text-align: center;
 }
 
@@ -261,15 +182,6 @@ div.footer a:hover {
     color: #0095c4;
 }
 
-.refcount {
-    color: #060;
-}
-
-.stableabi {
-    color: #229;
-}
-
-dl>dt span~em,
 .sig {
     font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, Monaco, Consolas, monospace;
 }
@@ -279,19 +191,15 @@ dl>dt span~em,
     font-style: italic;
 }
 
-div.genindex-jumpbox,
-div.genindex-jumpbox>p {
-    display: inline-flex;
-    flex-wrap: wrap;
-}
-
 @media (max-width: 1023px) {
-
-    /* Body layout */
     html {
         min-width: 100%;
         padding: 0;
-        font-size: 2rem;
+        font-size: 1.6rem;
+    }
+
+    body {
+        padding: 0 1.5rem 0 1rem;
     }
 
     #header,
@@ -299,19 +207,32 @@ div.genindex-jumpbox>p {
         font-size: 0.7rem;
     }
 
-    /* Override default styles to make more readable */
-    body ul {
-        padding-inline-start: 1rem;
+    #turtle-star {
+        width: 12em;
+        height: 12em;
     }
 
-    body blockquote {
-        margin-inline-start: 1rem;
-        margin-inline-end: 0;
+    table p {
+        line-height: 0.2;
+    }
+}
+
+@media (min-width: 1024px) {
+    html {
+        font-size: 1rem;
     }
 
-    /* Remove sidebar and top related bar */
-    div.related,
-    .sphinxsidebar {
-        display: none;
+    body {
+        padding: 0 3em 0 2em;
+    }
+
+    #header,
+    #blank {
+        font-size: 1rem;
+    }
+
+    #turtle-star {
+        width: 12em;
+        height: 12em;
     }
 }

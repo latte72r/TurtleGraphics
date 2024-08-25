@@ -43,9 +43,17 @@
     $(window).on('load', function () {
       FixedAnime();
     });
+    let headerHight;
     $(window).on("load resize", function () {
+      let breakpoint = 1024;
+      let browseWid = $(window).width();
+      let widSp = browseWid < breakpoint; //SP表示
+      if (widSp) {
+        headerHight = 145;
+      } else {
+        headerHight = 110;
+      }
       $(document).on("click", "a[href^='#']", function () {
-        let headerHight = 110;
         let speed = 800;
         let href = $(this).attr("href").replace("\.", "\\\.");
         let target = $(href == "#" || href == "" ? "html" : href);
@@ -59,10 +67,9 @@
     <section id="module-turtle">
       <div id="blank"></div>
       <section id="introduction">
-        <h2>はじめに<a class="headerlink" href="#introduction">¶</a>
-        </h2>
+        <h2>はじめに<a class="headerlink" href="#introduction">¶</a></h2>
         <aside class="sidebar">
-          <h4 class="sidebar-title">Turtle star</h4>
+          <h3 class="sidebar-title">Turtle star</h3>
           <img id="turtle-star" alt="./turtle-star.png" class="align-center" src="./turtle-star.png">
         </aside>
         <p>Turtle Graphics は、1967年に Logo というプログラミング言語の一部として誕生しました。
@@ -71,7 +78,6 @@
         <p>このサイトでは、クラシックなTurtleの原型を残しつつ、Python で採用されたデザインを参考にして、JavaScriptから利用できるようにアレンジしました。
           視覚的なフィードバックが即座に得られるため、プログラミングの概念を楽しく、直感的に学べるのが特徴です。</p>
         <p>即座に目に見える形でフィードバックが得られるため、学習者がプログラミングの概念やソフトウェアを学ぶのに効果的です。</p>
-        </p>
       </section>
       <section id="turtle-graphics-reference">
         <h2>Turtle graphics reference<a class="headerlink" href="#turtle-graphics-reference">¶</a></h2>
@@ -1035,15 +1041,13 @@
   </div>
 
   <div class="footer">
-    <br>
-    <br>
     <hr id="footer-line">
     <br>
     (c) Copyright 2022-2024, Ryo Fujinami.
     <br>
     Last updated on Aug 24, 2024.
     <br>
-    </d>
+  </div>
 </body>
 
 </html>
