@@ -84,12 +84,12 @@ object.align-center {
 
 #demo {
     font-size: 2rem;
-    font-family: monospace;
+    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, Monaco, Consolas, monospace;
     font-weight: bold;
     border-radius: 1.2rem;
     color: blue;
     margin: 1rem 1.5rem 1rem 0rem;
-    padding: 0.8rem 1rem;
+    padding: 0.6rem 0.8rem;
     cursor: pointer;
 }
 
@@ -115,15 +115,6 @@ object.align-center {
 #footer-line {
     border: none;
     border-top: 0.12rem solid #aaa;
-}
-
-.mobile-nav,
-.menu-wrapper {
-    display: none;
-}
-
-.mobile-nav+div.related {
-    border-bottom-style: solid;
 }
 
 .document+div.related {
@@ -174,6 +165,23 @@ body h6 {
     padding: 0.3em 0;
 }
 
+body h1 {
+    font-size: 200%;
+}
+
+body h2 {
+    font-size: 160%;
+}
+
+body h3 {
+    font-size: 120%;
+}
+
+body h4,
+body h5 {
+    font-size: 100%;
+}
+
 body pre {
     padding: 0.6rem 0.8rem;
     border-radius: 0.6rem;
@@ -196,7 +204,7 @@ tt,
 code,
 pre {
     font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, Monaco, Consolas, monospace;
-    font-size: 96.5%;
+    font-size: 96%;
 }
 
 body tt,
@@ -286,25 +294,6 @@ div.genindex-jumpbox>p {
         min-width: 100%;
         padding: 0;
         font-size: 3rem;
-    }
-
-    bodywrapper {
-        margin: 0;
-    }
-
-    /* Typography */
-    body h1 {
-        font-size: 1.625rem;
-    }
-
-    body h2 {
-        font-size: 1.25rem;
-    }
-
-    body h3,
-    body h4,
-    body h5 {
-        font-size: 1rem;
     }
 
     /* Override default styles to make more readable */
