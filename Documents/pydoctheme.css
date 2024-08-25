@@ -67,42 +67,42 @@ object.align-center {
 
 #blank {
     display: block;
-    height: 7rem;
+    height: 7em;
     width: 100%;
 }
 
 #main-title {
-    font-size: 2.25rem;
-    margin: 0rem 0rem 0rem 1rem;
+    font-size: 2.25em;
+    margin: 0em 0em 0em 1em;
 }
 
 #turtle-img {
-    width: 4.9rem;
-    height: 3.5rem;
-    margin: 0.5rem 0rem 0rem 0rem;
+    width: 4.9em;
+    height: 3.5em;
+    margin: 0.5em 0em 0em 0em;
 }
 
 #demo {
-    font-size: 2rem;
+    font-size: 1.8em;
     font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, Monaco, Consolas, monospace;
     font-weight: bold;
-    border-radius: 1.2rem;
+    border-radius: 0.6em;
     color: blue;
-    margin: 1rem 1.5rem 1rem 0rem;
-    padding: 0.6rem 0.8rem;
+    margin: 1em 0.8em 1em 0em;
+    padding: 0.3em 0.5em;
     cursor: pointer;
 }
 
 #header {
-    height: 4rem;
+    height: 4em;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-align: center;
     background-color: lightgray;
-    padding: 1rem 0rem;
-    margin: 0rem;
+    padding: 1em 0em;
+    margin: 0em;
 }
 
 #header.fixed {
@@ -113,8 +113,9 @@ object.align-center {
 }
 
 #footer-line {
+    width: 100%;
     border: none;
-    border-top: 0.12rem solid #aaa;
+    border-top: 0.12em solid #aaa;
 }
 
 .document+div.related {
@@ -293,7 +294,7 @@ div.genindex-jumpbox>p {
     body {
         min-width: 100%;
         padding: 0;
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 
     /* Override default styles to make more readable */
@@ -314,11 +315,11 @@ div.genindex-jumpbox>p {
 
     /* Anchorlinks are not hidden by fixed-positioned navbar when scrolled to */
     html {
-        scroll-padding-top: 7rem;
+        scroll-padding-top: 7em;
     }
 
     body {
-        margin-top: 7rem;
+        margin-top: 7em;
     }
 }
 
