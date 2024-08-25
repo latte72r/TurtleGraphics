@@ -245,8 +245,6 @@ body a code {
 
 body dt.field-odd {
     font-weight: bolder;
-    display: inline-block;
-    padding: 0.2em 0.4em 0.2em 0.4em;
 }
 
 table.docutils {
