@@ -1,0 +1,235 @@
+/* unset some styles from the classic stylesheet */
+div.document,
+body,
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6,
+table.docutils td,
+table.indextable tr.cap,
+pre {
+    background-color: inherit;
+    color: inherit;
+}
+
+a.headerlink {
+    visibility: hidden;
+}
+
+h1:hover>a.headerlink,
+h2:hover>a.headerlink,
+h3:hover>a.headerlink,
+h4:hover>a.headerlink,
+h5:hover>a.headerlink,
+h6:hover>a.headerlink,
+dt:hover>a.headerlink,
+caption:hover>a.headerlink,
+p.caption:hover>a.headerlink,
+div.code-block-caption:hover>a.headerlink {
+    visibility: visible;
+}
+
+aside.sidebar {
+    margin: 0em 0em 0.5em 1em;
+    border: 0.1em solid #ddb;
+    border-radius: 5%;
+    padding: 0em 1em;
+    background-color: #ffe;
+    float: right;
+    clear: right;
+    overflow-x: auto;
+}
+
+#turtle-star {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 12em;
+    height: 12em;
+}
+
+#main-title {
+    font-size: 2.25em;
+    margin: 0.1em 0em 0em 1em;
+}
+
+#turtle-img {
+    width: 4.9em;
+    height: 3.5em;
+    margin: 0em 0em 0em 0em;
+}
+
+#demo {
+    font-size: 1.8em;
+    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, Monaco, Consolas, monospace;
+    font-weight: bold;
+    border-radius: 0.6em;
+    color: blue;
+    margin: 1em 0.6em 1em 0em;
+    padding: 0.3em 0.5em;
+    cursor: pointer;
+}
+
+#header {
+    height: 4em;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    background-color: lightgray;
+    padding: 1em 0em;
+    margin: 0em;
+}
+
+#header.fixed {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+}
+
+#footer-line {
+    width: 100%;
+    border: none;
+    border-top: 0.12em solid #aaa;
+}
+
+div.document {
+    display: flex;
+    /* Don't let long code literals extend beyond the right side of the screen */
+    overflow-wrap: break-word;
+}
+
+/* Don't let long code literals extend beyond the right side of the screen */
+span.pre {
+    white-space: unset;
+}
+
+body pre {
+    padding: 0.6rem 0.8rem;
+    border-radius: 0.6rem;
+    border: 0.05rem solid #ac9;
+}
+
+body a {
+    color: #0072aa;
+}
+
+body a:visited {
+    color: #6363bb;
+}
+
+body a:hover {
+    color: #00b0e4;
+}
+
+tt,
+code,
+pre {
+    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, Monaco, Consolas, monospace;
+    font-size: 96%;
+}
+
+body tt.xref,
+body a tt,
+body code.xref,
+body a code,
+body table code {
+    font-weight: normal;
+}
+
+table.docutils {
+    border: 0.1rem solid #aaa;
+    min-width: 20%;
+    border-radius: 3%;
+    margin: 1rem 2rem;
+}
+
+table.docutils td,
+table.docutils th {
+    border: 0.05rem solid #aaa;
+    border-radius: 3%;
+}
+
+table p,
+table li {
+    padding: 0rem 2rem;
+    text-align: center;
+}
+
+table.docutils thead {
+    background-color: rgb(228 240 245);
+}
+
+table.docutils tbody>tr:nth-of-type(even) {
+    background-color: rgb(237 238 242);
+}
+
+div.footer {
+    line-height: 150%;
+    text-align: right;
+    width: auto;
+    margin: 2rem 1rem 3rem 1rem;
+}
+
+div.footer a:hover {
+    color: #0095c4;
+}
+
+.sig {
+    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, Monaco, Consolas, monospace;
+}
+
+.param-name {
+    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, Monaco, Consolas, monospace;
+    font-style: italic;
+}
+
+@media (max-width: 1023px) {
+    html {
+        min-width: 100%;
+        padding: 0;
+        font-size: 1.6rem;
+    }
+
+    body {
+        padding: 0 1.5rem 0 1rem;
+    }
+
+    #header,
+    #blank {
+        font-size: 0.8rem;
+    }
+
+    table p {
+        line-height: 0.2;
+    }
+
+    #blank {
+        height: 5em;
+        width: 100%;
+    }
+}
+
+@media (min-width: 1024px) {
+    html {
+        font-size: 1rem;
+    }
+
+    body {
+        padding: 0 3em 0 2em;
+    }
+
+    #header,
+    #blank {
+        font-size: 1rem;
+    }
+
+    #blank {
+        height: 7em;
+        width: 100%;
+    }
+}
