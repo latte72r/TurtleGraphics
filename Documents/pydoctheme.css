@@ -46,22 +46,19 @@ aside.sidebar {
     display: block;
     margin-left: auto;
     margin-right: auto;
-}
-
-#blank {
-    height: 7em;
-    width: 100%;
+    width: 12em;
+    height: 12em;
 }
 
 #main-title {
     font-size: 2.25em;
-    margin: 0em 0em 0em 1em;
+    margin: 0.1em 0em 0em 1em;
 }
 
 #turtle-img {
     width: 4.9em;
     height: 3.5em;
-    margin: 0.5em 0em 0em 0em;
+    margin: 0em 0em 0em 0em;
 }
 
 #demo {
@@ -207,13 +204,13 @@ div.footer a:hover {
         font-size: 0.7rem;
     }
 
-    #turtle-star {
-        width: 12em;
-        height: 12em;
-    }
-
     table p {
         line-height: 0.2;
+    }
+
+    #blank {
+        height: 5em;
+        width: 100%;
     }
 }
 
@@ -231,8 +228,8 @@ div.footer a:hover {
         font-size: 1rem;
     }
 
-    #turtle-star {
-        width: 12em;
-        height: 12em;
+    #blank {
+        height: 7em;
+        width: 100%;
     }
 }
