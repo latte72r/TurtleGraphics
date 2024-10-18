@@ -26,29 +26,107 @@
             FixedAnime();
         });
         let headerHight;
+        let canvasWidth;
+        let canvasHeight;
         $(window).on("load resize", function () {
             let breakpoint = 1024;
             let browseWid = $(window).width();
             let widSp = browseWid < breakpoint; //SP表示
             if (widSp) {
+                // スマートフォン
                 headerHight = 145;
+                canvasWidth = 760;
+                canvasHeight = 600;
             } else {
+                // PC
                 headerHight = 110;
+                canvasWidth = 1200;
+                canvasHeight = 600;
             }
-            $(document).on("click", "a[href^='#']", function () {
-                let speed = 800;
-                let href = $(this).attr("href").replace("\.", "\\\.");
-                let target = $(href == "#" || href == "" ? "html" : href);
-                let position = target.offset().top - headerHight;
-                $("body,html").animate({ scrollTop: position }, speed, "swing");
-                return false;
-            });
         });
         function goToDocument() {
             window.open('./Documents/document.html');
         }
         function goToGitHub() {
             window.open('https://github.com/latte72r/TurtleGraphics/');
+        }
+
+        function setupTurtle() {
+            try {
+                turtle = new Turtle(canvasWidth, canvasHeight, "canvas");
+            } catch (error) {
+                if (error instanceof Error) {
+                    alert(error.message);
+                }
+            }
+        }
+
+        let ts = ["declare class Turtle {",
+            "    reset(): void;",
+            "    sleep(secs: number): Promise<void>;",
+            "    forward(distance: number): Promise<void>;",
+            "    backward(distance: number): Promise<void>;",
+            "    right(angle: number): Promise<void>;",
+            "    left(angle: number): Promise<void>;",
+            "    goto(x: number, y: number): Promise<void>;",
+            "    home(): Promise<void>;",
+            "    setx(x: number): Promise<void>;",
+            "    sety(y: number): Promise<void>;",
+            "    setheading(to_angle: number): Promise<void>;",
+            "    pensize(width: number): void;",
+            "    pencolor(...args: any): void;",
+            "    fillcolor(...args: any): void;",
+            "    color(...args: any): void;",
+            "    penup(): void;",
+            "    pendown(): void;",
+            "    speed(speed: any): void;",
+            "    showturtle(): void;",
+            "    hideturtle(): void;",
+            "    turtlesize(stretch: number): void;",
+            "    stamp(): void;",
+            "    dot(size: number): void;",
+            "    circle(radius: number, extent?: number): Promise<void>;",
+            "    begin_fill(): void;",
+            "    end_fill(): void;",
+            "    position(): number[];",
+            "    undo(): Promise<void>;",
+            "}",
+            "declare let turtle: Turtle;"].join("\n");
+
+        function setupEditor() {
+            require.config({ paths: { vs: "./monaco-editor/vs" } });
+            require(["vs/editor/editor.main"], function () {
+                monaco.languages.typescript.javascriptDefaults.addExtraLib(ts, "turtle.d.ts");
+                editor = monaco.editor.create(
+                    document.getElementById("editor"), {
+                    value: [
+                        "// Example",
+                        "turtle.color('red', 'yellow');",
+                        "turtle.begin_fill();",
+                        "for (let i = 0; i < 5; i++) {",
+                        "    await turtle.forward(100);",
+                        "    await turtle.right(144);",
+                        "}",
+                        "turtle.end_fill();"
+                    ].join("\n"),
+                    language: "javascript",
+                    scrollBeyondLastLine: false,
+                    fontSize: 16,
+                    minimap: { enabled: false }
+                });
+            });
+        }
+
+        function setupFile() {
+            const fileInput = document.getElementById('fileInput');
+            fileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.onload = () => {
+                    editor.setValue(reader.result);
+                };
+                reader.readAsText(file);
+            });
         }
     </script>
 </head>

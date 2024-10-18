@@ -1,6 +1,6 @@
 
 // (c) 2022-2024 Ryo Fujinami.
-// ver 0.5.1
+// ver 0.7.0
 
 const SHAPE: Array<Array<number>> = [
     [0, 14], [-2, 12], [-1, 8], [-4, 5], [-7, 7], [-9, 6],
@@ -14,7 +14,7 @@ interface SpeedTable {
     delay: number;
 }
 
-const SPEED_TABLE = {
+const SPEED_TABLE: { [key: number]: number } = {
     0: 0, 1: 40, 2: 36, 3: 30, 4: 22, 5: 16, 6: 12, 7: 8, 8: 6, 9: 4, 10: 2
 };
 
@@ -24,12 +24,6 @@ const DELTA_CIRCLE: number = 4;
 
 let editor: any;
 
-class StopRunning {
-    then() {
-        return 0;
-    }
-}
-
 class Turtle {
     canvas: any;
     context: any;
@@ -37,23 +31,23 @@ class Turtle {
     cvWidth: number;
     cvHeight: number;
 
-    registeredFigures: Array<Array<any>>;
-    registeredCommands: Array<Array<any>>;
+    registeredFigures!: Array<Array<any>>;
+    registeredCommands!: Array<Array<any>>;
 
-    directionAngle: number;
-    centerX: number;
-    centerY: number;
-    beginFillIndex: number;
+    directionAngle!: number;
+    centerX!: number;
+    centerY!: number;
+    beginFillIndex!: number;
 
-    penColor: string;
-    fillColor: string;
-    penSize: number;
-    turtleSize: number;
-    turtleExpand: number;
+    penColor!: string;
+    fillColor!: string;
+    penSize!: number;
+    turtleSize!: number;
+    turtleExpand!: number;
 
-    penEnabled: boolean;
-    turtleVisible: boolean;
-    delayTime: number;
+    penEnabled!: boolean;
+    turtleVisible!: boolean;
+    delayTime!: number;
 
 
     constructor(width: number, height: number, canvasId: string) {
@@ -123,7 +117,7 @@ class Turtle {
             if (running == 1) {
                 break;
             } else if (running == 3) {
-                await new StopRunning();
+                throw new Error("初期化しました。");
             }
         }
     }
@@ -684,82 +678,6 @@ class Turtle {
 
 let turtle: Turtle;
 let running = 0;
-
-function setupTurtle() {
-    try {
-        turtle = new Turtle(800, 600, "canvas");
-    } catch (error) {
-        alert(error.message);
-    }
-}
-
-let ts: string = ["declare class Turtle {",
-    "    reset(): void;",
-    "    sleep(secs: number): Promise<void>;",
-    "    forward(distance: number): Promise<void>;",
-    "    backward(distance: number): Promise<void>;",
-    "    right(angle: number): Promise<void>;",
-    "    left(angle: number): Promise<void>;",
-    "    goto(x: number, y: number): Promise<void>;",
-    "    home(): Promise<void>;",
-    "    setx(x: number): Promise<void>;",
-    "    sety(y: number): Promise<void>;",
-    "    setheading(to_angle: number): Promise<void>;",
-    "    pensize(width: number): void;",
-    "    pencolor(...args: any): void;",
-    "    fillcolor(...args: any): void;",
-    "    color(...args: any): void;",
-    "    penup(): void;",
-    "    pendown(): void;",
-    "    speed(speed: any): void;",
-    "    showturtle(): void;",
-    "    hideturtle(): void;",
-    "    turtlesize(stretch: number): void;",
-    "    stamp(): void;",
-    "    dot(size: number): void;",
-    "    circle(radius: number, extent?: number): Promise<void>;",
-    "    begin_fill(): void;",
-    "    end_fill(): void;",
-    "    position(): number[];",
-    "    undo(): Promise<void>;",
-    "}",
-    "declare let turtle: Turtle;"].join("\n");
-
-function setupEditor() {
-    require.config({ paths: { vs: "./monaco-editor/vs" } });
-    require(["vs/editor/editor.main"], function () {
-        monaco.languages.typescript.javascriptDefaults.addExtraLib(ts, "turtle.d.ts");
-        editor = monaco.editor.create(
-            document.getElementById("editor"), {
-            value: [
-                "// Example",
-                "turtle.color('red', 'yellow');",
-                "turtle.begin_fill();",
-                "for (let i = 0; i < 5; i++) {",
-                "    await turtle.forward(100);",
-                "    await turtle.right(144);",
-                "}",
-                "turtle.end_fill();"
-            ].join("\n"),
-            language: "javascript",
-            scrollBeyondLastLine: false,
-            fontSize: 16,
-            minimap: { enabled: false }
-        });
-    });
-}
-
-function setupFile() {
-    const fileInput = document.getElementById('fileInput');
-    fileInput!.addEventListener('change', (e) => {
-        const file = e!.target!.files[0];
-        const reader = new FileReader();
-        reader.onload = () => {
-            editor.setValue(reader.result);
-        };
-        reader.readAsText(file);
-    });
-}
 
 async function runCode() {
     const CODE = editor.getValue();

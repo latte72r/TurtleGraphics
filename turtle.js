@@ -1,5 +1,5 @@
 // (c) 2022-2024 Ryo Fujinami.
-// ver 0.5.1
+// ver 0.7.0
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -49,14 +49,6 @@ var DELTA_XY = 4;
 var DELTA_ANGLE = 4;
 var DELTA_CIRCLE = 4;
 var editor;
-var StopRunning = /** @class */ (function () {
-    function StopRunning() {
-    }
-    StopRunning.prototype.then = function () {
-        return 0;
-    };
-    return StopRunning;
-}());
 var Turtle = /** @class */ (function () {
     function Turtle(width, height, canvasId) {
         this.cvWidth = width;
@@ -137,20 +129,18 @@ var Turtle = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (!true) return [3 /*break*/, 5];
+                        if (!true) return [3 /*break*/, 2];
                         return [4 /*yield*/, this._sleepMS(this.delayTime)];
                     case 1:
                         _a.sent();
-                        if (!(running == 1)) return [3 /*break*/, 2];
-                        return [3 /*break*/, 5];
-                    case 2:
-                        if (!(running == 3)) return [3 /*break*/, 4];
-                        return [4 /*yield*/, new StopRunning()];
-                    case 3:
-                        _a.sent();
-                        _a.label = 4;
-                    case 4: return [3 /*break*/, 0];
-                    case 5: return [2 /*return*/];
+                        if (running == 1) {
+                            return [3 /*break*/, 2];
+                        }
+                        else if (running == 3) {
+                            throw new Error("初期化しました。");
+                        }
+                        return [3 /*break*/, 0];
+                    case 2: return [2 /*return*/];
                 }
             });
         });
@@ -936,78 +926,6 @@ var Turtle = /** @class */ (function () {
 }());
 var turtle;
 var running = 0;
-function setupTurtle() {
-    try {
-        turtle = new Turtle(800, 600, "canvas");
-    }
-    catch (error) {
-        alert(error.message);
-    }
-}
-var ts = ["declare class Turtle {",
-    "    reset(): void;",
-    "    sleep(secs: number): Promise<void>;",
-    "    forward(distance: number): Promise<void>;",
-    "    backward(distance: number): Promise<void>;",
-    "    right(angle: number): Promise<void>;",
-    "    left(angle: number): Promise<void>;",
-    "    goto(x: number, y: number): Promise<void>;",
-    "    home(): Promise<void>;",
-    "    setx(x: number): Promise<void>;",
-    "    sety(y: number): Promise<void>;",
-    "    setheading(to_angle: number): Promise<void>;",
-    "    pensize(width: number): void;",
-    "    pencolor(...args: any): void;",
-    "    fillcolor(...args: any): void;",
-    "    color(...args: any): void;",
-    "    penup(): void;",
-    "    pendown(): void;",
-    "    speed(speed: any): void;",
-    "    showturtle(): void;",
-    "    hideturtle(): void;",
-    "    turtlesize(stretch: number): void;",
-    "    stamp(): void;",
-    "    dot(size: number): void;",
-    "    circle(radius: number, extent?: number): Promise<void>;",
-    "    begin_fill(): void;",
-    "    end_fill(): void;",
-    "    position(): number;",
-    "    undo(): Promise<void>;",
-    "}",
-    "declare let turtle: Turtle;"].join("\n");
-function setupEditor() {
-    require.config({ paths: { vs: "./monaco-editor/vs" } });
-    require(["vs/editor/editor.main"], function () {
-        monaco.languages.typescript.javascriptDefaults.addExtraLib(ts, "turtle.d.ts");
-        editor = monaco.editor.create(document.getElementById("editor"), {
-            value: [
-                "// Example",
-                "turtle.color('red', 'yellow');",
-                "turtle.begin_fill();",
-                "for (let i = 0; i < 5; i++) {",
-                "    await turtle.forward(100);",
-                "    await turtle.right(144);",
-                "}",
-                "turtle.end_fill();"
-            ].join("\n"),
-            language: "javascript",
-            scrollBeyondLastLine: false,
-            fontSize: 16,
-            minimap: { enabled: false }
-        });
-    });
-}
-function setupFile() {
-    var fileInput = document.getElementById('fileInput');
-    fileInput.addEventListener('change', function (e) {
-        var file = e.target.files[0];
-        var reader = new FileReader();
-        reader.onload = function () {
-            editor.setValue(reader.result);
-        };
-        reader.readAsText(file);
-    });
-}
 function runCode() {
     return __awaiter(this, void 0, void 0, function () {
         var CODE, result;
