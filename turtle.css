@@ -117,7 +117,26 @@ input[type="button"]:hover {
 }
 
 #fileInput {
-    margin: 0em 4em;
+    font-size: 1.2em;
+}
+
+#fileInput::file-selector-button {
+    font-weight: bold;
+    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", monospace;
+    color: white;
+    background: gray;
+    font-size: 1em;
+    border-radius: 0.4em;
+    padding: 0.3em 0.5em;
+    margin: 0.2em 0em;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+}
+
+#fileInput::file-selector-button:hover {
+    opacity: 0.8;
+    transform: translateY(-0.05em);
 }
 
 /* キャンバスのスタイル */
@@ -149,7 +168,7 @@ input[type="button"]:hover {
     margin: 0em 0em 0em 0em;
 }
 
-/* レスポンシブデザイン */
+/* スマートフォン */
 @media (max-width: 1023px) {
     html {
         width: 100%;
@@ -163,7 +182,7 @@ input[type="button"]:hover {
 
     #header,
     #blank {
-        font-size: 0.65rem;
+        font-size: 0.70rem;
     }
 
     #blank {
@@ -174,8 +193,13 @@ input[type="button"]:hover {
     #editor {
         height: 16em;
     }
+
+    #fileInput {
+        margin: 0em 1em;
+    }
 }
 
+/* PC */
 @media (min-width: 1024px) {
     html {
         font-size: 1rem;
@@ -202,5 +226,9 @@ input[type="button"]:hover {
 
     #editor-div {
         margin: 1em;
+    }
+
+    #fileInput {
+        margin: 0em 4em;
     }
 }
