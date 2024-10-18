@@ -63,13 +63,19 @@ aside.sidebar {
 
 #demo {
     font-size: 1.8em;
-    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, Monaco, Consolas, monospace;
+    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", monospace;
     font-weight: bold;
     border-radius: 0.6em;
     color: blue;
     margin: 1em 0.6em 1em 0em;
     padding: 0.3em 0.5em;
     cursor: pointer;
+}
+
+/* ボタンのホバー効果 */
+input[type="button"]:hover {
+    opacity: 0.8;
+    /* ホバー時に透明度を下げる */
 }
 
 #header {
@@ -129,7 +135,7 @@ body a:hover {
 tt,
 code,
 pre {
-    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, Monaco, Consolas, monospace;
+    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", monospace;
     font-size: 96%;
 }
 
@@ -180,11 +186,11 @@ div.footer a:hover {
 }
 
 .sig {
-    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, Monaco, Consolas, monospace;
+    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", monospace;
 }
 
 .param-name {
-    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, Monaco, Consolas, monospace;
+    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", monospace;
     font-style: italic;
 }
 

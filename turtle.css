@@ -1,79 +1,191 @@
+/* 全体の設定 */
 body {
-    background-color: #D0D0D0;
+    background-color: #E0E0E0;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+/* ヘッダーのスタイル */
+#header {
+    height: 4em;
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    background-color: lightgray;
+    padding: 1em;
+    margin: 0em;
+    position: relative;
+    z-index: 1000;
 }
 
-#left-side {
-    margin: 20px;
+#header.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
-#right-side {
-    margin: 20px;
+#header-button {
+    font-size: 1.2em;
+    padding: 0em 2em;
 }
 
-#docs-div {
-    display: flex;
-    flex-flow: column;
+/* フッターのスタイル */
+#footer-line {
+    width: 100%;
+    border: none;
+    border-top: 0.12em solid #aaa;
 }
 
+#footer {
+    text-align: right;
+    width: auto;
+    margin: 0rem 1rem 1rem 1rem;
+}
 
-#canvas {
+#footer-text {
+    line-height: 80%;
+    margin: 0rem 2rem;
+}
+
+/* 左右のサイドのスタイル */
+#up-side,
+#bottom-side {
+    margin: 1em;
+    padding: 1em;
     background-color: #FFFFFF;
-    border: 1px solid grey;
+    border-radius: 0.4em;
+    box-shadow: 0 0.2em 0.4em rgba(0, 0, 0, 0.1);
 }
 
-#editor {
-    line-height: 1.12;
-    font-size: 20px;
-    font-family: monospace;
-    resize: none;
-    border: 1px solid grey;
-    width: 560px;
-    height: 520px;
+#up-side {
+    text-align: center;
 }
 
-#docs {
-    font-size: 24px;
-    font-family: monospace;
-    margin: 16px;
+/* リンクのスタイル */
+body a {
+    color: #0072aa;
+    text-decoration: none;
+}
+
+body a:hover {
+    color: #00b0e4;
+}
+
+/* ボタンのスタイル */
+input[type="button"] {
+    font-size: 1.4em;
+    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", monospace;
+    font-weight: bold;
+    border-radius: 0.4em;
+    padding: 0.3em 0.5em;
+    cursor: pointer;
+}
+
+/* ボタンのホバー効果 */
+input[type="button"]:hover {
+    opacity: 0.8;
+    /* ホバー時に透明度を下げる */
 }
 
 #run-code {
-    font-size: 30px;
-    font-family: monospace;
-    font-weight: bold;
-    color: red;
-    margin: 10px 40px;
-    float: left;
+    background-color: #FF5733;
+    color: white;
+    margin: 0.2em 0.4em 0em 0.4em;
+    border: none;
 }
 
 #pause {
-    font-size: 30px;
-    font-family: monospace;
-    font-weight: bold;
+    background-color: #007BFF;
+    /* 青系ボタン */
+    color: white;
+    margin: 0.2em 0.4em 0em 0.4em;
+    border: none;
+}
+
+.demo {
     color: blue;
-    margin: 10px 40px;
-    float: left;
+    margin: 0em 0.2em;
 }
 
 #fileInput {
-    font-size: 16px;
-    margin: 12px 40px;
-    float: left;
+    margin: 0em 2em;
 }
 
-#initialize-form {
-    margin: 16px 20px;
-    float: left;
+/* キャンバスのスタイル */
+#canvas {
+    background-color: #FFFFFF;
+    border: 0.12em solid #cccccc;
+    border-radius: 0.4em;
 }
 
-#initialize {
-    transform: scale(1.6);
+/* エディタのスタイル */
+#editor {
+    line-height: 1.5;
+    font-size: 1em;
+    width: 100%;
+    height: 40em;
 }
 
-#copyright {
-    font-size: 18px;
-    float: right;
-    margin: 20px;
+#editor-div {
+    border: 0.12em solid #cccccc;
+    border-radius: 0.4em;
+    padding: 1em;
+    margin: 1em;
+}
+
+#main-title {
+    font-size: 2.25em;
+    margin: 0.1em 0em 0em 1em;
+}
+
+#turtle-img {
+    width: 4.9em;
+    height: 3.5em;
+    margin: 0em 0em 0em 0em;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 1023px) {
+    html {
+        width: 100%;
+        padding: 0;
+        font-size: 1.8rem;
+    }
+
+    body {
+        padding: 0 1.5rem 0 1rem;
+    }
+
+    #header,
+    #blank {
+        font-size: 0.65rem;
+    }
+
+    #blank {
+        height: 6em;
+        width: 100%;
+    }
+}
+
+@media (min-width: 1024px) {
+    html {
+        font-size: 1rem;
+    }
+
+    body {
+        padding: 0 3em 0 2em;
+    }
+
+    #header,
+    #blank {
+        font-size: 1rem;
+    }
+
+    #blank {
+        height: 6em;
+        width: 100%;
+    }
 }
