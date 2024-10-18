@@ -61,7 +61,7 @@ aside.sidebar {
     margin: 0em 0em 0em 0em;
 }
 
-#demo {
+.demo {
     font-size: 1.8em;
     font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", monospace;
     font-weight: bold;
@@ -75,7 +75,7 @@ aside.sidebar {
 /* ボタンのホバー効果 */
 input[type="button"]:hover {
     opacity: 0.8;
-    /* ホバー時に透明度を下げる */
+    transform: translateY(-0.05em);
 }
 
 #header {
@@ -88,13 +88,17 @@ input[type="button"]:hover {
     background-color: lightgray;
     padding: 1em 0em;
     margin: 0em;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    box-shadow: 0 0.2em 0.4em rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
 }
 
 #header.fixed {
     position: fixed;
-    z-index: 999;
-    top: 0;
-    left: 0;
+    background-color: rgba(250, 250, 250, 0.90);
 }
 
 #footer-line {

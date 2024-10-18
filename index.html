@@ -51,6 +51,9 @@
             window.open('https://github.com/latte72r/TurtleGraphics/');
         }
 
+        let turtle;
+        let editor;
+
         function setupTurtle() {
             try {
                 turtle = new Turtle(canvasWidth, canvasHeight, "canvas");
@@ -127,6 +130,36 @@
                 };
                 reader.readAsText(file);
             });
+        }
+
+        async function runCode() {
+            const CODE = editor.getValue();
+            if ((turtle.running == 1) || (turtle.running == 2)) {
+                let result = window.confirm("プログラムを実行中です\n初期化しますか？");
+                if (result) {
+                    turtle.running = 3;
+                    await turtle._sleepMS(turtle.delayTime * 4);
+                    turtle.reset();
+                    turtle.running = 1;
+                    await eval("(async () => {try {" + CODE + "} catch(e) {alert(e.message)}})()");
+                    turtle.running = 0;
+                }
+            } else {
+                turtle.reset();
+                turtle.running = 1;
+                await eval("(async () => {try {" + CODE + "} catch(e) {alert(e.message)}})()");
+                turtle.running = 0;
+            }
+        }
+
+        async function pauseResume() {
+            if (turtle.running == 0) {
+                alert("プログラムが実行されていません");
+            } else if (turtle.running == 1) {
+                turtle.running = 2;
+            } else if (turtle.running == 2) {
+                turtle.running = 1;
+            }
         }
     </script>
 </head>

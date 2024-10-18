@@ -48,7 +48,6 @@ var SPEED_TABLE = {
 var DELTA_XY = 4;
 var DELTA_ANGLE = 4;
 var DELTA_CIRCLE = 4;
-var editor;
 var Turtle = /** @class */ (function () {
     function Turtle(width, height, canvasId) {
         this.cvWidth = width;
@@ -66,6 +65,7 @@ var Turtle = /** @class */ (function () {
         this.reset();
     }
     Turtle.prototype.reset = function () {
+        this.running = 0;
         this.registeredFigures = [];
         this.registeredCommands = [];
         this.directionAngle = 0;
@@ -133,10 +133,10 @@ var Turtle = /** @class */ (function () {
                         return [4 /*yield*/, this._sleepMS(this.delayTime)];
                     case 1:
                         _a.sent();
-                        if (running == 1) {
+                        if (this.running == 1) {
                             return [3 /*break*/, 2];
                         }
-                        else if (running == 3) {
+                        else if (this.running == 3) {
                             throw new Error("初期化しました。");
                         }
                         return [3 /*break*/, 0];
@@ -924,56 +924,3 @@ var Turtle = /** @class */ (function () {
     };
     return Turtle;
 }());
-var turtle;
-var running = 0;
-function runCode() {
-    return __awaiter(this, void 0, void 0, function () {
-        var CODE, result;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    CODE = editor.getValue();
-                    if (!((running == 1) || (running == 2))) return [3 /*break*/, 4];
-                    result = window.confirm("プログラムを実行中です\n初期化しますか？");
-                    if (!result) return [3 /*break*/, 3];
-                    running = 3;
-                    return [4 /*yield*/, turtle._sleepMS(turtle.delayTime * 4)];
-                case 1:
-                    _a.sent();
-                    turtle.reset();
-                    running = 1;
-                    return [4 /*yield*/, eval("(async () => {try {" + CODE + "} catch(e) {alert(e.message)}})()")];
-                case 2:
-                    _a.sent();
-                    running = 0;
-                    _a.label = 3;
-                case 3: return [3 /*break*/, 6];
-                case 4:
-                    turtle.reset();
-                    running = 1;
-                    return [4 /*yield*/, eval("(async () => {try {" + CODE + "} catch(e) {alert(e.message)}})()")];
-                case 5:
-                    _a.sent();
-                    running = 0;
-                    _a.label = 6;
-                case 6: return [2 /*return*/];
-            }
-        });
-    });
-}
-function pauseResume() {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            if (running == 0) {
-                alert("プログラムが実行されていません");
-            }
-            else if (running == 1) {
-                running = 2;
-            }
-            else if (running == 2) {
-                running = 1;
-            }
-            return [2 /*return*/];
-        });
-    });
-}

@@ -18,13 +18,19 @@ body {
     padding: 1em;
     margin: 0em;
     position: relative;
-    z-index: 1000;
+    z-index: 999;
+    position: sticky;
+    top: 0;
+    left: 0;
+    box-shadow: 0 0.2em 0.4em rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    /* 背景色の変更にトランジション */
 }
 
 #header.fixed {
     position: fixed;
-    top: 0;
-    left: 0;
+    background-color: rgba(250, 250, 250, 0.90);
+    /* 固定時の背景色 */
 }
 
 #header-button {
@@ -88,6 +94,8 @@ input[type="button"] {
 input[type="button"]:hover {
     opacity: 0.8;
     /* ホバー時に透明度を下げる */
+    transform: translateY(-0.05em);
+    /* ホバー時に少し上に移動 */
 }
 
 #run-code {

@@ -1,6 +1,5 @@
 
 // (c) 2022-2024 Ryo Fujinami.
-// ver 0.7.0
 
 const SHAPE: Array<Array<number>> = [
     [0, 14], [-2, 12], [-1, 8], [-4, 5], [-7, 7], [-9, 6],
@@ -22,14 +21,14 @@ const DELTA_XY: number = 4;
 const DELTA_ANGLE: number = 4;
 const DELTA_CIRCLE: number = 4;
 
-let editor: any;
-
 class Turtle {
     canvas: any;
     context: any;
 
     cvWidth: number;
     cvHeight: number;
+
+    running!: number;
 
     registeredFigures!: Array<Array<any>>;
     registeredCommands!: Array<Array<any>>;
@@ -71,6 +70,8 @@ class Turtle {
     }
 
     reset() {
+        this.running = 0;
+
         this.registeredFigures = [];
         this.registeredCommands = [];
 
@@ -114,9 +115,9 @@ class Turtle {
     async _delayProgram() {
         while (true) {
             await this._sleepMS(this.delayTime);
-            if (running == 1) {
+            if (this.running == 1) {
                 break;
-            } else if (running == 3) {
+            } else if (this.running == 3) {
                 throw new Error("初期化しました。");
             }
         }
@@ -673,38 +674,5 @@ class Turtle {
         if (this.turtleVisible && turtle) {
             this._drawTurtle();
         }
-    }
-}
-
-let turtle: Turtle;
-let running = 0;
-
-async function runCode() {
-    const CODE = editor.getValue();
-    if ((running == 1) || (running == 2)) {
-        let result = window.confirm("プログラムを実行中です\n初期化しますか？");
-        if (result) {
-            running = 3;
-            await turtle._sleepMS(turtle.delayTime * 4);
-            turtle.reset();
-            running = 1;
-            await eval("(async () => {try {" + CODE + "} catch(e) {alert(e.message)}})()");
-            running = 0;
-        }
-    } else {
-        turtle.reset();
-        running = 1;
-        await eval("(async () => {try {" + CODE + "} catch(e) {alert(e.message)}})()");
-        running = 0;
-    }
-}
-
-async function pauseResume() {
-    if (running == 0) {
-        alert("プログラムが実行されていません");
-    } else if (running == 1) {
-        running = 2;
-    } else if (running == 2) {
-        running = 1;
     }
 }
