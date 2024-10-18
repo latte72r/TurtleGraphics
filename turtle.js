@@ -48,10 +48,10 @@ var DELTA_XY = 4;
 var DELTA_ANGLE = 4;
 var DELTA_CIRCLE = 4;
 var Turtle = /** @class */ (function () {
-    function Turtle(width, height, canvasId) {
+    function Turtle(width, height, canvasID) {
         this.cvWidth = width;
         this.cvHeight = height;
-        this.canvas = document.getElementById(canvasId);
+        this.canvas = document.getElementById(canvasID);
         if (!this.canvas || !this.canvas.getContext) {
             alert("初期化できませんでした。");
             return;

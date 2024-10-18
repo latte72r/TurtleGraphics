@@ -75,9 +75,41 @@
         <p>Turtle Graphics は、1967年に Logo というプログラミング言語の一部として誕生しました。
           もともとは教育現場で教師がプログラミングの基礎を教えるために作られたツールです。
           シンプルなコマンドを用いて、紙の上を動きながら絵を描く "turtle"（ペンを持った小さなロボット）の動きを再現し、複雑な図形を描くことができます。</p>
-        <p>このサイトでは、クラシックなTurtleの原型を残しつつ、Python で採用されたデザインを参考にして、JavaScript から利用できるようにアレンジしました。
+        <p>このサイトでは、クラシックな Turtle の原型を残しつつ、Python で採用されたデザインを参考にして、JavaScript から利用できるようにアレンジしました。
           視覚的なフィードバックが即座に得られるため、プログラミングの概念を楽しく、直感的に学べるのが特徴です。</p>
         <p>即座に目に見える形でフィードバックが得られるため、学習者がプログラミングの概念やソフトウェアを学ぶのに効果的です。</p>
+      </section>
+      <section id="initialize-class">
+        <h2>Turtleクラスの初期化<a class="headerlink" href="#initialize-class">¶</a></h2>
+        <dl class="py function">
+          <dt class="sig sig-object py" id="turtle.backward">
+            <span class="await">class</span> <span class="sig-name descname"><span class="pre">Turtle</span></span><span
+              class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                  class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span
+                  class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span
+                  class="pre">canvasID</span></span></em><span class="sig-paren">)</span><a class="headerlink"
+              href="#turtle.backward">¶</a>
+          </dt>
+          <dd>
+            <dl class="field-list simple">
+              <dt class="field-odd">
+                <p><b>Parameters:</b></p>
+              </dt>
+              <dd class="field-odd">
+                <p><span class="param-name">width</span> – 整数</p>
+                <p><span class="param-name">height</span> – 整数</p>
+                <p><span class="param-name">canvasID</span> – 文字列</p>
+              </dd>
+            </dl>
+            <p>事前に HTML 上でキャンバスを作成して ID を付与し、キャンバスの幅と高さと共に指定します。</p>
+            <p>初期化時に指定したサイズにキャンバスがリサイズされます。</p>
+            <div class="highlight-pycon3 notranslate">
+              <div class="highlight" style="position: relative;">
+                <pre><span class="a">let</span> <span class="n">turtle</span> <span class="p">=</span> <span class="a">new</span> <span class="n">Turtle</span><span class="b">(</span><span class="m">800</span><span class="p">,</span> </span><span class="m">600</span><span class="p">,</span> <span class="s">"canvas"</span><span class="b">)</span><span class="p">;</span></pre>
+              </div>
+            </div>
+          </dd>
+        </dl>
       </section>
       <section id="turtle-graphics-reference">
         <h2>Turtle graphics reference<a class="headerlink" href="#turtle-graphics-reference">¶</a></h2>
@@ -659,11 +691,13 @@
                 <a class="reference internal" href="#turtle.forward" title="turtle.forward"><code
                     class="docutils literal notranslate"><span class="pre">forward()</span></code></a> /
                 <a class="reference internal" href="#turtle.backward" title="turtle.backward"><code
-                    class="docutils literal notranslate"><span class="pre">backward()</span></code></a> はTurtleをジャンプさせ、
+                    class="docutils literal notranslate"><span class="pre">backward()</span></code></a>
+                はTurtleをジャンプさせ、
                 同様に <a class="reference internal" href="#turtle.left" title="turtle.left"><code
                     class="docutils literal notranslate"><span class="pre">left()</span></code></a> /
                 <a class="reference internal" href="#turtle.right" title="turtle.right"><code
-                    class="docutils literal notranslate"><span class="pre">right()</span></code></a> はTurtleを瞬時に回転させます。
+                    class="docutils literal notranslate"><span class="pre">right()</span></code></a>
+                はTurtleを瞬時に回転させます。
               </p>
               <div class="highlight-pycon3 notranslate">
                 <div class="highlight" style="position: relative;">

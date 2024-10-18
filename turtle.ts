@@ -49,11 +49,11 @@ class Turtle {
     delayTime!: number;
 
 
-    constructor(width: number, height: number, canvasId: string) {
+    constructor(width: number, height: number, canvasID: string) {
         this.cvWidth = width;
         this.cvHeight = height;
 
-        this.canvas = document.getElementById(canvasId);
+        this.canvas = document.getElementById(canvasID);
 
         if (!this.canvas || !this.canvas.getContext) {
             alert("初期化できませんでした。")

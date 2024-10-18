@@ -14,7 +14,7 @@ body {
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    background-color: lightgray;
+    background-color: rgba(250, 250, 250, 0.90);
     padding: 1em;
     margin: 0em;
     position: relative;
@@ -29,8 +29,6 @@ body {
 
 #header.fixed {
     position: fixed;
-    background-color: rgba(250, 250, 250, 0.90);
-    /* 固定時の背景色 */
 }
 
 #header-button {
@@ -119,7 +117,7 @@ input[type="button"]:hover {
 }
 
 #fileInput {
-    margin: 0em 2em;
+    margin: 0em 4em;
 }
 
 /* キャンバスのスタイル */

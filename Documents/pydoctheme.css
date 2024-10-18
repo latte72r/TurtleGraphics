@@ -85,7 +85,7 @@ input[type="button"]:hover {
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    background-color: lightgray;
+    background-color: rgba(250, 250, 250, 0.90);
     padding: 1em 0em;
     margin: 0em;
     position: sticky;
@@ -98,7 +98,6 @@ input[type="button"]:hover {
 
 #header.fixed {
     position: fixed;
-    background-color: rgba(250, 250, 250, 0.90);
 }
 
 #footer-line {
