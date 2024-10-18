@@ -115,10 +115,12 @@ class Turtle {
     async _delayProgram() {
         while (true) {
             await this._sleepMS(this.delayTime);
-            if (this.running == 1) {
-                break;
-            } else if (this.running == 3) {
+            if (this.running == 3) {
                 throw new Error("初期化しました。");
+            } if (this.running == 2) {
+                continue;
+            } else {
+                break;
             }
         }
     }

@@ -1,5 +1,4 @@
 // (c) 2022-2024 Ryo Fujinami.
-// ver 0.7.0
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -133,11 +132,14 @@ var Turtle = /** @class */ (function () {
                         return [4 /*yield*/, this._sleepMS(this.delayTime)];
                     case 1:
                         _a.sent();
-                        if (this.running == 1) {
-                            return [3 /*break*/, 2];
-                        }
-                        else if (this.running == 3) {
+                        if (this.running == 3) {
                             throw new Error("初期化しました。");
+                        }
+                        if (this.running == 2) {
+                            return [3 /*break*/, 0];
+                        }
+                        else {
+                            return [3 /*break*/, 2];
                         }
                         return [3 /*break*/, 0];
                     case 2: return [2 /*return*/];
