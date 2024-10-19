@@ -177,15 +177,12 @@ table.docutils tbody>tr:nth-of-type(even) {
     background-color: rgb(237 238 242);
 }
 
-div.footer {
-    line-height: 150%;
-    text-align: right;
-    width: auto;
-    margin: 2rem 1rem 3rem 1rem;
-}
-
-div.footer a:hover {
-    color: #0095c4;
+#footer {
+    font-size: 1em;
+    font-style: italic;
+    text-align: center;
+    margin: 1em 0em 2em 0em;
+    color: #777;
 }
 
 .sig {
