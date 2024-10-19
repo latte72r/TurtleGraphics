@@ -36,22 +36,12 @@ body {
     padding: 0em 2em;
 }
 
-/* フッターのスタイル */
-#footer-line {
-    width: 100%;
-    border: none;
-    border-top: 0.12em solid #aaa;
-}
-
 #footer {
-    text-align: right;
-    width: auto;
-    margin: 0rem 1rem 1rem 1rem;
-}
-
-#footer-text {
-    line-height: 80%;
-    margin: 0rem 2rem;
+    font-size: 1em;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 1em;
+    color: #777;
 }
 
 /* 左右のサイドのスタイル */
@@ -66,6 +56,10 @@ body {
 
 #up-side {
     text-align: center;
+}
+
+#bottom-side {
+    margin-bottom: 0.5em;
 }
 
 /* リンクのスタイル */
