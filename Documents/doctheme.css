@@ -7,8 +7,7 @@ body h3,
 body h4,
 body h5,
 body h6,
-table.docutils td,
-table.indextable tr.cap,
+table td,
 pre {
     background-color: inherit;
     color: inherit;
@@ -24,10 +23,7 @@ h3:hover>a.headerlink,
 h4:hover>a.headerlink,
 h5:hover>a.headerlink,
 h6:hover>a.headerlink,
-dt:hover>a.headerlink,
-caption:hover>a.headerlink,
-p.caption:hover>a.headerlink,
-div.code-block-caption:hover>a.headerlink {
+dt:hover>a.headerlink {
     visibility: visible;
 }
 
@@ -61,7 +57,7 @@ aside.sidebar {
     margin: 0em 0em 0em 0em;
 }
 
-.demo {
+.button-demo {
     font-size: 1.8em;
     font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", monospace;
     font-weight: bold;
@@ -158,15 +154,15 @@ body table code {
     font-weight: normal;
 }
 
-table.docutils {
+table {
     border: 0.1rem solid #aaa;
     min-width: 20%;
     border-radius: 3%;
     margin: 1rem 2rem;
 }
 
-table.docutils td,
-table.docutils th {
+table td,
+table th {
     border: 0.05rem solid #aaa;
     border-radius: 3%;
 }
@@ -177,11 +173,11 @@ table li {
     text-align: center;
 }
 
-table.docutils thead {
+table thead {
     background-color: rgb(228 240 245);
 }
 
-table.docutils tbody>tr:nth-of-type(even) {
+table tbody>tr:nth-of-type(even) {
     background-color: rgb(237 238 242);
 }
 
@@ -192,6 +188,16 @@ table.docutils tbody>tr:nth-of-type(even) {
 .param-name {
     font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", monospace;
     font-style: italic;
+}
+
+pre {
+    line-height: 125%;
+}
+
+.highlight {
+    margin-right: 4rem;
+    border-radius: 0.6rem;
+    background: #f8f8f8;
 }
 
 @media (max-width: 1023px) {
