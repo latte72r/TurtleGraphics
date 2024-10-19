@@ -154,7 +154,6 @@ input[type="button"]:hover {
 #editor-div {
     border: 0.12em solid #cccccc;
     border-radius: 0.4em;
-    padding: 1em;
 }
 
 #main-title {
@@ -195,7 +194,11 @@ input[type="button"]:hover {
     }
 
     #fileInput {
-        margin: 0em 1em;
+        margin: 0.4em 0em 0em 1em;
+    }
+
+    #editor-div {
+        padding: 0.2em;
     }
 }
 
@@ -230,5 +233,9 @@ input[type="button"]:hover {
 
     #fileInput {
         margin: 0em 4em;
+    }
+
+    #editor-div {
+        padding: 1em;
     }
 }
