@@ -13,19 +13,6 @@
   <link rel="stylesheet" type="text/css" href="./highlight.css">
   <link rel="stylesheet" type="text/css" href="./doctheme.css">
   <script src="./jquery-3.7.1.min.js"></script>
-</head>
-
-<body>
-  <header id="header">
-    <div style="display: flex;">
-      <h1 id="main-title">Turtle graphics</h1>
-      <img id="turtle-img" src="./turtle.gif" alt="turtle">
-    </div>
-    <div style="display: flex;">
-      <input type="button" class="button-demo" value="Demo" onclick="goToDemo();" />
-      <input type="button" class="button-demo" value="GitHub" onclick="goToGitHub();" />
-    </div>
-  </header>
   <script>
     function goToDemo() {
       window.open('../index.html');
@@ -63,7 +50,29 @@
         return false;
       });
     });
+    // .accordion_one
+    $(function () {
+      //.accordion_oneの中の.accordion_headerがクリックされたら
+      $('.accordion_one .accordion_header').click(function () {
+        //クリックされた.accordion_oneの中の.accordion_headerに隣接する.accordion_innerが開いたり閉じたりする。
+        $(this).next('.accordion_inner').slideToggle();
+        $(this).toggleClass("open");
+      });
+    });
   </script>
+</head>
+
+<body>
+  <header id="header">
+    <div style="display: flex;">
+      <h1 id="main-title">Turtle graphics</h1>
+      <img id="turtle-img" src="./turtle.gif" alt="turtle">
+    </div>
+    <div style="display: flex;">
+      <input type="button" class="button-demo" value="Demo" onclick="goToDemo();" />
+      <input type="button" class="button-demo" value="GitHub" onclick="goToGitHub();" />
+    </div>
+  </header>
   <div class="document">
     <section id="module-turtle">
       <div id="blank"></div>
@@ -111,130 +120,129 @@
           </div>
         </div>
       </section>
-      <section id="turtle-graphics-reference">
-        <h2>Turtle graphics reference<a class="headerlink" href="#turtle-graphics-reference">¶</a></h2>
-        <div class="admonition note">
-        </div>
-        <section id="turtle-methods">
-          <h3>Turtleのメソッド<a class="headerlink" href="#turtle-methods">¶</a></h3>
-          <dl>
-            <dt>Turtleの移動</dt>
-            <dd>
-              <div class="line-block">
-                <div class="line"><a class="reference internal" href="#turtle.forward" title="turtle.forward"><code
-                      class="literal notranslate"><span class="pre">forward()</span></code></a>
-                </div>
-                <div class="line"><a class="reference internal" href="#turtle.backward" title="turtle.backward"><code
-                      class="literal notranslate"><span class="pre">backward()</span></code></a>
-                </div>
-                <div class="line"><a class="reference internal" href="#turtle.right" title="turtle.right"><code
-                      class="literal notranslate"><span class="pre">right()</span></code></a>
-                </div>
-                <div class="line"><a class="reference internal" href="#turtle.left" title="turtle.left"><code
-                      class="literal notranslate"><span class="pre">left()</span></code></a>
-                </div>
-                <div class="line"><a class="reference internal" href="#turtle.goto" title="turtle.goto"><code
-                      class="literal notranslate"><span class="pre">goto()</span></code></a>
-                </div>
-                <div class="line"><a class="reference internal" href="#turtle.setx" title="turtle.setx"><code
-                      class="literal notranslate"><span class="pre">setx()</span></code></a>
-                </div>
-                <div class="line"><a class="reference internal" href="#turtle.sety" title="turtle.sety"><code
-                      class="literal notranslate"><span class="pre">sety()</span></code></a>
-                </div>
-                <div class="line"><a class="reference internal" href="#turtle.setheading"
-                    title="turtle.setheading"><code
-                      class="literal notranslate"><span class="pre">setheading()</span></code></a>
-                </div>
-                <div class="line"><a class="reference internal" href="#turtle.home" title="turtle.home"><code
-                      class="literal notranslate"><span class="pre">home()</span></code></a>
-                </div>
-                <div class="line"><a class="reference internal" href="#turtle.circle" title="turtle.circle"><code
-                      class="literal notranslate"><span class="pre">circle()</span></code></a>
-                </div>
-                <div class="line"><a class="reference internal" href="#turtle.dot" title="turtle.dot"><code
-                      class="literal notranslate"><span class="pre">dot()</span></code></a>
-                </div>
-                <div class="line"><a class="reference internal" href="#turtle.stamp" title="turtle.stamp"><code
-                      class="literal notranslate"><span class="pre">stamp()</span></code></a>
-                </div>
-                <div class="line"><a class="reference internal" href="#turtle.speed" title="turtle.speed"><code
-                      class="literal notranslate"><span class="pre">speed()</span></code></a>
-                </div>
-              </div>
-            </dd>
-            <dt>Penの制御</dt>
-            <dd>
-              <div class="line-block">
-                <div class="line"><a class="reference internal" href="#turtle.pendown" title="turtle.pendown"><code
-                      class="literal notranslate"><span class="pre">pendown()</span></code></a>
-                </div>
-                <div class="line"><a class="reference internal" href="#turtle.penup" title="turtle.penup"><code
-                      class="literal notranslate"><span class="pre">penup()</span></code></a>
-                </div>
-                <div class="line"><a class="reference internal" href="#turtle.pensize" title="turtle.pensize"><code
-                      class="literal notranslate"><span class="pre">pensize()</span></code></a>
-                </div>
-              </div>
-              <div class="line-block">
-                <div class="line"><a class="reference internal" href="#turtle.color" title="turtle.color"><code
-                      class="literal notranslate"><span class="pre">color()</span></code></a>
-                </div>
-                <div class="line"><a class="reference internal" href="#turtle.pencolor" title="turtle.pencolor"><code
-                      class="literal notranslate"><span class="pre">pencolor()</span></code></a>
-                </div>
-                <div class="line"><a class="reference internal" href="#turtle.fillcolor" title="turtle.fillcolor"><code
-                      class="literal notranslate"><span class="pre">fillcolor()</span></code></a>
-                </div>
-              </div>
-              <div class="line-block">
-                <div class="line"><a class="reference internal" href="#turtle.begin_fill"
-                    title="turtle.begin_fill"><code
-                      class="literal notranslate"><span class="pre">begin_fill()</span></code></a>
-                </div>
-                <div class="line"><a class="reference internal" href="#turtle.end_fill" title="turtle.end_fill"><code
-                      class="literal notranslate"><span class="pre">end_fill()</span></code></a>
-                </div>
-              </div>
-            </dd>
-            <dt>Turtleの状態</dt>
-            <dd>
-              <div class="line-block">
-                <div class="line"><a class="reference internal" href="#turtle.showturtle"
-                    title="turtle.showturtle"><code
-                      class="literal notranslate"><span class="pre">showturtle()</span></code></a>
-                </div>
-                <div class="line"><a class="reference internal" href="#turtle.hideturtle"
-                    title="turtle.hideturtle"><code
-                      class="literal notranslate"><span class="pre">hideturtle()</span></code></a>
-                </div>
-              </div>
-              <div class="line-block">
-                <div class="line"><a class="reference internal" href="#turtle.turtlesize"
-                    title="turtle.turtlesize"><code
-                      class="literal notranslate"><span class="pre">turtlesize()</span></code></a>
-                </div>
-              </div>
-            </dd>
-            <dt>特別なTurtleのメソッド</dt>
-            <dd>
-              <div class="line-block">
-                <div class="line"><a class="reference internal" href="#turtle.undo" title="turtle.undo"><code
-                      class="literal notranslate"><span class="pre">undo()</span></code></a>
-                </div>
-                <div class="line"><a class="reference internal" href="#turtle.reset" title="turtle.reset"><code
-                      class="literal notranslate"><span class="pre">reset()</span></code></a>
-                </div>
-                <div class="line"><a class="reference internal" href="#turtle.sleep" title="turtle.sleep"><code
-                      class="literal notranslate"><span class="pre">sleep()</span></code></a>
-                </div>
-              </div>
-            </dd>
-          </dl>
-        </section>
-      </section>
       <section id="methods-of-turtle">
         <h2>Turtleのメソッドと対応する関数<a class="headerlink" href="#methods-of-turtle">¶</a></h2>
+        <section id="turtle-methods">
+          <div class="accordion_one">
+            <div class="accordion_header">Turtleのメソッド一覧<div class="i_box"><i class="one_i"></i></div>
+            </div>
+            <div class="accordion_inner">
+              <dt>Turtleの移動</dt>
+              <dd>
+                <div class="line-block">
+                  <div class="line"><a class="reference internal" href="#turtle.forward" title="turtle.forward"><code
+                        class="literal notranslate"><span class="pre">forward()</span></code></a>
+                  </div>
+                  <div class="line"><a class="reference internal" href="#turtle.backward" title="turtle.backward"><code
+                        class="literal notranslate"><span class="pre">backward()</span></code></a>
+                  </div>
+                  <div class="line"><a class="reference internal" href="#turtle.right" title="turtle.right"><code
+                        class="literal notranslate"><span class="pre">right()</span></code></a>
+                  </div>
+                  <div class="line"><a class="reference internal" href="#turtle.left" title="turtle.left"><code
+                        class="literal notranslate"><span class="pre">left()</span></code></a>
+                  </div>
+                  <div class="line"><a class="reference internal" href="#turtle.goto" title="turtle.goto"><code
+                        class="literal notranslate"><span class="pre">goto()</span></code></a>
+                  </div>
+                  <div class="line"><a class="reference internal" href="#turtle.setx" title="turtle.setx"><code
+                        class="literal notranslate"><span class="pre">setx()</span></code></a>
+                  </div>
+                  <div class="line"><a class="reference internal" href="#turtle.sety" title="turtle.sety"><code
+                        class="literal notranslate"><span class="pre">sety()</span></code></a>
+                  </div>
+                  <div class="line"><a class="reference internal" href="#turtle.setheading"
+                      title="turtle.setheading"><code
+                        class="literal notranslate"><span class="pre">setheading()</span></code></a>
+                  </div>
+                  <div class="line"><a class="reference internal" href="#turtle.home" title="turtle.home"><code
+                        class="literal notranslate"><span class="pre">home()</span></code></a>
+                  </div>
+                  <div class="line"><a class="reference internal" href="#turtle.circle" title="turtle.circle"><code
+                        class="literal notranslate"><span class="pre">circle()</span></code></a>
+                  </div>
+                  <div class="line"><a class="reference internal" href="#turtle.dot" title="turtle.dot"><code
+                        class="literal notranslate"><span class="pre">dot()</span></code></a>
+                  </div>
+                  <div class="line"><a class="reference internal" href="#turtle.stamp" title="turtle.stamp"><code
+                        class="literal notranslate"><span class="pre">stamp()</span></code></a>
+                  </div>
+                  <div class="line"><a class="reference internal" href="#turtle.speed" title="turtle.speed"><code
+                        class="literal notranslate"><span class="pre">speed()</span></code></a>
+                  </div>
+                </div>
+              </dd>
+              <dt>Penの制御</dt>
+              <dd>
+                <div class="line-block">
+                  <div class="line"><a class="reference internal" href="#turtle.pendown" title="turtle.pendown"><code
+                        class="literal notranslate"><span class="pre">pendown()</span></code></a>
+                  </div>
+                  <div class="line"><a class="reference internal" href="#turtle.penup" title="turtle.penup"><code
+                        class="literal notranslate"><span class="pre">penup()</span></code></a>
+                  </div>
+                  <div class="line"><a class="reference internal" href="#turtle.pensize" title="turtle.pensize"><code
+                        class="literal notranslate"><span class="pre">pensize()</span></code></a>
+                  </div>
+                </div>
+                <div class="line-block">
+                  <div class="line"><a class="reference internal" href="#turtle.color" title="turtle.color"><code
+                        class="literal notranslate"><span class="pre">color()</span></code></a>
+                  </div>
+                  <div class="line"><a class="reference internal" href="#turtle.pencolor" title="turtle.pencolor"><code
+                        class="literal notranslate"><span class="pre">pencolor()</span></code></a>
+                  </div>
+                  <div class="line"><a class="reference internal" href="#turtle.fillcolor"
+                      title="turtle.fillcolor"><code
+                        class="literal notranslate"><span class="pre">fillcolor()</span></code></a>
+                  </div>
+                </div>
+                <div class="line-block">
+                  <div class="line"><a class="reference internal" href="#turtle.begin_fill"
+                      title="turtle.begin_fill"><code
+                        class="literal notranslate"><span class="pre">begin_fill()</span></code></a>
+                  </div>
+                  <div class="line"><a class="reference internal" href="#turtle.end_fill" title="turtle.end_fill"><code
+                        class="literal notranslate"><span class="pre">end_fill()</span></code></a>
+                  </div>
+                </div>
+              </dd>
+              <dt>Turtleの状態</dt>
+              <dd>
+                <div class="line-block">
+                  <div class="line"><a class="reference internal" href="#turtle.showturtle"
+                      title="turtle.showturtle"><code
+                        class="literal notranslate"><span class="pre">showturtle()</span></code></a>
+                  </div>
+                  <div class="line"><a class="reference internal" href="#turtle.hideturtle"
+                      title="turtle.hideturtle"><code
+                        class="literal notranslate"><span class="pre">hideturtle()</span></code></a>
+                  </div>
+                </div>
+                <div class="line-block">
+                  <div class="line"><a class="reference internal" href="#turtle.turtlesize"
+                      title="turtle.turtlesize"><code
+                        class="literal notranslate"><span class="pre">turtlesize()</span></code></a>
+                  </div>
+                </div>
+              </dd>
+              <dt>特別なTurtleのメソッド</dt>
+              <dd>
+                <div class="line-block">
+                  <div class="line"><a class="reference internal" href="#turtle.undo" title="turtle.undo"><code
+                        class="literal notranslate"><span class="pre">undo()</span></code></a>
+                  </div>
+                  <div class="line"><a class="reference internal" href="#turtle.reset" title="turtle.reset"><code
+                        class="literal notranslate"><span class="pre">reset()</span></code></a>
+                  </div>
+                  <div class="line"><a class="reference internal" href="#turtle.sleep" title="turtle.sleep"><code
+                        class="literal notranslate"><span class="pre">sleep()</span></code></a>
+                  </div>
+                </div>
+              </dd>
+            </div>
+          </div>
+        </section>
         <section id="turtle-motion">
           <h3>Turtleの移動<a class="headerlink" href="#turtle-motion">¶</a></h3>
           <dl>

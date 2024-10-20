@@ -57,6 +57,61 @@ aside.sidebar {
     margin: 0em 0em 0em 0em;
 }
 
+.accordion_one {
+    border: 0.1em solid #ccc;
+    border-radius: 0.4em;
+    margin: 1em 0;
+    overflow: hidden;
+}
+
+.accordion_header {
+    background-color: #f0f0f0;
+    cursor: pointer;
+    padding: 0.6em 1em;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-bottom: 0.05em solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion_header:hover {
+    background-color: #e0e0e0;
+}
+
+.accordion_inner {
+    display: none;
+    /* 初めは非表示 */
+    background-color: #fafafa;
+    padding: 1em 3em;
+    font-size: 1em;
+}
+
+.accordion_inner p {
+    margin: 0;
+    padding: 0;
+}
+
+.accordion_one .i_box {
+    display: inline-block;
+}
+
+.accordion_one .one_i {
+    border: solid #333;
+    border-width: 0 0.15em 0.15em 0;
+    display: inline-block;
+    padding: 0.3em;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+    /* 回転アニメーション */
+}
+
+.accordion_header.open .one_i {
+    transform: rotate(-135deg);
+    /* アコーディオンが開いたときの矢印の向き */
+}
+
 .button-demo {
     font-size: 1.8em;
     font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", monospace;
