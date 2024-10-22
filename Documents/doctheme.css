@@ -259,6 +259,8 @@ pre {
 .highlight {
     border-radius: 0.6rem;
     background: #f8f8f8;
+    overflow-x: pre;
+    white-space: scroll;
 }
 
 @media (max-width: 1023px) {
