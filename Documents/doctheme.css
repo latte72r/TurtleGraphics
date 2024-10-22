@@ -45,12 +45,14 @@ aside.sidebar {
     overflow-x: auto;
 }
 
+#sidebar-title {
+    margin-bottom: 0em;
+}
+
 #turtle-star {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 12em;
-    height: 12em;
 }
 
 #main-title {
@@ -282,7 +284,7 @@ pre::-webkit-scrollbar {
 
     #document {
         margin: 0em;
-        padding: 0em 2em;
+        padding: 0em 2em 1em 2em;
     }
 
     #header,
@@ -301,6 +303,11 @@ pre::-webkit-scrollbar {
 
     #footer {
         width: 100%;
+    }
+
+    #turtle-star {
+        width: 8em;
+        height: 8em;
     }
 }
 
@@ -334,5 +341,10 @@ pre::-webkit-scrollbar {
 
     .highlight {
         margin-right: 6rem;
+    }
+
+    #turtle-star {
+        width: 12em;
+        height: 12em;
     }
 }

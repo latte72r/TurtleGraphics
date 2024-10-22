@@ -80,7 +80,7 @@
         <section id="introduction">
           <h2>はじめに<a class="headerlink" href="#introduction">¶</a></h2>
           <aside class="sidebar">
-            <h3 class="sidebar-title">Turtle star</h3>
+            <h3 id="sidebar-title">Turtle star</h3>
             <img id="turtle-star" alt="./turtle-star.png" class="align-center" src="./turtle-star.png">
           </aside>
           <p>Turtle Graphics は、1967年に Logo というプログラミング言語の一部として誕生しました。
@@ -198,6 +198,9 @@
                     <div class="line"><a class="reference internal" href="#turtle.fillcolor"
                         title="turtle.fillcolor"><code
                           class="literal notranslate"><span class="pre">fillcolor()</span></code></a>
+                    </div>
+                    <div class="line"><a class="reference internal" href="#turtle.bgcolor" title="turtle.bgcolor"><code
+                          class="literal notranslate"><span class="pre">bgcolor()</span></code></a>
                     </div>
                   </div>
                   <div class="line-block">
@@ -884,6 +887,46 @@
                     <pre><span class="n">turtle</span><span class="o">.</span><span class="n">color</span><span class="b">(</span><span class="s">"red"</span><span class="p">,</span> <span class="s">"green"</span><span class="b">)</span><span class="p">;</span>
 <span class="n">turtle</span><span class="o">.</span><span class="n">color</span><span class="b">(</span><span class="s">"#285078"</span><span class="p">,</span> <span class="s">"#a0c8f0"</span><span class="b">)</span><span class="p">;</span>
 </pre>
+                  </div>
+                </div>
+              </dd>
+            </dl>
+
+            <dl>
+              <dt class="sig" id="turtle.bgcolor">
+                <span><span class="pre">turtle.</span></span><span><span
+                    class="pre">bgcolor</span></span><span>(</span><em><span class="o"><span
+                      class="pre">*</span></span><span class="n"><span
+                      class="pre">args</span></span></em><span>)</span><a class="headerlink" href="#turtle.color">¶</a>
+              </dt>
+              <dd>
+                <p>キャンバスの背景色を設定します</p>
+                <p>３種類の入力形式が受け入れ可能です：</p>
+                <dl>
+                  <dt><code class="literal notranslate"><span class="pre">bgcolor(colorstring)</span></code>
+                  </dt>
+                  <dd>
+                    <p>キャンバスの背景色を <em>colorstring</em>に設定します、その値は
+                      <code class="literal notranslate"><span class="pre">"yellow"</span></code>や
+                      <code class="literal notranslate"><span class="pre">"#33cc8c"</span></code>のような色指定文字列です。
+                    </p>
+                  </dd>
+                  <dt><code
+                      class="literal notranslate"><span class="pre">bgcolor((r,</span> <span class="pre">g,</span> <span class="pre">b))</span></code>
+                  </dt>
+                  <dd>
+                    <p>キャンバスの背景色を <em>r, g, b</em> のタプルで表された RGB の色に設定します。</p>
+                  </dd>
+                  <dt><code
+                      class="literal notranslate"><span class="pre">bgcolor(r,</span> <span class="pre">g,</span> <span class="pre">b)</span></code>
+                  </dt>
+                  <dd>
+                    <p>キャンバスの背景色を <em>r, g, b</em> で表された RGB の色に設定します。</p>
+                  </dd>
+                </dl>
+                <div class="notranslate">
+                  <div class="highlight" style="position: relative;">
+                    <pre><span class="n">turtle</span><span class="o">.</span><span class="n">bgcolor</span><span class="b">(</span><span class="s">"yellow"</span><span class="b">)</span><span class="p">;</span></pre>
                   </div>
                 </div>
               </dd>

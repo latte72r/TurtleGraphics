@@ -40,6 +40,7 @@ class Turtle {
 
     penColor!: string;
     fillColor!: string;
+    bgColor!: string;
     penSize!: number;
     turtleSize!: number;
     turtleExpand!: number;
@@ -82,6 +83,7 @@ class Turtle {
 
         this.penColor = "#000000";
         this.fillColor = "#000000";
+        this.bgColor = "#FFFFFF";
         this.penSize = 1;
         this.turtleSize = 1;
 
@@ -91,6 +93,7 @@ class Turtle {
 
         this.registeredFigures.push(["pencolor", this.penColor]);
         this.registeredFigures.push(["fillcolor", this.fillColor]);
+        this.registeredFigures.push(["bgcolor", this.bgColor]);
         this.registeredFigures.push(["pensize", this.penSize]);
         this.registeredFigures.push(["turtlesize", this.turtleSize]);
 
@@ -346,7 +349,7 @@ class Turtle {
     }
 
     pensize(width: number) {
-        this.registeredCommands.push(["none", this.registeredFigures.length, []]);
+        this.registeredCommands.push(["pensize", this.registeredFigures.length, [width]]);
         this.registeredFigures.push(["pensize", width]);
     }
 
@@ -358,52 +361,54 @@ class Turtle {
         return rgb.toUpperCase();
     }
 
-    _pencolor(...args: any) {
-        let penColor;
+    _convertColor(...args: any): string {
+        let color;
         if ((typeof (args[0]) == "string") && (args.length == 1)) {
-            penColor = args[0];
+            color = args[0];
         } else if (args.length == 1) {
-            penColor = this._convertRGB(args[0][0], args[0][1], args[0][2]);
+            color = this._convertRGB(args[0][0], args[0][1], args[0][2]);
         } else {
-            penColor = this._convertRGB(args[0], args[1], args[2]);
+            color = this._convertRGB(args[0], args[1], args[2]);
         }
-        this.registeredFigures.push(["pencolor", penColor]);
-        this._redrawObjects();
-    }
-
-    _fillcolor(...args: any) {
-        let fillColor;
-        if ((typeof (args[0]) == "string") && (args.length == 1)) {
-            fillColor = args[0];
-        } else if (args.length == 1) {
-            fillColor = this._convertRGB(args[0][0], args[0][1], args[0][2]);
-        } else {
-            fillColor = this._convertRGB(args[0], args[1], args[2]);
-        }
-        this.registeredFigures.push(["fillcolor", fillColor]);
-        this._redrawObjects();
+        return color;
     }
 
     pencolor(...args: any) {
-        this.registeredCommands.push(["none", this.registeredFigures.length, []]);
-        this._pencolor(...args);
+        let color = this._convertColor(...args);
+        this.registeredCommands.push(["pencolor", this.registeredFigures.length, [color]]);
+        this.registeredFigures.push(["pencolor", color]);
+        this._redrawObjects();
     }
 
     fillcolor(...args: any) {
-        this.registeredCommands.push(["none", this.registeredFigures.length, []]);
-        this._fillcolor(...args);
+        let color = this._convertColor(...args);
+        this.registeredCommands.push(["fillcolor", this.registeredFigures.length, [color]]);
+        this.registeredFigures.push(["fillcolor", color]);
+        this._redrawObjects();
     }
 
     color(...args: any) {
-        this.registeredCommands.push(["none", this.registeredFigures.length, []]);
         if (args.length == 1 || args.length == 3) {
-            this._pencolor(...args);
-            this._fillcolor(...args);
+            let color = this._convertColor(...args);
+            this.registeredCommands.push(["color", this.registeredFigures.length, [color, color]]);
+            this.registeredFigures.push(["pencolor", color]);
+            this.registeredFigures.push(["fillcolor", color]);
         }
         if (args.length == 2) {
-            this._pencolor(args[0]);
-            this._fillcolor(args[1]);
+            let penColor = this._convertColor(args[0]);
+            let fillColor = this._convertColor(args[1]);
+            this.registeredCommands.push(["color", this.registeredFigures.length, [penColor, fillColor]]);
+            this.registeredFigures.push(["pencolor", penColor]);
+            this.registeredFigures.push(["fillcolor", fillColor]);
         }
+        this._redrawObjects();
+    }
+
+    bgcolor(...args: any) {
+        this.registeredCommands.push(["bgcolor", this.registeredFigures.length, [this.bgColor]]);
+        this.bgColor = this._convertColor(...args);
+        this.canvas.style.backgroundColor = this.bgColor;
+        this._redrawObjects();
     }
 
     penup() {
@@ -471,9 +476,11 @@ class Turtle {
     }
 
     _createDot(centerX: number, centerY: number, size: number) {
+        this.context.fillStyle = this.penColor;
         this.context.beginPath();
         this.context.arc(centerX, centerY, size / 2, 0, 360 * Math.PI, false);
         this.context.fill();
+        this.context.fillStyle = this.fillColor;
     }
 
     async circle(radius: number, extent: number = 360) {
@@ -642,6 +649,25 @@ class Turtle {
             this.registeredFigures[args[0]][1][1] = null;
             this.registeredFigures[args[0]][1][2] = null;
             this.beginFillIndex = args[0];
+        } else if (command[0] == "bgcolor") {
+            this.bgColor = args[0];
+            this.canvas.style.backgroundColor = this.bgColor;
+        } else if (command[0] == "pencolor") {
+            this.penColor = args[0];
+            this.context.strokeStyle = this.penColor;
+        } else if (command[0] == "fillcolor") {
+            this.fillColor = args[0];
+            this.context.fillStyle = this.fillColor;
+        } else if (command[0] == "color") {
+            this.penColor = args[0];
+            this.context.strokeStyle = this.penColor;
+            this.fillColor = args[1];
+            this.context.fillStyle = this.fillColor;
+        } else if (command[0] == "pensize") {
+            this.penSize = args[0];
+            this.context.lineWidth = this.penSize;
+        } else if (command[0] == "turtlesize") {
+            this.turtleExpand = args[0];
         }
     }
 
