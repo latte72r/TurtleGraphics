@@ -254,13 +254,17 @@ table tbody>tr:nth-of-type(even) {
 
 pre {
     line-height: 125%;
+    overflow-x: scroll;
+    white-space: pre;
+}
+
+pre::-webkit-scrollbar {
+    display: none;
 }
 
 .highlight {
     border-radius: 0.6rem;
     background: #f8f8f8;
-    overflow-x: pre;
-    white-space: scroll;
 }
 
 @media (max-width: 1023px) {
