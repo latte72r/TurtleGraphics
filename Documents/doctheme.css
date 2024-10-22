@@ -13,6 +13,13 @@ pre {
     color: inherit;
 }
 
+body {
+    background-color: #E0E0E0;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
 a.headerlink {
     visibility: hidden;
 }
@@ -155,7 +162,7 @@ input[type="button"]:hover {
     font-size: 1em;
     font-style: italic;
     text-align: center;
-    margin: 1em 0em 2em 0em;
+    margin: 0em 0em 2em 0em;
     color: #777;
 }
 
@@ -165,10 +172,10 @@ input[type="button"]:hover {
     border-top: 0.12em solid #aaa;
 }
 
-div.document {
-    display: flex;
-    /* Don't let long code literals extend beyond the right side of the screen */
-    overflow-wrap: break-word;
+#document {
+    background-color: #FFFFFF;
+    border-radius: 0.4em;
+    box-shadow: 0 0.2em 0.4em rgba(0, 0, 0, 0.1);
 }
 
 /* Don't let long code literals extend beyond the right side of the screen */
@@ -250,7 +257,6 @@ pre {
 }
 
 .highlight {
-    margin-right: 4rem;
     border-radius: 0.6rem;
     background: #f8f8f8;
 }
@@ -268,6 +274,11 @@ pre {
         padding: 0 1rem;
     }
 
+    #document {
+        margin: 0em;
+        padding: 0em 2em;
+    }
+
     #header,
     #blank {
         font-size: 0.75rem;
@@ -278,7 +289,7 @@ pre {
     }
 
     #blank {
-        height: 5em;
+        height: 7em;
         width: 100%;
     }
 
@@ -300,6 +311,11 @@ pre {
         padding: 0em 2em;
     }
 
+    #document {
+        margin: 1em;
+        padding: 2em;
+    }
+
     #header,
     #blank {
         font-size: 1rem;
@@ -308,5 +324,9 @@ pre {
     #blank {
         height: 7em;
         width: 100%;
+    }
+
+    .highlight {
+        margin-right: 6rem;
     }
 }
