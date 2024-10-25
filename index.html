@@ -7,197 +7,73 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="./win_icon.gif">
     <meta name="google-site-verification" content="0utQohS0QuJgV4Kxamh6Ut6XlZ6sP-ChKltZtUiKWug" />
-    <title>Turtle Graphics</title>
     <link rel="icon" type="image/gif" href="./win_icon.gif">
-    <link href="./turtle.css" rel="stylesheet" type="text/css">
+    <title>Turtle graphics</title>
+
+    <link rel="stylesheet" type="text/css" href="./Documents/doctheme.css">
     <script src="./Documents/jquery-3.7.1.min.js"></script>
-    <script src="./monaco-editor/vs/loader.js" type="text/javascript"></script>
-    <script src="./turtle.js" type="text/javascript" defer></script>
-
-    <script>
-        function FixedAnime() {
-            let headerH = $('#header').outerHeight(true);
-            let scroll = $(window).scrollTop();
-            $('#header').addClass('fixed');
-        }
-        $(window).scroll(function () {
-            FixedAnime();
-        });
-        $(window).on('load', function () {
-            FixedAnime();
-        });
-        let headerHight;
-        let canvasWidth;
-        let canvasHeight;
-        $(window).on("load resize", function () {
-            let breakpoint = 1024;
-            let browseWid = $(window).width();
-            let widSp = browseWid < breakpoint; //SP表示
-            if (widSp) {
-                // スマートフォン
-                headerHight = 145;
-                canvasWidth = browseWid * 0.82;
-                canvasHeight = 600;
-            } else {
-                // PC
-                headerHight = 110;
-                canvasWidth = browseWid * 0.84;
-                canvasHeight = 600;
-            }
-        });
-        function goToDocument() {
-            window.open('./Documents/document.html');
-        }
-        function goToGitHub() {
-            window.open('https://github.com/latte72r/TurtleGraphics/');
-        }
-
-        let turtle;
-        let editor;
-
-        function setupTurtle() {
-            try {
-                turtle = new Turtle(canvasWidth, canvasHeight, "canvas");
-            } catch (error) {
-                if (error instanceof Error) {
-                    alert(error.message);
-                }
-            }
-        }
-
-        let ts = [
-            'declare class Turtle {',
-            '    reset(): void;',
-            '    sleep(secs: number): Promise<void>;',
-            '    forward(distance: number): Promise<void>;',
-            '    backward(distance: number): Promise<void>;',
-            '    right(angle: number): Promise<void>;',
-            '    left(angle: number): Promise<void>;',
-            '    goto(x: number, y: number): Promise<void>;',
-            '    home(): Promise<void>;',
-            '    setx(x: number): Promise<void>;',
-            '    sety(y: number): Promise<void>;',
-            '    setheading(to_angle: number): Promise<void>;',
-            '    pensize(width: number): void;',
-            '    pencolor(...args: any): void;',
-            '    fillcolor(...args: any): void;',
-            '    color(...args: any): void;',
-            '    bgcolor(...args: any): void;',
-            '    penup(): void;',
-            '    pendown(): void;',
-            '    speed(speed: number): void;',
-            '    showturtle(): void;',
-            '    hideturtle(): void;',
-            '    turtlesize(stretch: number): void;',
-            '    stamp(): void;',
-            '    dot(size: number): void;',
-            '    circle(radius: number, extent?: number): Promise<void>;',
-            '    begin_fill(): void;',
-            '    end_fill(): void; oid;',
-            '    position(): number[];',
-            '    undo(): Promise<void>;',
-            '}',
-            'declare let turtle: Turtle;'].join("\n");
-
-        function setupEditor() {
-            require.config({ paths: { vs: "./monaco-editor/vs" } });
-            require(["vs/editor/editor.main"], function () {
-                monaco.languages.typescript.javascriptDefaults.addExtraLib(ts, "turtle.d.ts");
-                editor = monaco.editor.create(
-                    document.getElementById("editor"), {
-                    value: [
-                        "// Example",
-                        "turtle.color('red', 'yellow');",
-                        "turtle.begin_fill();",
-                        "for (let i = 0; i < 5; i++) {",
-                        "    await turtle.forward(100);",
-                        "    await turtle.right(144);",
-                        "}",
-                        "turtle.end_fill();"
-                    ].join("\n"),
-                    language: "javascript",
-                    scrollBeyondLastLine: false,
-                    fontSize: 16,
-                    minimap: { enabled: false },
-                    scrollbar: { alwaysConsumeMouseWheel: false }
-                });
-            });
-        }
-
-        function setupFile() {
-            const fileInput = document.getElementById('fileInput');
-            fileInput.addEventListener('change', (e) => {
-                const file = e.target.files[0];
-                const reader = new FileReader();
-                reader.onload = () => {
-                    editor.setValue(reader.result);
-                };
-                reader.readAsText(file);
-            });
-        }
-
-        async function runCode() {
-            const CODE = editor.getValue();
-            if ((turtle.running == 1) || (turtle.running == 2)) {
-                let result = window.confirm("プログラムを実行中です\n初期化しますか？");
-                if (result) {
-                    turtle.running = 3;
-                    await turtle._sleepMS(turtle.delayTime * 4);
-                    turtle.reset();
-                    turtle.running = 1;
-                    await eval("(async () => {try {" + CODE + "} catch(e) {alert(e.message)}})()");
-                    turtle.running = 0;
-                }
-            } else {
-                turtle.reset();
-                turtle.running = 1;
-                await eval("(async () => {try {" + CODE + "} catch(e) {alert(e.message)}})()");
-                turtle.running = 0;
-            }
-        }
-
-        async function pauseResume() {
-            if (turtle.running == 0) {
-                alert("プログラムが実行されていません");
-            } else if (turtle.running == 1) {
-                turtle.running = 2;
-            } else if (turtle.running == 2) {
-                turtle.running = 1;
-            }
-        }
-    </script>
+    <script src="./Documents/script.js"></script>
 </head>
 
-<body onload="setupTurtle(); setupEditor(); setupFile();">
+<body>
     <header id="header">
         <div style="display: flex;">
             <h1 id="main-title">Turtle graphics</h1>
             <img id="turtle-img" src="./Documents/turtle.gif" alt="turtle">
         </div>
-        <div style="display: flex;" id="header-button">
-            <input type="button" class="button-demo" value="Document" onclick="goToDocument();" />
-            <input type="button" class="button-demo" value="GitHub" onclick="goToGitHub();" />
-        </div>
+        <nav>
+            <p class="nav-link">Home</p>
+            <div class="divider"></div>
+            <a href="./demo.html" class="nav-link">Demo</a>
+            <div class="divider"></div>
+            <a href="./Documents/document.html" class="nav-link">Documents</a>
+            <div class="divider"></div>
+            <a href="https://github.com/latte72r/TurtleGraphics/" class="nav-link" target="_blank">GitHub</a>
+        </nav>
     </header>
-
-    <main>
-        <div id="blank"></div>
-
-        <div id="up-side">
-            <canvas id="canvas" title="Turtle Graphics"></canvas>
-            <div>
-                <input type="button" id="run-code" value=" 実行 " onclick="runCode();">
-                <input type="button" id="pause" value=" 一時停止 / 再開 " onclick="pauseResume();">
-            </div>
+    <div id="blank"></div>
+    <div id="document">
+        <div id="main">
+            <section id="introduction">
+                <h2>Turtle Graphics とは？<a class="headerlink" href="#introduction">¶</a></h2>
+                <aside class="sidebar">
+                    <h3 id="sidebar-title">Turtle star</h3>
+                    <img id="turtle-star" alt="./turtle-star.png" class="align-center"
+                        src="./Documents/turtle-star.png">
+                </aside>
+                <p>Turtle graphics は、1967年に Logo というプログラミング言語の一部として誕生しました。
+                    もともとは教育現場で教師がプログラミングの基礎を教えるために作られたツールです。
+                    シンプルなコマンドを用いて、紙の上を動きながら絵を描く "turtle"（ペンを持った小さなロボット）の動きを再現し、複雑な図形を描くことができます。</p>
+                <p>Logo 言語では、この Turtle を動かしながら画面や紙の上に図形を描かせることができ、
+                    これがプログラミング初心者にとって直感的でありながら、強力な教育ツールとして活用されてきました。</p>
+            </section>
+            <section id="this-site">
+                <h2>このサイトについて<a class="headerlink" href="#this-site">¶</a></h2>
+                <p>このサイトでは、クラシックな Turtle の原型を残しつつ、Python で採用されたデザインを参考にし、
+                    JavaScript を使ってウェブブラウザから簡単に Turtle Graphics を体験できるようにアレンジしました。
+                    ユーザーはシンプルなコマンドを入力するだけで、Turtle に指示を与え、さまざまな図形を描かせることができます。</p>
+                <p>Turtle Graphics の最大の利点は、視覚的なフィードバックが即座に得られることです。
+                    コマンドを入力すると、すぐに Turtle が動いて図形を描くため、ユーザーは自分のプログラムがどのように動作しているかを直感的に理解することができます。
+                    この即時フィードバックがあることで、初心者でも楽しくプログラミングの基礎を学ぶことができます。</p>
+            </section>
+            <section id="demo-page">
+                <h2>デモページ<a class="headerlink" href="#demo-page">¶</a></h2>
+                <p>このプログラムにはデモページを用意しており、実際に Turtle Graphics を使って様々な図形を描くことができます。</p>
+                <p>ぜひこちらのデモページをお試しください：<a href="./demo.html">デモページ</a></p>
+            </section>
+            <section id="document-page">
+                <h2>ドキュメント<a class="headerlink" href="#document-page">¶</a></h2>
+                <p>このプログラムにはドキュメントページを用意しており、Turtle Graphics のコマンドや機能の詳細を紹介しています。</p>
+                <p>ドキュメントはこちらからご覧いただけます：<a href="./Documents/document.html">ドキュメント</a></p>
+            </section>
+            <section id="github-page">
+                <h2>GitHubリポジトリ<a class="headerlink" href="#github-page">¶</a></h2>
+                <p>ソースコードはこちらのリポジトリで公開しています：<a href="https://github.com/latte72r/TurtleGraphics/"
+                        target="_blank">GitHub</a>
+                </p>
+            </section>
         </div>
-
-        <div id="bottom-side">
-            <div id="editor-div">
-                <div id="editor"></div>
-            </div>
-            <input type="file" id="fileInput">
-        </div>
-    </main>
+    </div>
 
     <footer id="footer">
         <p>© 2022-2024 Latte72. All rights reserved.</p>

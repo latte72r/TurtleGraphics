@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta property="og:title" content="Turtle graphics">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="./win_icon.gif">
+    <title>Turtle Graphics</title>
+    <link rel="icon" type="image/gif" href="./win_icon.gif">
+    <link rel="stylesheet" type="text/css" href="./Documents/doctheme.css">
+    <link rel="stylesheet" type="text/css" href="./Documents/style.css">
+    <script src="./Documents/jquery-3.7.1.min.js"></script>
+    <script src="./monaco-editor/vs/loader.js" type="text/javascript"></script>
+    <script src="./turtle.js" type="text/javascript"></script>
+    <script src="./Documents/script.js"></script>
+    <script src="./Documents/turtle-demo.js" defer></script>
+</head>
+
+<body onload="setupTurtle(); setupEditor(); setupFile();">
+    <header id="header">
+        <div style="display: flex;">
+            <h1 id="main-title">Turtle graphics</h1>
+            <img id="turtle-img" src="./Documents/turtle.gif" alt="turtle">
+        </div>
+        <nav>
+            <a href="./index.html" class="nav-link" target="_blank">Home</a>
+            <div class="divider"></div>
+            <p class="nav-link">Demo</p>
+            <div class="divider"></div>
+            <a href="./Documents/document.html" class="nav-link" target="_blank">Documents</a>
+            <div class="divider"></div>
+            <a href="https://github.com/latte72r/TurtleGraphics/" class="nav-link" target="_blank">GitHub</a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="blank"></div>
+
+        <div id="up-side">
+            <canvas id="canvas" title="Turtle Graphics"></canvas>
+            <div>
+                <input type="button" id="run-code" value=" 実行 " onclick="runCode();">
+                <input type="button" id="pause" value=" 一時停止 / 再開 " onclick="pauseResume();">
+            </div>
+        </div>
+
+        <div id="bottom-side">
+            <div id="editor-div">
+                <div id="editor"></div>
+            </div>
+            <div>
+                <input type="file" id="fileInputElem" style="display:none;" accept=".js, .txt" />
+                <input type="button" button id="fileInput" value="ファイルを開く" onclick="fileInputElem.click();">
+                <input type="button" button id="fileSave" value="ファイルを保存" onclick="downloadAsFile();">
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <p>© 2022-2024 Latte72. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

@@ -1,14 +1,6 @@
 /* unset some styles from the classic stylesheet */
 div.document,
-body,
-body h1,
-body h2,
-body h3,
-body h4,
-body h5,
-body h6,
-table td,
-pre {
+body {
     background-color: inherit;
     color: inherit;
 }
@@ -34,8 +26,17 @@ dt:hover>a.headerlink {
     visibility: visible;
 }
 
+h2 {
+    font-size: 1.6em;
+    color: #2980b9;
+    border-bottom: 0.1em solid #2980b9;
+    padding-bottom: 0.2em;
+    padding-left: 0.6em;
+    display: inline-block;
+}
+
 aside.sidebar {
-    margin: 0em 0em 0.5em 1em;
+    margin: 5em 0em 0.5em 1em;
     border: 0.1em solid #ddb;
     border-radius: 5%;
     padding: 0em 1em;
@@ -43,6 +44,93 @@ aside.sidebar {
     float: right;
     clear: right;
     overflow-x: auto;
+}
+
+body a {
+    color: #0072aa;
+}
+
+body a:visited {
+    color: #6363bb;
+}
+
+body a:hover {
+    color: #00b0e4;
+}
+
+nav {
+    display: flex;
+    gap: 0.4em;
+    align-items: center;
+    padding-right: 1em;
+}
+
+nav a {
+    font-size: 1.4em;
+    color: #0072aa;
+    text-decoration: none;
+    padding: 0.4em 0.6em;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+nav p {
+    font-size: 1.4em;
+    color: #555;
+    text-decoration: none;
+    padding: 0.4em 0.6em;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    cursor: default;
+}
+
+nav a:hover {
+    background-color: #e0f7fa;
+    color: #005f8f;
+    border-radius: 0.3em;
+}
+
+/* 区切り線 */
+nav .divider {
+    height: 1.5em;
+    width: 0.1em;
+    background-color: #ccc;
+}
+
+#header {
+    height: 4em;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(250, 250, 250, 0.90);
+    padding: 1em 0em;
+    margin: 0em;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    box-shadow: 0 0.2em 0.4em rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    position: fixed;
+}
+
+#footer {
+    font-size: 1em;
+    font-style: italic;
+    text-align: center;
+    margin: 0em 0em 2em 0em;
+    color: #777;
+}
+
+#footer-line {
+    width: 100%;
+    border: none;
+    border-top: 0.12em solid #aaa;
+}
+
+#document {
+    background-color: #FFFFFF;
+    border-radius: 0.4em;
+    box-shadow: 0 0.2em 0.4em rgba(0, 0, 0, 0.1);
 }
 
 #sidebar-title {
@@ -53,17 +141,22 @@ aside.sidebar {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    width: 12em;
+    height: 12em;
 }
 
 #main-title {
     font-size: 2.25em;
     margin: 0.1em 0em 0em 1em;
+    color: #333;
+    display: flex;
+    align-items: center;
+    cursor: default;
 }
 
 #turtle-img {
     width: 4.9em;
     height: 3.5em;
-    margin: 0em 0em 0em 0em;
 }
 
 .accordion_one {
@@ -121,13 +214,12 @@ aside.sidebar {
     /* アコーディオンが開いたときの矢印の向き */
 }
 
-.button-demo {
-    font-size: 1.8em;
+/* ボタンのスタイル */
+input[type="button"] {
+    font-size: 1.4em;
     font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", monospace;
     font-weight: bold;
-    border-radius: 0.6em;
-    color: blue;
-    margin: 1em 0.6em 1em 0em;
+    border-radius: 0.4em;
     padding: 0.3em 0.5em;
     cursor: pointer;
 }
@@ -136,48 +228,6 @@ aside.sidebar {
 input[type="button"]:hover {
     opacity: 0.8;
     transform: translateY(-0.05em);
-}
-
-#header {
-    height: 4em;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    background-color: rgba(250, 250, 250, 0.90);
-    padding: 1em 0em;
-    margin: 0em;
-    position: sticky;
-    top: 0;
-    left: 0;
-    z-index: 999;
-    box-shadow: 0 0.2em 0.4em rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-}
-
-#header.fixed {
-    position: fixed;
-}
-
-#footer {
-    font-size: 1em;
-    font-style: italic;
-    text-align: center;
-    margin: 0em 0em 2em 0em;
-    color: #777;
-}
-
-#footer-line {
-    width: 100%;
-    border: none;
-    border-top: 0.12em solid #aaa;
-}
-
-#document {
-    background-color: #FFFFFF;
-    border-radius: 0.4em;
-    box-shadow: 0 0.2em 0.4em rgba(0, 0, 0, 0.1);
 }
 
 /* Don't let long code literals extend beyond the right side of the screen */
@@ -189,18 +239,6 @@ body pre {
     padding: 0.6rem 0.8rem;
     border-radius: 0.6rem;
     border: 0.05rem solid #ac9;
-}
-
-body a {
-    color: #0072aa;
-}
-
-body a:visited {
-    color: #6363bb;
-}
-
-body a:hover {
-    color: #00b0e4;
 }
 
 tt,
@@ -269,10 +307,15 @@ pre::-webkit-scrollbar {
     background: #f8f8f8;
 }
 
+.await {
+    color: #0044DD;
+    font-weight: bold;
+}
+
 @media (max-width: 1023px) {
     html {
         width: 96%;
-        font-size: 1.8rem;
+        font-size: 1.2rem;
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -289,7 +332,7 @@ pre::-webkit-scrollbar {
 
     #header,
     #blank {
-        font-size: 0.75rem;
+        font-size: 0.9rem;
     }
 
     table p {
@@ -303,11 +346,6 @@ pre::-webkit-scrollbar {
 
     #footer {
         width: 100%;
-    }
-
-    #turtle-star {
-        width: 8em;
-        height: 8em;
     }
 }
 
@@ -341,10 +379,5 @@ pre::-webkit-scrollbar {
 
     .highlight {
         margin-right: 6rem;
-    }
-
-    #turtle-star {
-        width: 12em;
-        height: 12em;
     }
 }
