@@ -1,0 +1,113 @@
+/* (c) 2022-2024 Ryo Fujinami.*/
+
+#header-button {
+    font-size: 1.2em;
+    padding: 0em 2em;
+}
+
+#footer {
+    font-size: 1em;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 1em;
+    color: #777;
+}
+
+/* 左右のサイドのスタイル */
+#up-side,
+#bottom-side {
+    margin: 1em;
+    padding: 1em;
+    background-color: #FFFFFF;
+    border-radius: 0.4em;
+    box-shadow: 0 0.2em 0.4em rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#bottom-side {
+    margin-bottom: 0.5em;
+}
+
+#run-code {
+    background-color: #FF5733;
+    color: white;
+    margin: 0.4em 0.4em 0em 0.4em;
+    border: none;
+}
+
+#pause {
+    background-color: #007BFF;
+    /* 青系ボタン */
+    color: white;
+    margin: 0.4em 0.4em 0em 0.4em;
+    border: none;
+}
+
+#fileInput {
+    color: white;
+    background: gray;
+    margin: 0.2em 0.4em;
+    border: none;
+}
+
+#fileSave {
+    color: white;
+    background: gray;
+    margin: 0.2em 0.4em;
+    border: none;
+}
+
+/* キャンバスのスタイル */
+#canvas {
+    background-color: #FFFFFF;
+    border: 0.12em solid #cccccc;
+    border-radius: 0.4em;
+}
+
+/* エディタのスタイル */
+#editor {
+    width: 100%;
+    text-align: left;
+}
+
+#editor-div {
+    border: 0.12em solid #cccccc;
+    border-radius: 0.4em;
+}
+
+#main-title {
+    font-size: 2.25em;
+    margin: 0.1em 0em 0em 1em;
+}
+
+#turtle-img {
+    width: 4.9em;
+    height: 3.5em;
+    margin: 0em 0em 0em 0em;
+}
+
+/* スマートフォン */
+@media (max-width: 1023px) {
+    #editor {
+        height: 28em;
+    }
+
+    #editor-div {
+        padding: 0.4em;
+    }
+}
+
+/* PC */
+@media (min-width: 1024px) {
+    #editor {
+        height: 40em;
+    }
+
+    #editor-div {
+        margin: 1em;
+    }
+
+    #editor-div {
+        padding: 1em;
+    }
+}
