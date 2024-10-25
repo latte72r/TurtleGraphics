@@ -89,11 +89,11 @@
 /* スマートフォン */
 @media (max-width: 1023px) {
     #editor {
-        height: 16em;
+        height: 28em;
     }
 
     #editor-div {
-        padding: 0.2em;
+        padding: 0.4em;
     }
 }
 
