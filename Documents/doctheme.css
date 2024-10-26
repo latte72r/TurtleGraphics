@@ -1,6 +1,7 @@
 /* unset some styles from the classic stylesheet */
 div.document,
 body {
+    font-family: "游ゴシック", Arial, sans-serif;
     background-color: inherit;
     color: inherit;
 }
@@ -71,6 +72,10 @@ nav a {
     text-decoration: none;
     padding: 0.4em 0.6em;
     transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+nav a:visited {
+    color: #0072aa;
 }
 
 nav p {
