@@ -1,6 +1,6 @@
 # TurtleGraphics  
 
-ホームページ：[Demo page](https://latte72r.github.io/TurtleGraphics/index.html)   
+ホームページ：[Home](https://latte72r.github.io/TurtleGraphics/index.html)   
 デモページ：[Demo page](https://latte72r.github.io/TurtleGraphics/demo.html)  
 リファレンス：[Document](https://latte72r.github.io/TurtleGraphics/Documents/document.html) 
 
