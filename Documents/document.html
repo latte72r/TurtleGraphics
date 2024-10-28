@@ -18,10 +18,10 @@
 
 <body>
   <header id="header">
-    <div style="display: flex;">
+    <a id="header-title" href="../index.html">
       <h1 id="main-title">Turtle graphics</h1>
       <img id="turtle-img" src="./turtle.gif" alt="turtle">
-    </div>
+    </a>
     <nav>
       <a href="../index.html" class="nav-link">Home</a>
       <div class="divider"></div>
@@ -51,9 +51,9 @@
                 <p><b>Parameters:</b></p>
               </dt>
               <dd>
-                <p><span>width</span> – 整数</p>
-                <p><span>height</span> – 整数</p>
-                <p><span>canvasID</span> – 文字列</p>
+                <p><span class="sig"><em>width</em></span> – 整数</p>
+                <p><span class="sig"><em>height</em></span> – 整数</p>
+                <p><span class="sig"><em>canvasID</em></span> – 文字列</p>
               </dd>
             </dl>
           </dd>
@@ -208,10 +208,10 @@
                   <p><b>Parameters:</b></p>
                 </dt>
                 <dd>
-                  <p><span>distance</span> – 整数</p>
+                  <p><span class="sig"><em>distance</em></span> – 整数</p>
                 </dd>
               </dl>
-              <p>Turtleが向かっている方向に、指定された距離<em>distance</em>だけTurtleを前進させます。</p>
+              <p>Turtleが向かっている方向に、指定された距離 <span class="sig"><em>distance</em></span> だけTurtleを前進させます。</p>
               <div class="notranslate">
                 <div class="highlight" style="position: relative;">
                   <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">forward</span><span class="b">(</span><span class="m">25</span><span class="b">)</span><span class="p">;</span></pre>
@@ -233,10 +233,11 @@
                   <p><b>Parameters:</b></p>
                 </dt>
                 <dd>
-                  <p><span>distance</span> – 整数</p>
+                  <p><span class="sig"><em>distance</em></span> – 整数</p>
                 </dd>
               </dl>
-              <p>Turtleが向かっている方向とは逆方向に、指定された距離<em>distance</em>だけTurtleを後方に移動させます。Turtleの向きは変わりません。</p>
+              <p>Turtleが向かっている方向とは逆方向に、指定された距離 <span class="sig"><em>distance</em></span> だけTurtleを後方に移動させます。
+                Turtleの向きは変わりません。</p>
               <div class="notranslate">
                 <div class="highlight" style="position: relative;">
                   <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">backward</span><span class="b">(</span><span class="m">30</span><span class="b">)</span><span class="p">;</span>
@@ -258,10 +259,10 @@
                   <p><b>Parameters:</b></p>
                 </dt>
                 <dd>
-                  <p><span>angle</span> – 整数</p>
+                  <p><span class="sig"><em>angle</em></span> – 整数</p>
                 </dd>
               </dl>
-              <p>Turtleを指定された角度<em>angle</em>だけ右向きに回転させます。</p>
+              <p>Turtleを指定された角度 <span class="sig"><em>angle</em></span> だけ右向きに回転させます。</p>
               <div class="notranslate">
                 <div class="highlight" style="position: relative;">
                   <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">right</span><span class="b">(</span><span class="m">45</span><span class="b">)</span><span class="p">;</span>
@@ -283,10 +284,10 @@
                   <p><b>Parameters:</b></p>
                 </dt>
                 <dd>
-                  <p><span>angle</span> – 整数</p>
+                  <p><span class="sig"><em>angle</em></span> – 整数</p>
                 </dd>
               </dl>
-              <p>Turtleを指定された角度<em>angle</em>だけ左向きに回転させます。</p>
+              <p>Turtleを指定された角度 <span class="sig"><em>angle</em></span> だけ左向きに回転させます。</p>
               <div class="notranslate">
                 <div class="highlight" style="position: relative;">
                   <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">left</span><span class="b">(</span><span class="m">45</span><span class="b">)</span><span class="p">;</span></pre>
@@ -310,16 +311,16 @@
                 <dd>
                   <ul>
                     <li>
-                      <p><span>x</span> – 整数</p>
+                      <p><span class="sig"><em>x</em></span> – 整数</p>
                     </li>
                     <li>
-                      <p><span>y</span> – 整数</p>
+                      <p><span class="sig"><em>y</em></span> – 整数</p>
                     </li>
                   </ul>
                 </dd>
               </dl>
 
-              <p>Turtleを座標<em>(x, y)</em>に移動させます。ペンが下りていれば線を引きます。Turtleの向きは変化しません。</p>
+              <p>Turtleを座標 <span class="sig">(<em>x, y</em>)</span> に移動させます。ペンが下りていれば線を引きます。Turtleの向きは変化しません。</p>
               <div class="notranslate">
                 <div class="highlight" style="position: relative;">
                   <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">goto</span><span class="b">(</span><span class="m">60</span><span class="p">, </span><span class="m">30</span><span class="b">)</span><span class="p">;</span>
@@ -341,10 +342,10 @@
                   <p><b>Parameters:</b></p>
                 </dt>
                 <dd>
-                  <p><span>x</span> – 整数</p>
+                  <p><span class="sig"><em>x</em></span> – 整数</p>
                 </dd>
               </dl>
-              <p>Turtleの第１座標を<em>x</em>にします。第２座標は変化しません。</p>
+              <p>Turtleの第１座標を <span class="sig"><em>x</em></span> にします。第２座標は変化しません。</p>
               <div class="notranslate">
                 <div class="highlight" style="position: relative;">
                   <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">setx</span><span class="b">(</span><span class="m">10</span><span class="b">)</span><span class="p">;</span>
@@ -366,10 +367,10 @@
                   <p><b>Parameters:</b></p>
                 </dt>
                 <dd>
-                  <p><span>y</span> – 整数</p>
+                  <p><span class="sig"><em>y</em></span> – 整数</p>
                 </dd>
               </dl>
-              <p>Turtleの第２座標を<em>y</em>にします。第１座標は変化しません。</p>
+              <p>Turtleの第２座標を <span class="sig"><em>y</em></span> にします。第１座標は変化しません。</p>
               <div class="notranslate">
                 <div class="highlight" style="position: relative;">
                   <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">sety</span><span class="b">(</span><span class="o">-</span><span class="m">10</span><span class="b">)</span><span class="p">;</span>
@@ -392,10 +393,10 @@
                   <p><b>Parameters:</b></p>
                 </dt>
                 <dd>
-                  <p><span>to_angle</span> – 整数</p>
+                  <p><span class="sig"><em>to_angle</em></span> – 整数</p>
                 </dd>
               </dl>
-              <p>Turtleの向きを角度<em>to_angle</em>に設定します。以下はよく使われる方向を角度で表わしたものです：</p>
+              <p>Turtleの向きを角度 <span class="sig"><em>to_angle</em></span> に設定します。以下はよく使われる方向を角度で表わしたものです：</p>
               <div>
                 <table>
                   <thead>
@@ -460,7 +461,7 @@
                 href="#turtle.home">¶</a>
             </dt>
             <dd>
-              <p>Turtleを原点 <code class="literal notranslate"><span class="pre">(0, 0)</span></code>
+              <p>Turtleを原点 <span class="sig">(0, 0)</span>
                 に移動し、方向を開始方向に設定する。</p>
               <div class="notranslate">
                 <div class="highlight" style="position: relative;">
@@ -486,19 +487,20 @@
                 <dd>
                   <ul>
                     <li>
-                      <p><span>radius</span> – 整数</p>
+                      <p><span class="sig"><em>radius</em></span> – 整数</p>
                     </li>
                     <li>
-                      <p><span>extent</span> – 整数</p>
+                      <p><span class="sig"><em>extent</em></span> – 整数</p>
                     </li>
                   </ul>
                 </dd>
               </dl>
-              <p>与えられた半径<em>radius</em>で円を描きます。円の中心はTurtleから半径<em>radius</em>の距離だけ左にあります。
-                中心角<em>extent</em>が与えられなければ、デフォルトで完全な円になります。
-                中心角<em>extent</em>が完全な円でない場合、円弧の一方の端点は現在のペンの位置になります。
-                半径<em>radius</em>が正の場合は反時計回りに、そうでない場合は時計回りに円弧を描きます。
-                Turtleの方向は<em>extent</em>の分だけ変化します。</p>
+              <p>与えられた半径 <span class="sig"><em>radius</em></span> で円を描きます。
+                円の中心はTurtleから半径 <span class="sig"><em>radius</em></span> の距離だけ左にあります。
+                中心角 <span class="sig"><em>extent</em></span> が与えられなければ、デフォルトで完全な円になります。
+                中心角 <span class="sig"><em>extent</em></span> が完全な円でない場合、円弧の一方の端点は現在のペンの位置になります。
+                半径 <span class="sig"><em>radius</em></span> が正の場合は反時計回りに、そうでない場合は時計回りに円弧を描きます。
+                Turtleの方向は <span class="sig"><em>extent</em></span> の分だけ変化します。</p>
               <div class="notranslate">
                 <div class="highlight" style="position: relative;">
                   <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">circle</span><span class="b">(</span><span class="m">120</span><span class="p">,</span> <span class="m">180</span><span class="b">)</span><span class="p">;</span>
@@ -521,12 +523,12 @@
                 <dd>
                   <ul>
                     <li>
-                      <p><span>size</span> – 自然数</p>
+                      <p><span class="sig"><em>size</em></span> – 自然数</p>
                     </li>
                   </ul>
                 </dd>
               </dl>
-              <p>与えられた直径<em>size</em>で円形の点を描きます。</p>
+              <p>与えられた直径 <span class="sig"><em>size</em></span> で円形の点を描きます。</p>
               <div class="notranslate">
                 <div class="highlight" style="position: relative;">
                   <pre><span class="n">turtle</span><span class="o">.</span><span class="n">dot</span><span class="b">(</span><span class="m">20</span><span class="b">)</span><span class="p">;</span></pre>
@@ -563,7 +565,7 @@
                   <p><b>Parameters:</b></p>
                 </dt>
                 <dd>
-                  <p><span>speed</span> – 整数（０～１０）</p>
+                  <p><span class="sig"><em>speed</em></span> – 整数（０～１０）</p>
                 </dd>
               </dl>
               <p>Turtleの速度を０〜１０の範囲の整数値に設定します。</p>
@@ -624,9 +626,9 @@
                   </tbody>
                 </table>
               </div>
-              <p>速度は1から10まで設定でき、数値が大きくなるほど線の描画やTurtleの回転アニメーションが速くなります。</p>
+              <p><span class="sig"><em>speed</em></span> が１～１０のときには、数値が大きくなるほど線の描画やTurtleの回転アニメーションが速くなります。</p>
               <p>アニメーションの速度は絶対的なものではなく、デバイスの処理速度に応じて変化します。</p>
-              <p>※ <code class="literal notranslate">speed = 0</code> はアニメーションが行われないことを意味します。
+              <p>※ <span class="sig"><em>speed</em> = 0</span> はアニメーションが行われないことを意味します。
                 <a class="reference internal" href="#turtle.forward" title="turtle.forward"><code
                     class="literal notranslate"><span class="pre">forward()</span></code></a> /
                 <a class="reference internal" href="#turtle.backward" title="turtle.backward"><code
@@ -686,10 +688,10 @@
                   <p><b>Parameters:</b></p>
                 </dt>
                 <dd>
-                  <p><span>width</span> – 自然数</p>
+                  <p><span class="sig"><em>width</em></span> – 自然数</p>
                 </dd>
               </dl>
-              <p>線の太さを<em>width</em>にします。</p>
+              <p>線の太さを <span class="sig"><em>width</em></span> にします。</p>
               <div class="notranslate">
                 <div class="highlight" style="position: relative;">
                   <pre><span class="n">turtle</span><span class="o">.</span><span class="n">pensize</span><span class="b">(</span><span class="m">10</span><span class="b">)</span><span class="p">;</span>
@@ -713,22 +715,22 @@
                 <dt><code class="literal notranslate"><span class="pre">pencolor(colorstring)</span></code>
                 </dt>
                 <dd>
-                  <p>ペンの色を<em>colorstring</em>に設定します、その値は
-                    <code class="literal notranslate"><span class="pre">"yellow"</span></code>や
-                    <code class="literal notranslate"><span class="pre">"#33cc8c"</span></code>のような色指定文字列です。
+                  <p>ペンの色を <span class="sig"><em>colorstring</em></span> に設定します、その値は
+                    <code class="literal notranslate"><span class="pre">"yellow"</span></code> や
+                    <code class="literal notranslate"><span class="pre">"#33cc8c"</span></code> のような色指定文字列です。
                   </p>
                 </dd>
                 <dt><code
                     class="literal notranslate"><span class="pre">pencolor((r,</span> <span class="pre">g,</span> <span class="pre">b))</span></code>
                 </dt>
                 <dd>
-                  <p>ペンの色を <em>r, g, b</em> のタプルで表された RGB の色に設定します。</p>
+                  <p>ペンの色を <span class="sig"><em>r, g, b</em></span> のタプルで表された RGB の色に設定します。</p>
                 </dd>
                 <dt><code
                     class="literal notranslate"><span class="pre">pencolor(r,</span> <span class="pre">g,</span> <span class="pre">b)</span></code>
                 </dt>
                 <dd>
-                  <p>ペンの色を <em>r, g, b</em> で表された RGB の色に設定します。</p>
+                  <p>ペンの色を <span class="sig"><em>r, g, b</em></span> で表された RGB の色に設定します。</p>
                 </dd>
               </dl>
               <p>Turtleの輪郭は新しく設定されたペンの色で描かれます。</p>
@@ -757,22 +759,22 @@
                 <dt><code class="literal notranslate"><span class="pre">fillcolor(colorstring)</span></code>
                 </dt>
                 <dd>
-                  <p>塗りつぶしの色を<em>colorstring</em>に設定します、その値は
-                    <code class="literal notranslate"><span class="pre">"yellow"</span></code>や
-                    <code class="literal notranslate"><span class="pre">"#33cc8c"</span></code>のような色指定文字列です。
+                  <p>塗りつぶしの色を <span class="sig"><em>colorstring</em></span> に設定します、その値は
+                    <code class="literal notranslate"><span class="pre">"yellow"</span></code> や
+                    <code class="literal notranslate"><span class="pre">"#33cc8c"</span></code> のような色指定文字列です。
                   </p>
                 </dd>
                 <dt><code
                     class="literal notranslate"><span class="pre">fillcolor((r,</span> <span class="pre">g,</span> <span class="pre">b))</span></code>
                 </dt>
                 <dd>
-                  <p>塗りつぶしの色を <em>r, g, b</em> のタプルで表された RGB の色に設定します。</p>
+                  <p>塗りつぶしの色を <span class="sig"><em>r, g, b</em></span> のタプルで表された RGB の色に設定します。</p>
                 </dd>
                 <dt><code
                     class="literal notranslate"><span class="pre">fillcolor(r,</span> <span class="pre">g,</span> <span class="pre">b)</span></code>
                 </dt>
                 <dd>
-                  <p>塗りつぶしの色を <em>r, g, b</em> で表された RGB の色に設定します。</p>
+                  <p>塗りつぶしの色を <span class="sig"><em>r, g, b</em></span> で表された RGB の色に設定します。</p>
                 </dd>
               </dl>
               <p>Turtleの内部は新しく設定された塗りつぶしの色で描かれます。</p>
@@ -806,7 +808,7 @@
                 <dd>
                   <p><a class="reference internal" href="#turtle.pencolor" title="turtle.pencolor">
                       <code class="literal notranslate"><span class="pre">pencolor()</span></code></a>
-                    と同様に入力し、fillcolorとpencolorの両方を指定された値に設定します。</p>
+                    と同様に入力し、fillcolor と pencolorの両方を指定された値に設定します。</p>
                 </dd>
                 <dt><code
                     class="literal notranslate"><span class="pre">color(colorstring1,</span> <span class="pre">colorstring2)</span></code>,
@@ -845,22 +847,22 @@
                 <dt><code class="literal notranslate"><span class="pre">bgcolor(colorstring)</span></code>
                 </dt>
                 <dd>
-                  <p>キャンバスの背景色を <em>colorstring</em>に設定します、その値は
-                    <code class="literal notranslate"><span class="pre">"yellow"</span></code>や
-                    <code class="literal notranslate"><span class="pre">"#33cc8c"</span></code>のような色指定文字列です。
+                  <p>キャンバスの背景色を <span class="sig"><em>colorstring</em></span> に設定します、その値は
+                    <code class="literal notranslate"><span class="pre">"yellow"</span></code> や
+                    <code class="literal notranslate"><span class="pre">"#33cc8c"</span></code> のような色指定文字列です。
                   </p>
                 </dd>
                 <dt><code
                     class="literal notranslate"><span class="pre">bgcolor((r,</span> <span class="pre">g,</span> <span class="pre">b))</span></code>
                 </dt>
                 <dd>
-                  <p>キャンバスの背景色を <em>r, g, b</em> のタプルで表された RGB の色に設定します。</p>
+                  <p>キャンバスの背景色を <span class="sig"><em>r, g, b</em></span> のタプルで表された RGB の色に設定します。</p>
                 </dd>
                 <dt><code
                     class="literal notranslate"><span class="pre">bgcolor(r,</span> <span class="pre">g,</span> <span class="pre">b)</span></code>
                 </dt>
                 <dd>
-                  <p>キャンバスの背景色を <em>r, g, b</em> で表された RGB の色に設定します。</p>
+                  <p>キャンバスの背景色を <span class="sig"><em>r, g, b</em></span> で表された RGB の色に設定します。</p>
                 </dd>
               </dl>
               <div class="notranslate">
@@ -956,7 +958,7 @@
                 <dd>
                   <ul>
                     <li>
-                      <p><span>stretch</span> – 自然数</p>
+                      <p><span class="sig"><em>stretch</em></span> – 自然数</p>
                     </li>
                   </ul>
                 </dd>
@@ -1021,13 +1023,13 @@
                 <dd>
                   <ul>
                     <li>
-                      <p><span>secs</span> – 正の数（小数または整数）</p>
+                      <p><span class="sig"><em>secs</em></span> – 正の数（小数または整数）</p>
                     </li>
                   </ul>
                 </dd>
               </dl>
-              <p>指定された秒数の間、呼び出し元のスレッドの実行を一時停止します。</p>
-              <p>システム内の他のアクティビティとのスケジューリングのため、中断時間は要求された時間よりも長くなる可能性があります。</p>
+              <p><span class="sig"><em>secs</em></span> 秒の間、呼び出し元のスレッドの実行を一時停止します。</p>
+              <p>※ システム内の他のアクティビティとのスケジューリングのため、中断時間は要求された時間よりも長くなる可能性があります。</p>
               <div class="notranslate">
                 <div class="highlight" style="position: relative;">
                   <pre><span class="a">await</span> <span class="n">turtle</span><span class="o">.</span><span class="n">sleep</span><span class="b">(</span><span class="m">3.0</span><span class="b">)</span><span class="p">;</span></pre>
