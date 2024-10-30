@@ -20,6 +20,14 @@ $(window).on("load resize", function () {
         canvasHeight = 600;
     }
 });
+$(document).on("click", "a[href^='#']", function () {
+  let speed = 800;
+  let href = $(this).attr("href").replace("\.", "\\\.");
+  let target = $(href == "#" || href == "" ? "html" : href);
+  let position = target.offset().top - headerHight;
+  $("body,html").animate({ scrollTop: position }, speed, "swing");
+  return false;
+});
 // .accordion_one
 $(function () {
     //.accordion_oneの中の.accordion_headerがクリックされたら
