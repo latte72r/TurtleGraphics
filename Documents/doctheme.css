@@ -1,9 +1,16 @@
-/* unset some styles from the classic stylesheet */
+
 @font-face {
     /*フォントの名前*/
     font-family: "Noto Sans JP";
     /*フォントファイルへのパス（複数指定の場合、上から順に読み込まれる）*/
-    src: url("./NotoSansJP-Regular.woff2") format("woff2");
+    src: url("./fonts/NotoSansJP-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    /*フォントの名前*/
+    font-family: "Bizin Gothic Discord";
+    /*フォントファイルへのパス（複数指定の場合、上から順に読み込まれる）*/
+    src: url("./fonts/BizinGothicDiscord-Regular.woff2") format("woff2");
 }
 
 div.document,
@@ -297,8 +304,7 @@ body pre {
 tt,
 code,
 pre {
-    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", monospace;
-    font-size: 96%;
+    font-family: "Bizin Gothic Discord", monospace;
 }
 
 body tt.xref,
@@ -337,11 +343,11 @@ table tbody>tr:nth-of-type(even) {
 }
 
 .sig {
-    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", monospace;
+    font-family: "Bizin Gothic Discord", monospace;
 }
 
 .param-name {
-    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", monospace;
+    font-family: "Bizin Gothic Discord", monospace;
     font-style: italic;
 }
 
