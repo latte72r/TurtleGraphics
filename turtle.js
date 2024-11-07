@@ -526,7 +526,6 @@ class Turtle {
         this.context.arc(centerX, centerY, radius * sign, start, end, radius > 0 ? true : false);
     }
     position() {
-        this.registeredCommands.push(["none", this.registeredFigures.length, []]);
         return [this.centerX, this.centerY];
     }
     async undo() {

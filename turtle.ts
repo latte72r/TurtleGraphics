@@ -616,7 +616,6 @@ class Turtle {
     }
 
     position() {
-        this.registeredCommands.push(["none", this.registeredFigures.length, []]);
         return [this.centerX, this.centerY];
     }
 
